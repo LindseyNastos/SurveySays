@@ -8,8 +8,8 @@ using Infrastructure.Db;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160416015047_enumRedo")]
-    partial class enumRedo
+    [Migration("20160421005633_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -1,6 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    "outFile": "wwwroot/all.js",
     "noImplicitAny": false,
     "noEmitOnError": true,
     "removeComments": false,

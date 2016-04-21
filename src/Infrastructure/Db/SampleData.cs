@@ -8,11 +8,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Entity;
 using System.Security.Claims;
 using Domain.Enums;
+using Infrastructure.OptionModels;
+using Microsoft.Extensions.OptionsModel;
 
 namespace Infrastructure.Db
 {
     public class SampleData
     {
+        private SeedDataOptions _options;
+        public SampleData(IOptions<SeedDataOptions> options)
+        {
+            _options = options.Value;
+        }
+
         public async static Task Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetService<ApplicationDbContext>();
@@ -68,8 +76,8 @@ namespace Infrastructure.Db
                     }
                 );
             }
-            
-                context.SaveChanges();
+
+            context.SaveChanges();
 
             if (!context.Questions.Any())
             {
@@ -184,7 +192,9 @@ namespace Infrastructure.Db
             }
             context.SaveChanges();
 
-            context.QuestionSurveys.AddRange(
+            if (!context.Surveys.Any())
+            {
+                context.QuestionSurveys.AddRange(
                 new QuestionSurvey
                 {
                     SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
@@ -226,7 +236,9 @@ namespace Infrastructure.Db
                     QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?").Id
                 }
             );
+            }
             context.SaveChanges();
         }
+
     }
 }

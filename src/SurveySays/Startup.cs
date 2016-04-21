@@ -13,6 +13,8 @@ using Newtonsoft.Json.Serialization;
 using Infrastructure.Db;
 using Domain.Models;
 using Services.MessageServices;
+using Infrastructure.OptionModels;
+using Microsoft.Extensions.OptionsModel;
 
 namespace SurveySays
 {
@@ -50,13 +52,16 @@ namespace SurveySays
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            // Configure options
+            services.Configure<SeedDataOptions>(Configuration);
+
             services.AddMvc();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            // convert Pascal to Camel
+            // Convert Pascal to Camel
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver =
                     new CamelCasePropertyNamesContractResolver();
