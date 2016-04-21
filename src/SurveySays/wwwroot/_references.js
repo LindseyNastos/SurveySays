@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../all.js" />
 /// <reference path="../gulpfile.js" />
 /// <reference path="all.js" />
 /// <reference path="lib/angular/angular.js" />

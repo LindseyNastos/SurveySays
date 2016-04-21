@@ -67,14 +67,14 @@ namespace SurveySays
                     new CamelCasePropertyNamesContractResolver();
             });
 
-
-            // add security policies
+            // Add security policies
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireClaim("IsAdmin"));
             });
 
-
+            // Dependency Injection
+            services.AddScoped<IGenericRepository, GenericRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,9 +9,14 @@ namespace Domain.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+            Surveys = new List<Survey>();
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Course CourseTaught { get; set; }
         public Campus Location { get; set; }
+        public ICollection<Survey> Surveys { get; set; }
     }
 }
