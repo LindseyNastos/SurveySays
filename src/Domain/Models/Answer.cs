@@ -10,5 +10,6 @@ namespace Domain.Models
         public int Id { get; set; }
         public string Ans { get; set; }
         public int Value { get; set; }
+        public int QuestionId { get; set; }
     }
 }

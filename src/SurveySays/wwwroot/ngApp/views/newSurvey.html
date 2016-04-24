@@ -1,0 +1,14 @@
+﻿<h2>New Survey</h2>
+
+<label>Name:</label>
+<input type="text"/>
+<br />
+<label>Course:</label>
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Course
+    </button>
+    <ul ng-repeat="course in vm.courses" class="dropdown-menu">
+        <li>{{course}}</li>
+    </ul>
+</div>

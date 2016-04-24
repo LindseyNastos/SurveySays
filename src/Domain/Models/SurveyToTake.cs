@@ -8,6 +8,10 @@ namespace Domain.Models
 {
     public class SurveyToTake
     {
+        public SurveyToTake()
+        {
+            Answers = new List<Answer>();
+        }
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -16,5 +20,6 @@ namespace Domain.Models
         public Survey Survey { get; set; }
         public Guid FullGuid { get; set; }
         public string ShortGuid { get; set; }
+        public ICollection<Answer> Answers { get; set; }
     }
 }

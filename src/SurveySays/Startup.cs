@@ -15,6 +15,7 @@ using Domain.Models;
 using Services.MessageServices;
 using Infrastructure.OptionModels;
 using Microsoft.Extensions.OptionsModel;
+using Services.DomainServices;
 
 namespace SurveySays
 {
@@ -75,6 +76,9 @@ namespace SurveySays
 
             // Dependency Injection
             services.AddScoped<IGenericRepository, GenericRepository>();
+            services.AddScoped<ISurveyServices, SurveyServices>();
+            services.AddScoped<ISurveyToTakeServices, SurveyToTakeServices>();
+            services.AddScoped<IQuestionServices, QuestionServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

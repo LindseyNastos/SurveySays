@@ -15,6 +15,7 @@ namespace Domain.Models
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string ImageUrl { get; set; }
         public Course CourseTaught { get; set; }
         public Campus Location { get; set; }
         public ICollection<Survey> Surveys { get; set; }

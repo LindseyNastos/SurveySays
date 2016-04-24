@@ -9,39 +9,47 @@ namespace SurveySays {
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: '/ngApp/views/home.html',
-                controller: SurveySays.Controllers.HomeController,
-                controllerAs: 'controller'
+                templateUrl: '/ngApp/views/home.html'
             })
-            .state('secret', {
-                url: '/secret',
-                templateUrl: '/ngApp/views/secret.html',
-                controller: SurveySays.Controllers.SecretController,
-                controllerAs: 'controller'
+            .state('about', {
+                url: '/about',
+                templateUrl: '/ngApp/views/about.html'
+            })
+            .state('newSurvey', {
+                url: '/newSurvey',
+                templateUrl: '/ngApp/views/newSurvey.html',
+                controller: SurveySays.Controllers.NewSurveyController,
+                controllerAs: 'vm'
+            })
+            .state('editSurvey', {
+                url: '/editSurvey',
+                templateUrl: '/ngApp/views/editSurvey.html',
+                controller: SurveySays.Controllers.EditSurveyController,
+                controllerAs: 'vm'
+            })
+            .state('takeSurvey', {
+                url: '/takeSurvey',
+                templateUrl: '/ngApp/views/takeSurvey.html',
+                controller: SurveySays.Controllers.TakeSurveyController,
+                controllerAs: 'vm'
+            })
+            .state('profile', {
+                url: '/profile',
+                templateUrl: '/ngApp/views/profile.html',
+                controller: SurveySays.Controllers.ProfileController,
+                controllerAs: 'vm'
             })
             .state('login', {
                 url: '/login',
                 templateUrl: '/ngApp/views/login.html',
                 controller: SurveySays.Controllers.LoginController,
-                controllerAs: 'controller'
+                controllerAs: 'vm'
             })
             .state('register', {
                 url: '/register',
                 templateUrl: '/ngApp/views/register.html',
                 controller: SurveySays.Controllers.RegisterController,
-                controllerAs: 'controller'
-            })
-            .state('externalRegister', {
-                url: '/externalRegister',
-                templateUrl: '/ngApp/views/externalRegister.html',
-                controller: SurveySays.Controllers.ExternalRegisterController,
-                controllerAs: 'controller'
-            }) 
-            .state('about', {
-                url: '/about',
-                templateUrl: '/ngApp/views/about.html',
-                controller: SurveySays.Controllers.AboutController,
-                controllerAs: 'controller'
+                controllerAs: 'vm'
             })
             .state('notFound', {
                 url: '/notFound',
