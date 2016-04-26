@@ -19,3 +19,7 @@ textarea {
 .navbar-inverse {
     border-radius:0;
 }
+
+.editTabDiv {
+    padding:15px;
+}

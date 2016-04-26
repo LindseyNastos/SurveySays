@@ -2,9 +2,17 @@
 
     export class NewSurveyController {
         public survey: SurveySays.Models.ISurvey;
-        public courses: number[];
-        constructor(private surveyService: SurveySays.Services.SurveyService, $stateParams: ng.ui.IStateParamsService) {
-            this.survey = this.surveyService.getSurvey($stateParams['id']);
+        public courses: SurveySays.Models.ICourse[];
+        constructor(
+            private surveyService: SurveySays.Services.SurveyService,
+            private courseService: SurveySays.Services.CourseService
+        ) {
+            this.courses = this.courseService.listCourses();
+        }
+
+        public saveNewSurvey(survey): void {
+            this.surveyService.saveSurvey(survey);
+            //then redirect to editSurvey
         }
     }
 

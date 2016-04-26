@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
-using Domain.Models;
+﻿using Domain.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Services.DomainServices
+namespace Domain.Interfaces
 {
     public interface IQuestionServices
     {

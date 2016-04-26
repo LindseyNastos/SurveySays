@@ -16,6 +16,7 @@ using Services.MessageServices;
 using Infrastructure.OptionModels;
 using Microsoft.Extensions.OptionsModel;
 using Services.DomainServices;
+using Domain.Interfaces;
 
 namespace SurveySays
 {
@@ -79,6 +80,10 @@ namespace SurveySays
             services.AddScoped<ISurveyServices, SurveyServices>();
             services.AddScoped<ISurveyToTakeServices, SurveyToTakeServices>();
             services.AddScoped<IQuestionServices, QuestionServices>();
+            services.AddScoped<ICourseServices, CourseServices>();
+            //services.AddScoped<ICampusServices, CampusServices>();
+            //services.AddScoped<IQuestionTypeServices, QuestionTypeServices>();
+            services.AddScoped<IProfileServices, ProfileServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using Domain.Models;
 using Domain.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,10 +10,10 @@ using Domain.Interfaces;
 namespace SurveySays.API
 {
     [Route("api/[controller]")]
-    public class SurveysController : Controller
+    public class CoursesController : Controller
     {
-        private ISurveyServices _service;
-        public SurveysController(ISurveyServices service)
+        private ICourseServices _service;
+        public CoursesController(ICourseServices service)
         {
             _service = service;
         }
@@ -22,31 +21,21 @@ namespace SurveySays.API
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_service.ListAllSurveys());
+            var courses = _service.GetAllCourses();
+            return Ok(courses);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public string Get(int id)
         {
-            return Ok(_service.GetSurvey(id));
+            return "value";
         }
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]Survey survey)
+        public void Post([FromBody]string value)
         {
-            if (ModelState.IsValid) {
-                if (survey.Id == 0)
-                {
-                    _service.AddNewSurvey(survey);
-                    return Created("/surveys/" + survey.Id, survey);
-                }
-                else {
-                    _service.EditSurvey(survey);
-                }
-            }
-            return HttpBadRequest(ModelState);
         }
 
         // PUT api/values/5
@@ -59,7 +48,6 @@ namespace SurveySays.API
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _service.DeleteSurvey(id);
         }
     }
 }

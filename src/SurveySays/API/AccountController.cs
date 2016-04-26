@@ -11,7 +11,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Logging;
 using SurveySays.ViewModels.Account;
 using Domain.Models;
-using Services.MessageServices;
+using Domain.Interfaces;
 
 namespace SurveySays.Controllers
 {

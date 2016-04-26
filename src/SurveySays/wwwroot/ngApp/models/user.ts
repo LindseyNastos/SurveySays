@@ -4,8 +4,8 @@
         firstName: string;
         lastName: string;
         email: string;
-        courseTaught: number;
-        location: number;
+        courseTaught: SurveySays.Models.ICourse;
+        location: SurveySays.Models.ICampus;
         surveys: ISurvey[];
     }
 }

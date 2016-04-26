@@ -3,7 +3,7 @@
     export interface IQuestion {
         id: number;
         quest: string;
-        questionType: number;
+        questionType: SurveySays.Models.IQuestionType;
         answerOptions: IAnswer[];
         matrixQuestions: IOption[];
     }

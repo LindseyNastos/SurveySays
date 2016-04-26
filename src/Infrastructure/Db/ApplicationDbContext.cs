@@ -12,6 +12,9 @@ namespace Infrastructure.Db
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Campus> Campuses { get; set; }
+        public DbSet<QuestionType> QuestionTypes { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<Survey> Surveys { get; set; }

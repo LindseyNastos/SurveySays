@@ -3,6 +3,6 @@
     export interface ISurvey {
         id: number;
         surveyName: string;
-        course: number;
+        course: SurveySays.Models.ICourse;
     }
 }

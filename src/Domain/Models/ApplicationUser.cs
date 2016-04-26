@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Domain.Enums;
 
 namespace Domain.Models
 {
@@ -15,6 +14,16 @@ namespace Domain.Models
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string ImageUrl { get; set; }
+        public Course CourseTaught { get; set; }
+        public Campus Location { get; set; }
+        public ICollection<Survey> Surveys { get; set; }
+    }
+
+    public class UserDto {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
         public string ImageUrl { get; set; }
         public Course CourseTaught { get; set; }
         public Campus Location { get; set; }

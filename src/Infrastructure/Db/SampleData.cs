@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Entity;
 using System.Security.Claims;
-using Domain.Enums;
 using Infrastructure.OptionModels;
 using Microsoft.Extensions.OptionsModel;
 
@@ -59,6 +58,41 @@ namespace Infrastructure.Db
             }
             context.SaveChanges();
 
+            if (!context.Campuses.Any()) {
+                context.Campuses.AddRange(
+                    new Campus { Location = "Houston" },
+                    new Campus { Location = "Seattle" },
+                    new Campus { Location = "San Francisco" },
+                    new Campus { Location = "Chicago" },
+                    new Campus { Location = "Tulsa" },
+                    new Campus { Location = "Dallas" },
+                    new Campus { Location = "Austin" },
+                    new Campus { Location = "Online" }
+                );
+            }
+
+            if (!context.Courses.Any())
+            {
+                context.Courses.AddRange(
+                    new Course { Name = "ASP.NET" },
+                    new Course { Name = "Coding From Scratch" },
+                    new Course { Name = "Java" },
+                    new Course { Name = "MEAN Stack" },
+                    new Course { Name = "Ruby on Rails" }
+                );
+            }
+
+            if (!context.QuestionTypes.Any())
+            {
+                context.QuestionTypes.AddRange(
+                    new QuestionType { Type = "Multiple Choice" },
+                    new QuestionType { Type = "Dropdown List" },
+                    new QuestionType { Type = "Matrix Rating" },
+                    new QuestionType { Type = "Ranking" },
+                    new QuestionType { Type = "TextBox" }
+                );
+            }
+
             if (!context.Surveys.Any())
             {
                 context.Surveys.AddRange(
@@ -66,13 +100,13 @@ namespace Infrastructure.Db
                     {
                         UserId = lindsey.Id,
                         SurveyName = "Seattle .Net Troop 8",
-                        Course = Course.ASPNET
+                        Course = context.Courses.FirstOrDefault(c => c.Name == "ASPNET")
                     },
                     new Survey
                     {
                         UserId = lindsey.Id,
                         SurveyName = "Online CFS #22",
-                        Course = Course.CFS
+                        Course = context.Courses.FirstOrDefault(c => c.Name == "Coding From Scratch")
                     }
                 );
             }
@@ -84,12 +118,12 @@ namespace Infrastructure.Db
                 context.Questions.AddRange(
                     new Question
                     {
-                        QuestionType = QuestionType.TextBox,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Text"),
                         Quest = "What was the most difficult part of the camp?",
                     },
                     new Question
                     {
-                        QuestionType = QuestionType.MultipleChoice,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Multiple Choice"),
                         Quest = "Which option best describes the course overall?",
                         AnswerOptions = {
                             new Option {
@@ -108,22 +142,22 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
-                        QuestionType = QuestionType.TextBox,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Text"),
                         Quest = "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?"
                     },
                     new Question
                     {
-                        QuestionType = QuestionType.TextBox,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Text"),
                         Quest = "How could the instructors improve?"
                     },
                     new Question
                     {
-                        QuestionType = QuestionType.TextBox,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Text"),
                         Quest = "What did the instructors excel at?"
                     },
                     new Question
                     {
-                        QuestionType = QuestionType.Ranking,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Ranking"),
                         Quest = "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):",
                         AnswerOptions = {
                             new Option {
@@ -148,7 +182,7 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
-                        QuestionType = QuestionType.MatrixRating,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Matrix Rating"),
                         Quest = "Choose the option that best fits your experience for each of the following categories:",
                         MatrixQuestions = {
                             new Option {

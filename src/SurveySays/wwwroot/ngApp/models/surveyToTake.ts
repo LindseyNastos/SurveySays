@@ -5,7 +5,7 @@
         firstName: string;
         lastName: string;
         anonymous: boolean;
-        course: number;
+        course: SurveySays.Models.ICourse;
         survey: ISurvey;
     }
 }

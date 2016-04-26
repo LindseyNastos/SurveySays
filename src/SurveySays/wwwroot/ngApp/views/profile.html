@@ -1,7 +1,27 @@
 ﻿<h2>Profile</h2>
 
-<!--Create Survey button
-
-List of surveys created
-
-Instructor Info-->
+<img ng-src="{{vm.instructor.imageUrl}}" />
+<br />
+<h3>{{vm.instructor.firstName}} {{vm.instructor.lastName}}</h3>
+<br />
+Course: {{vm.instructor.courseTaught.name}}
+<br />
+Campus: {{vm.instructor.location.location}}
+<br />
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Course</th>
+        </tr>
+        <tr ng-repeat="survey in vm.surveys">
+            <td>
+                {{survey.surveyName}}
+            </td>
+            <td>
+                {{survey.course.name}}
+            </td>
+        </tr>
+    </table>
+</div>
+<button class="btn btn-primary">Create Survey</button>
