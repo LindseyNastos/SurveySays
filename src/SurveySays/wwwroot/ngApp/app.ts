@@ -34,7 +34,7 @@ namespace SurveySays {
                 controllerAs: 'vm'
             })
             .state('profile', {
-                url: '/profile/:userName',
+                url: '/profile/:userId',
                 templateUrl: '/ngApp/views/profile.html',
                 controller: SurveySays.Controllers.ProfileController,
                 controllerAs: 'vm'

@@ -15,7 +15,8 @@ namespace Domain.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool Anonymous { get; set; }
-        public Course Course { get; set; }
+        public int TroopNum { get; set; }
+        public DateTime DateTaken { get; set; }
         public Survey Survey { get; set; }
         public Guid FullGuid { get; set; }
         public string ShortGuid { get; set; }

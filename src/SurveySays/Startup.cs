@@ -14,9 +14,9 @@ using Infrastructure.Db;
 using Domain.Models;
 using Services.MessageServices;
 using Infrastructure.OptionModels;
-using Microsoft.Extensions.OptionsModel;
 using Services.DomainServices;
 using Domain.Interfaces;
+using Infrastructure.Repositories;
 
 namespace SurveySays
 {
@@ -81,8 +81,9 @@ namespace SurveySays
             services.AddScoped<ISurveyToTakeServices, SurveyToTakeServices>();
             services.AddScoped<IQuestionServices, QuestionServices>();
             services.AddScoped<ICourseServices, CourseServices>();
-            //services.AddScoped<ICampusServices, CampusServices>();
-            //services.AddScoped<IQuestionTypeServices, QuestionTypeServices>();
+            services.AddScoped<ICampusServices, CampusServices>();
+            services.AddScoped<IQuestionTypeServices, QuestionTypeServices>();
+            services.AddScoped<IAnswerServices, AnswerServices>();
             services.AddScoped<IProfileServices, ProfileServices>();
         }
 

@@ -2,7 +2,7 @@
     export class CourseService {
         private CourseResource;
         constructor($resource: ng.resource.IResourceService) {
-            this.CourseResource = $resource('api/courses/:id');
+            this.CourseResource = $resource('/api/courses/:id');
         }
         public listCourses() {
             return this.CourseResource.query();

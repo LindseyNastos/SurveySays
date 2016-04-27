@@ -1,11 +1,12 @@
-﻿using Microsoft.Data.Entity;
+﻿using Infrastructure.Db;
+using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Db
+namespace Infrastructure.Repositories
 {
     public class GenericRepository : IGenericRepository
     {

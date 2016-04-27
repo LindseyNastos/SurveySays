@@ -23,3 +23,8 @@ textarea {
 .editTabDiv {
     padding:15px;
 }
+
+#profileImg {
+    max-width:150px;
+    max-height:150px;
+}

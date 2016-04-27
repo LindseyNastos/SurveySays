@@ -24,6 +24,9 @@ namespace Infrastructure.Db
         {
             var context = serviceProvider.GetService<ApplicationDbContext>();
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+            //var opts = serviceProvider.GetServices<SeedDataOptions>();
+
+            context.Database.EnsureDeleted();
             context.Database.Migrate();
 
             // Ensure Lindsey (IsAdmin)
@@ -34,6 +37,7 @@ namespace Infrastructure.Db
                 lindsey = new ApplicationUser
                 {
                     UserName = "Lindsey.Nastos@CoderCamps.com",
+                    //UserName = opts.
                     Email = "Lindsey.Nastos@CoderCamps.com",
                     FirstName = "Lindsey",
                     LastName = "Nastos"
@@ -109,6 +113,8 @@ namespace Infrastructure.Db
                         Course = context.Courses.FirstOrDefault(c => c.Name == "Coding From Scratch")
                     }
                 );
+                context.SaveChanges();
+                lindsey.Surveys.Add(context.Surveys.First(s => s.SurveyName == "Seattle .Net Troop 8"));
             }
 
             context.SaveChanges();
@@ -226,7 +232,7 @@ namespace Infrastructure.Db
             }
             context.SaveChanges();
 
-            if (!context.Surveys.Any())
+            if (!context.QuestionSurveys.Any())
             {
                 context.QuestionSurveys.AddRange(
                 new QuestionSurvey

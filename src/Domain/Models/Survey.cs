@@ -15,7 +15,9 @@ namespace Domain.Models
         public string SurveyName { get; set; }
         public string UserId { get; set; }
         public Course Course { get; set; }
-        
+        public DateTime DateCreated { get; set; }
+        public int NumResponses { get; set; }
+
         public ICollection<QuestionSurvey> QuestionSurveys { get; set; }
     }
 }

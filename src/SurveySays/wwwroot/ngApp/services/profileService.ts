@@ -2,10 +2,11 @@
     export class ProfileService {
         private ProfileResource;
         constructor($resource: ng.resource.IResourceService) {
-            this.ProfileResource = $resource('api/profiles/:userName');
+            this.ProfileResource = $resource('/api/profiles/:userId');
         }
-        public getProfile(userName: string) {
-            return this.ProfileResource.get({ userName: userName }).$promise;
+        public getProfile(userId: string) {
+            
+            return this.ProfileResource.get({ userId: userId }).$promise;
         }
     }
     angular.module('SurveySays').service('profileService', ProfileService);

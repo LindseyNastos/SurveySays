@@ -1,6 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
-using Infrastructure.Db;
+using Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,6 +5,8 @@
         firstName: string;
         lastName: string;
         anonymous: boolean;
+        dateTaken: string;
+        troopNum: number;
         course: SurveySays.Models.ICourse;
         survey: ISurvey;
     }

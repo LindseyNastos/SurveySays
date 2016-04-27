@@ -3,7 +3,7 @@
     export class SurveyService {
         private SurveyResource;
         constructor($resource: ng.resource.IResourceService) {
-            this.SurveyResource = $resource('api/surveys/:id');
+            this.SurveyResource = $resource('/api/surveys/:id');
         }
         public listSurveys() {
             return this.SurveyResource.query();

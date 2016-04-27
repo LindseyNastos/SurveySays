@@ -1,6 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
-using Infrastructure.Db;
+using Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +37,6 @@ namespace Services.DomainServices
             original.FirstName = survey.FirstName;
             original.LastName = survey.LastName;
             original.Anonymous = survey.Anonymous;
-            original.Course = survey.Course;
             _repo.Update<SurveyToTake>(original);
         }
 

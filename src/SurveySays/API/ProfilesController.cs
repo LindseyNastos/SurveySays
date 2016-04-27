@@ -26,10 +26,10 @@ namespace SurveySays.API
         }
 
         // GET api/values/johnDoe
-        [HttpGet("{userName}")]
-        public ApplicationUser Get(string userName)
+        [HttpGet("{userId}")]
+        public ApplicationUser Get(string userId)
         {
-            var profile = _service.GetProfile(userName);
+            var profile = _service.GetProfile(userId);
             return profile;
         }
 
