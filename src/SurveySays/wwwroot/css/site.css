@@ -25,10 +25,30 @@ textarea {
 }
 
 #profileImg {
-    max-width:150px;
-    max-height:150px;
+    max-width:250px;
+    max-height:250px;
 }
 
 #main-wrapper {
     padding:0;
+}
+
+.container {
+    padding-top: 20px;
+}
+
+#profile-name {
+    margin-top:0;
+}
+
+#profile-basic-info {
+    margin-bottom:20px;
+    margin-top:10px;
+}
+
+.table-btns {
+    border:1px solid #666;
+    padding:4px;
+    height:30px;
+    width:30px;
 }

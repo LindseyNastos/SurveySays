@@ -1,27 +1,29 @@
-<h2>Register</h2>
+<div class="container">
+    <h2>Register</h2>
 
-<fieldset>
-    <ul>
-        <li ng-repeat="message in controller.validationMessages">
-            {{message}}
-        </li>
-    </ul>
+    <fieldset>
+        <ul>
+            <li ng-repeat="message in controller.validationMessages">
+                {{message}}
+            </li>
+        </ul>
 
-    <form ng-submit="controller.register()">
-        <fieldset class="form-group">
-            <label>Email:</label>
-            <input class="form-control" ng-model="controller.registerUser.email" />
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Password:</label>
-            <input class="form-control" ng-model="controller.registerUser.password" />
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Confirm Password:</label>
-            <input class="form-control" ng-model="controller.registerUser.confirmPassword" />
-        </fieldset>
-        <input class="btn btn-primary form-control" type="submit" value="Register" />
-    </form>
-    <hr />
-    <p>Already registered? <a href="/login">Login Here</a></p>
-</fieldset>
+        <form ng-submit="controller.register()">
+            <fieldset class="form-group">
+                <label>Email:</label>
+                <input class="form-control" ng-model="controller.registerUser.email" />
+            </fieldset>
+            <fieldset class="form-group">
+                <label>Password:</label>
+                <input class="form-control" ng-model="controller.registerUser.password" />
+            </fieldset>
+            <fieldset class="form-group">
+                <label>Confirm Password:</label>
+                <input class="form-control" ng-model="controller.registerUser.confirmPassword" />
+            </fieldset>
+            <input class="btn btn-primary form-control" type="submit" value="Register" />
+        </form>
+        <hr />
+        <p>Already registered? <a href="/login">Login Here</a></p>
+    </fieldset>
+</div>

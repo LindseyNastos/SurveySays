@@ -1,75 +1,79 @@
-﻿<h2>Profile</h2>
-
-<img id="profileImg" ng-src="{{vm.instructor.imageUrl}}" />
-<br />
-<h3>{{vm.instructor.firstName}} {{vm.instructor.lastName}}</h3>
-<p>Course: {{vm.instructor.courseTaught.name}}</p>
-<p>Campus: {{vm.instructor.location.location}}</p>
-<br />
-<div class="table-responsive">
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Created</th>
-            <th>Responses</th>
-            <th>Edit</th>
-            <th>Collect</th>
-            <th>Analyze</th>
-            <th>More</th>
-        </tr>
-        <tr>
-            <td>
-                Example
-            </td>
-            <td>
-                ASP.NET
-            </td>
-            <td>
-                April 26, 2016
-            </td>
-            <td>
-                4
-            </td>
-            <td>
-                Edit Button
-            </td>
-            <td>
-                Collect Button
-            </td>
-            <td>
-                Analyze Button
-            </td>
-            <td>
-                Dropdown
-            </td>
-        </tr>
-        <tr ng-repeat="survey in vm.surveys">
-            <td>
-                {{survey.surveyName}}
-            </td>
-            <td>
-                {{survey.course.name}}
-            </td>
-            <td>
-                {{survey.dateCreated}}
-            </td>
-            <td>
-                {{survey.numResponses}}
-            </td>
-            <td>
-                Edit Button
-            </td>
-            <td>
-                Collect Button
-            </td>
-            <td>
-                Analyze Button
-            </td>
-            <td>
-                Dropdown
-            </td>
-        </tr>
-    </table>
+﻿<div class="container">
+    <div id="profile-basic-info" class="row">
+        <div class="col-md-1">
+            <img id="profileImg" ng-src="{{vm.instructor.imageUrl}}" />
+        </div>
+        <div class="col-md-11">
+            <h3 id="profile-name">{{vm.instructor.firstName}} {{vm.instructor.lastName}}</h3>
+            <p>Course: {{vm.instructor.courseTaught.name}}</p>
+            <p>Campus: {{vm.instructor.location.location}}</p>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Created</th>
+                <th>Responses</th>
+                <th>Edit</th>
+                <th>Collect</th>
+                <th>Analyze</th>
+                <th>More</th>
+            </tr>
+            <tr>
+                <td>
+                    Example
+                </td>
+                <td>
+                    ASP.NET
+                </td>
+                <td>
+                    April 26, 2016
+                </td>
+                <td>
+                    4
+                </td>
+                <td>
+                    Edit Button
+                </td>
+                <td>
+                    Collect Button
+                </td>
+                <td>
+                    Analyze Button
+                </td>
+                <td>
+                    Dropdown
+                </td>
+            </tr>
+            <tr ng-repeat="survey in vm.surveys">
+                <td>
+                    {{survey.surveyName}}
+                </td>
+                <td>
+                    {{survey.course.name}}
+                </td>
+                <td>
+                    {{survey.dateCreated}}
+                </td>
+                <td>
+                    {{survey.numResponses}}
+                </td>
+                <td>
+                    <button class="table-btns"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                </td>
+                <td>
+                    <button class="table-btns"><i class="fa fa-users" aria-hidden="true"></i></button>
+                </td>
+                <td>
+                    <button class="table-btns"><i class="fa fa-line-chart" aria-hidden="true"></i></button>
+                </td>
+                <td>
+                    <button class="table-btns"><i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <button class="btn btn-primary">Create Survey</button>
 </div>
-<button class="btn btn-primary">Create Survey</button>

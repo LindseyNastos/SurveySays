@@ -1,14 +1,16 @@
-﻿<h2>New Survey</h2>
-<form>
-    <fieldset class="form-group">
-        <label>Survey Name:</label>
-        <input class="form-control" type="text" />
-    </fieldset>
-    <fieldset class="form-group">
-        <label>Course:</label>
-        <select class="form-control">
-            <option ng-repeat="course in vm.courses">{{course.name}}</option>
-        </select>
-    </fieldset>
-    <button class="btn btn-primary">Create Survey</button>
-</form>
+﻿<div class="container">
+    <h2>New Survey</h2>
+    <form>
+        <fieldset class="form-group">
+            <label>Survey Name:</label>
+            <input class="form-control" type="text" />
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Course:</label>
+            <select class="form-control">
+                <option ng-repeat="course in vm.courses">{{course.name}}</option>
+            </select>
+        </fieldset>
+        <button class="btn btn-primary">Create Survey</button>
+    </form>
+</div>

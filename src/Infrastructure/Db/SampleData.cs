@@ -26,7 +26,7 @@ namespace Infrastructure.Db
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
             //var opts = serviceProvider.GetServices<SeedDataOptions>();
 
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             context.Database.Migrate();
 
             // Ensure Lindsey (IsAdmin)
