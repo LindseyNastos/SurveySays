@@ -51,6 +51,12 @@ namespace SurveySays {
                 controller: SurveySays.Controllers.RegisterController,
                 controllerAs: 'vm'
             })
+            .state('adminDash', {
+                url: '/adminDash',
+                templateUrl: '/ngApp/views/adminDash.html',
+                //controller: SurveySays.Controllers.AdminDashController,
+                //controllerAs: 'vm'
+            })
             .state('notFound', {
                 url: '/notFound',
                 templateUrl: '/ngApp/views/notFound.html'

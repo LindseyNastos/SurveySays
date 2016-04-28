@@ -2,7 +2,8 @@
 <head>
     <title>SurveySays</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />*@
+    <link href="~/css/admindashstyle.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
     <base href="/" />
 </head>
@@ -52,7 +53,7 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="container">
+    <div id="main-wrapper" class="container-fluid">
         <ui-view></ui-view>
     </div>
 
