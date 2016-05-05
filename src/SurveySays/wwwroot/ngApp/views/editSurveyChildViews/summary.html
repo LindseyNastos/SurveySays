@@ -1,0 +1,102 @@
+﻿<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Design Summary</h3>
+            </div>
+            <div class="table-responsive panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div>
+                            <i class="fa fa-pencil-square-o fa-5x" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-8">
+                        <strong>Example Survey</strong>
+                        <br />
+                        <em>Created on 3/15/2016</em>
+                    </div>
+                </div>
+
+                <table class="table">
+
+                    <tr>
+                        <td>Course: ASP.NET</td>
+                    </tr>
+                    <tr>
+                        <td>Questions: 7</td>
+                    </tr>
+                    <tr>
+                        <td id="sum-btn-td">
+                            <div id="sum-btn-div">
+                                <button>Edit Design</button>
+                                <button>Preview Survey</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <!--<table class="table">
+                    <tr>
+                        <td>
+                            <strong>{{survey.surveyName}}</strong>
+                            <br />
+                            <em>Created on {{survey.dateCreated}}</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Course: {{survey.course.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Questions: {{controller.numQuestions}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button>Edit Design</button>
+                            <button>Preview Survey</button>
+                        </td>
+                    </tr>
+                </table>-->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Response Summary</h3>
+            </div>
+            <div id="response-summary-panel" class="panel-body">
+                <div class="row">
+                    <div class="summaryLeftDiv summaryTopDiv col-sm-6">num responses</div>
+                    <div id="sum2" class="summaryRightDiv summaryTopDiv col-sm-6">draft/released</div>
+                </div>
+                <div class="row">
+                    <div class="summaryLeftDiv col-sm-6">current troop to take survey</div>
+                    <div id="sum4" class="summaryRightDiv col-sm-6">some chart thingy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+response summary:
+    survey alerts: on/off
+    num responses
+    survey status: draft/released
+    current troop waiting for response from
+
+design summary:
+    survey name
+    date created
+    num questions
+    course
+    edit design button
+    preview survey button
+-->

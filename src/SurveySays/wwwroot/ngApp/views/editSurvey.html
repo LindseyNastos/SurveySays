@@ -1,43 +1,21 @@
-﻿<div class="container">
+﻿<div class="wrapper container">
     <h2>Edit Survey</h2>
-
     <uib-tabset>
-        <uib-tab heading="Summary">
-            <div class="editTabDiv">
-                one
+        <uib-tab class="tab-headings" heading="Analyze Results">
+            <div ui-view="analyze" class="editTabDiv">
             </div>
         </uib-tab>
-        <uib-tab heading="Design & Edit">
-            <div class="editTabDiv">
-                two
+        <uib-tab class="tab-headings" heading="Collect Responses">
+            <div ui-view="collect" class="editTabDiv">          
             </div>
         </uib-tab>
-        <uib-tab heading="Collect Responses">
-            <div class="editTabDiv">
-                three
+        <uib-tab class="tab-headings" heading="Design & Edit">
+            <div ui-view="design" class="editTabDiv">             
             </div>
         </uib-tab>
-        <uib-tab heading="Analyze Results">
-            <div class="editTabDiv">
-                four
-                <!--
-                Analyze Results
-                    Left:
-                        Filter
-                        Compare
-                        Show
-                    Right:
-                        Question Summaries
-                        Data Trends
-                        Individual Responses
-                        -If havent sent it out:
-                            Collect Responses
-                        -If no responses:
-                            Send Reminder
-                            Show Expiration Date-->
-
+        <uib-tab class="tab-headings" heading="Summary">
+            <div ui-view="summary" class="editTabDiv">             
             </div>
         </uib-tab>
     </uib-tabset>
-    </div>
-
+</div>

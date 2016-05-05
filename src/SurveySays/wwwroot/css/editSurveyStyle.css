@@ -1,0 +1,96 @@
+﻿.tab-headings {
+    float: right;
+}
+
+.editTabDiv {
+    padding: 40px 15px 15px 15px;
+}
+
+/*-------survey summary-------*/
+
+#response-summary-panel {
+    padding: 0px;
+}
+
+#sum-btn-td {
+    padding: 0px;
+}
+
+#sum-name-div {
+    padding-left:30px;
+    width:200px;
+    margin-right:0;
+    display:inline;
+}
+
+#sum-btn-div {
+    padding-top:15px;
+    margin:0 auto;
+    width:195px;
+    margin:0 auto;
+}
+
+#sum-btn-div button {
+    font-size:13px;
+}
+
+@media (min-width: 768px) {
+
+    .summaryTopDiv {
+        border-bottom: solid 1px #ddd;
+    }
+
+    .summaryRightDiv {
+        border-left: solid 1px #ddd;
+        padding: 15px 0px 15px 15px;
+        right: 15px;
+    }
+
+    .summaryLeftDiv {
+        padding: 15px;
+        left: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .summaryRightDiv, .summaryLeftDiv {
+        
+        margin:15px;
+        border-bottom: solid 1px #ddd;
+        padding-bottom:15px;
+    }
+
+    #sum2 {
+        margin-bottom:0px;
+    }
+
+    #sum4 {
+        border-bottom:none;
+        margin-bottom:0px;
+    }
+
+}
+
+/*-------collect survey responses-------*/
+
+.collect-row {
+    margin-top:50px;
+}
+
+.email-input {
+    margin-bottom:5px;
+    width:100%;
+}
+
+@media (min-width: 768px) {
+    #add-emails {
+        float:right;
+    }
+}
+
+@media (max-width: 768px) {
+    #add-emails {
+        float:left;
+    }
+}

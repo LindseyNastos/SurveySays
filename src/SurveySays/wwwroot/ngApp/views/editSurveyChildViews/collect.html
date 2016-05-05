@@ -1,0 +1,63 @@
+﻿<form>
+    <div class="row">
+        <div class="col-sm-4">
+            <label>Course location:</label>
+            <select class="form-control">
+                <option></option>
+                <option value="cfs">Coding From Scratch</option>
+                <option value="aspnet">ASP.NET</option>
+                <option value="ruby">Ruby on Rails</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <label>Troop Number:</label>
+            <input class="form-control" type="number" />
+        </div>
+        <div class="col-sm-4">
+            <label>When would you like this survey sent?</label>
+            <br />
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="radio" name="sendTime" value="now" /> Now
+                </div>
+                <div class="col-sm-8">
+                    <input type="radio" name="sendTime" value="later" /> Later <!--add a ui-datepicker popup here-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row collect-row">
+        <div class="col-sm-3">
+            <label>Add email addresses:</label>
+            <input class="email-input form-control" type="email" />
+            <input class="email-input form-control" type="email" />
+            <input class="email-input form-control" type="email" />
+            <input class="email-input form-control" type="email" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <button class="btn btn-default">Save</button>
+                </div>
+                <div class="col-sm-6">
+                    <p id="add-emails">Add more...</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <label>This survey will be sent to:</label>
+            <!--ng-repeat through saved email addresses-->
+        </div>
+    </div>
+    <div class="row collect-row">
+        <div class="col-sm-12">
+            <!--make them confirm this first!!!-->
+            <button class="btn btn-primary form-control">Send Surveys</button>
+        </div>
+    </div>
+</form>
+<!--
+verify email address to be sent from(?)
+send now or specify a later date/time to send
+enter email addresses to recieve survey
+enter troop number and location
+-->

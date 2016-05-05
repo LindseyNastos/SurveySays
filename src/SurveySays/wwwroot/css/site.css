@@ -17,38 +17,38 @@ textarea {
 }
 
 .navbar-inverse {
-    border-radius:0;
+    border-radius: 0;
 }
 
-.editTabDiv {
-    padding:15px;
-}
 
 #profileImg {
-    max-width:250px;
-    max-height:250px;
+    max-width: 250px;
+    max-height: 250px;
 }
 
 #main-wrapper {
-    padding:0;
+    padding: 0;
 }
 
-.container {
-    padding-top: 20px;
-}
 
 #profile-name {
-    margin-top:0;
+    margin-top: 0;
 }
 
 #profile-basic-info {
-    margin-bottom:20px;
-    margin-top:10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .table-btns {
-    border:1px solid #666;
-    padding:4px;
-    height:30px;
-    width:30px;
+    border: 1px solid #666;
+    padding: 4px;
+    height: 30px;
+    width: 30px;
+}
+
+
+.wrapper {
+    padding-left: 0;
+    padding-top: 70px;
 }
