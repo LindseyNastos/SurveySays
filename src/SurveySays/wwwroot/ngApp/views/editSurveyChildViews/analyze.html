@@ -1,6 +1,48 @@
-﻿analyze page
-<!--add badge of how many new responses-->
-
+﻿<div class="row">
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Current View</h3>
+            </div>
+            <div class="panel-body">
+                <div id="filter-analyze-btns">
+                    <button>+Filter</button>
+                    <button>+Compare</button>
+                    <button>+Show</button>
+                </div>
+                <hr />
+                Feature coming soon
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <!--autofill responses-->
+                <h3 class="panel-title">Responses: 0 of 0</h3>
+            </div>
+            <div class="panel-body">
+                <uib-tabset>
+                    <uib-tab class="tab-headings">
+                        <uib-tab-heading>
+                            Individual Responses  <span class="badge">4</span>
+                        </uib-tab-heading>
+                        <div ui-view="#" class="editTabDiv">
+                        </div>
+                    </uib-tab>
+                    <uib-tab class="tab-headings" heading="Data Trends">
+                        <div ui-view="#" class="editTabDiv">
+                        </div>
+                    </uib-tab>
+                    <uib-tab class="tab-headings" heading="Question Summaries">
+                        <div ui-view="#" class="editTabDiv">
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>
 <!--
                Analyze Results
                    Left:

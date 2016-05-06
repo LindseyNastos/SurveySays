@@ -27,7 +27,6 @@
     padding-top:15px;
     margin:0 auto;
     width:195px;
-    margin:0 auto;
 }
 
 #sum-btn-div button {
@@ -92,5 +91,19 @@
 @media (max-width: 768px) {
     #add-emails {
         float:left;
+    }
+}
+
+/*-------analyze survey responses-------*/
+
+#filter-analyze-btns {
+    margin:0 auto;
+    width: 206px;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    #filter-analyze-btns button {
+        margin-top:3px;
+        display:list-item;
     }
 }
