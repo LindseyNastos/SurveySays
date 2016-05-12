@@ -1,0 +1,57 @@
+﻿<div class="row">
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Something here</h3>
+            </div>
+            <div class="panel-body">
+                Something else here
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Questions</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>Question</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Here is an example question?
+                            <br />
+                            <input type="radio" name="example" value="1" /> Definitely
+                            <input type="radio" name="example" value="2" /> Maybe
+                            <input type="radio" name="example" value="3" /> No way
+                            <input type="radio" name="example" value="4" /> Not sure
+                        <td>
+                            <button class="table-btns"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        </td>
+                        <td>
+                            <button class="table-btns"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="question in vm.questions">
+                        <td>
+                            {{question.quest}}
+                            <br />
+                            {{question.answersssss}}
+                        </td>
+                        <td>
+                            <button class="table-btns"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        </td>
+                        <td>
+                            <button class="table-btns"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

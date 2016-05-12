@@ -41,6 +41,12 @@ namespace SurveySays {
                         controller: SurveySays.Controllers.DesignController,
                         controllerAs: 'vm'
                     },
+                    'preview@editSurvey': {
+                        url: '/preview',
+                        templateUrl: '/ngApp/views/editSurveyChildViews/preview.html',
+                        controller: SurveySays.Controllers.PreviewController,
+                        controllerAs: 'vm'
+                    },
                     'collect@editSurvey': {
                         url: '/collect',
                         templateUrl: '/ngApp/views/editSurveyChildViews/collect.html',
