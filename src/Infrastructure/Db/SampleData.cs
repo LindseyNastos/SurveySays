@@ -96,6 +96,7 @@ namespace Infrastructure.Db
                     new QuestionType { Type = "TextBox" }
                 );
             }
+            context.SaveChanges();
 
             if (!context.Surveys.Any())
             {
@@ -104,13 +105,15 @@ namespace Infrastructure.Db
                     {
                         UserId = lindsey.Id,
                         SurveyName = "Seattle .Net Troop 8",
-                        Course = context.Courses.FirstOrDefault(c => c.Name == "ASPNET")
+                        Course = context.Courses.FirstOrDefault(c => c.Name == "ASP.NET"),
+                        DateCreated = DateTime.Now
                     },
                     new Survey
                     {
                         UserId = lindsey.Id,
                         SurveyName = "Online CFS #22",
-                        Course = context.Courses.FirstOrDefault(c => c.Name == "Coding From Scratch")
+                        Course = context.Courses.FirstOrDefault(c => c.Name == "Coding From Scratch"),
+                        DateCreated = DateTime.Now
                     }
                 );
                 context.SaveChanges();
@@ -124,8 +127,8 @@ namespace Infrastructure.Db
                 context.Questions.AddRange(
                     new Question
                     {
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Text"),
-                        Quest = "What was the most difficult part of the camp?",
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
+                        Quest = "What was the most difficult part of the camp?"
                     },
                     new Question
                     {
@@ -148,17 +151,49 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Text"),
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?"
                     },
                     new Question
                     {
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Text"),
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "How could the instructors improve?"
                     },
                     new Question
                     {
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Text"),
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Multiple Choice"),
+                        Quest = "Which best describes the apartment/living quarters overall when you first arrived?",
+                        AnswerOptions = {
+                            new Option {
+                                Opt = "Spotless"
+                            },
+                            new Option {
+                                Opt = "Fairly clean"
+                            },
+                            new Option {
+                                Opt = "Fine"
+                            },
+                            new Option {
+                                Opt = "A little gross"
+                            },
+                            new Option {
+                                Opt = "Filthy"
+                            }
+                        }
+                    },
+                    new Question
+                    {
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
+                        Quest = "What did you appreciate about the accommodations?"
+                    },
+                    new Question
+                    {
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
+                        Quest = "What could be improved about the accommodations?"
+                    },
+                    new Question
+                    {
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "What did the instructors excel at?"
                     },
                     new Question
@@ -238,6 +273,21 @@ namespace Infrastructure.Db
                 new QuestionSurvey
                 {
                     SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
+                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "Which best describes the apartment/living quarters overall when you first arrived?").Id
+                },
+                new QuestionSurvey
+                {
+                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
+                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "What did you appreciate about the accommodations?").Id
+                },
+                new QuestionSurvey
+                {
+                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
+                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "What could be improved about the accommodations?").Id
+                },
+                new QuestionSurvey
+                {
+                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
                     QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?").Id
                 },
                 new QuestionSurvey
@@ -276,6 +326,54 @@ namespace Infrastructure.Db
                     QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?").Id
                 }
             );
+            }
+            context.SaveChanges();
+
+            if (!context.QuestionCategories.Any())
+            {
+                context.QuestionCategories.AddRange(
+                    new QuestionCategory
+                    {
+                        Name = "Housing",
+                        Qualifier = "If your housing was not arranged by CoderCamps, please skip this section.",
+                        Questions = new List<Question> {
+                            context.Questions.FirstOrDefault(q => q.Quest == "What did you appreciate about the accommodations?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "What could be improved about the accommodations?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "Which best describes the apartment/living quarters overall when you first arrived?")
+                        }
+                    },
+                    new QuestionCategory
+                    {
+                        Name = "Course Material",
+                        Questions = new List<Question> {
+                            context.Questions.FirstOrDefault(q => q.Quest == "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):")
+                        }
+                    },
+                    new QuestionCategory
+                    {
+                        Name = "Instruction",
+                        Qualifier = "Please fill out this section as regards your primary instructor only unless otherwise specified.",
+                        Questions = new List<Question> {
+                            context.Questions.FirstOrDefault(q => q.Quest == "How could the instructors improve?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "What did the instructors excel at?")
+                        }
+                    },
+                    new QuestionCategory {
+                        Name = "Group Project"
+                    },
+                    new QuestionCategory {
+                        Name = "General",
+                        Questions = new List<Question> {
+                            context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:")
+                        }
+                    },
+                    new QuestionCategory {
+                        Name = "Other"
+                    }
+                );
             }
             context.SaveChanges();
         }

@@ -1,13 +1,36 @@
 ﻿<div class="row">
-    <div class="col-sm-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Something here</h3>
-            </div>
-            <div class="panel-body">
-                Something else here
-            </div>
-        </div>
+    <div class="col-sm-4">
+        <uib-accordion close-others="true">
+            <uib-accordion-group is-open="vm.status.isFirstOpen" is-disabled="vm.status.isFirstDisabled">
+                <uib-accordion-heading>
+                    <i aria-hidden="true" ng-class="{'fa fa-caret-down': vm.status.isFirstOpen, 'fa fa-caret-right': !vm.status.isFirstOpen}"></i>
+                    Question Builder
+                </uib-accordion-heading>
+                <ul>
+                    <li ng-repeat="q in vm.questionTypes">{{q.type}}</li>
+                </ul>
+            </uib-accordion-group>
+            <uib-accordion-group is-open="status.open" heading="Question Bank">
+                <uib-accordion-heading>
+                    <i aria-hidden="true" ng-class="{'fa fa-caret-down': status.open, 'fa fa-caret-right': !status.open}"></i>
+                    <span class="accordion-headers">Question Bank</span>
+                </uib-accordion-heading>
+                <uib-accordion close-others="true">
+                    <uib-accordion-group is-open="vm.accordionArray[$index]" ng-repeat="c in vm.categories track by $index">
+                        <uib-accordion-heading>
+                            <i aria-hidden="true" ng-class="vm.accordionArray[$index] ? 'fa fa-caret-down':'fa fa-caret-right'"></i>
+                            {{c.name}}
+                        </uib-accordion-heading>
+                        <ul>
+                            <li ng-repeat="q in c.questions">{{q.quest}}</li>
+                        </ul>
+                    </uib-accordion-group>
+                </uib-accordion>
+            </uib-accordion-group>
+        </uib-accordion>
     </div>
-    <div class="col-sm-9"></div>
+    <div class="col-sm-8">
+        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add a Question</button>
+        or choose a question from the Question Bank.
+    </div>
 </div>

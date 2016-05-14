@@ -8,9 +8,10 @@ using Infrastructure.Db;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160514055046_qListInCat")]
+    partial class qListInCat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -129,9 +130,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Quest");
+                    b.Property<int?>("CategoryId");
 
-                    b.Property<int?>("QuestionCategoryId");
+                    b.Property<string>("Quest");
 
                     b.Property<int?>("QuestionTypeId");
 
@@ -328,7 +329,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Models.QuestionCategory")
                         .WithMany()
-                        .HasForeignKey("QuestionCategoryId");
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Domain.Models.QuestionType")
                         .WithMany()

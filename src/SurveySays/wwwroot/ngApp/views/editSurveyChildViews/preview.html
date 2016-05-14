@@ -17,17 +17,12 @@
             <div class="panel-body">
                 <table class="table">
                     <tr>
-                        <th>Question</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    <tr>
                         <td>
                             Here is an example question?
                             <br />
-                            <input type="radio" name="example" value="1" /> Definitely
-                            <input type="radio" name="example" value="2" /> Maybe
-                            <input type="radio" name="example" value="3" /> No way
+                            <input type="radio" name="example" value="1" /> Definitely<br />
+                            <input type="radio" name="example" value="2" /> Maybe<br />
+                            <input type="radio" name="example" value="3" /> No way<br />
                             <input type="radio" name="example" value="4" /> Not sure
                         <td>
                             <button class="table-btns"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -36,7 +31,7 @@
                             <button class="table-btns"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                         </td>
                     </tr>
-                    <tr ng-repeat="question in vm.questions">
+                    <!--<tr ng-repeat="question in vm.questions">
                         <td>
                             {{question.quest}}
                             <br />
@@ -48,8 +43,7 @@
                         <td>
                             <button class="table-btns"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                         </td>
-
-                    </tr>
+                    </tr>-->
                 </table>
             </div>
         </div>

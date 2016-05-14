@@ -85,6 +85,7 @@ namespace SurveySays
             services.AddScoped<IQuestionTypeServices, QuestionTypeServices>();
             services.AddScoped<IAnswerServices, AnswerServices>();
             services.AddScoped<IProfileServices, ProfileServices>();
+            services.AddScoped<IQuestionCategoryServices, QuestionCategoryServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

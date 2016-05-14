@@ -21,10 +21,11 @@ namespace Infrastructure.Db
         public DbSet<Question> Questions { get; set; }
         public DbSet<SurveyToTake> SurveysToTake { get; set; }
         public DbSet<QuestionSurvey> QuestionSurveys { get; set; }
+        public DbSet<QuestionCategory> QuestionCategories { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
         //{
-            //options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet5-SurveySays-6098d324-d1ad-4192-8f7e-c0ce43808d72;Trusted_Connection=True;MultipleActiveResultSets=true");
+        //options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet5-SurveySays-6098d324-d1ad-4192-8f7e-c0ce43808d72;Trusted_Connection=True;MultipleActiveResultSets=true");
         //}
 
         protected override void OnModelCreating(ModelBuilder builder)
