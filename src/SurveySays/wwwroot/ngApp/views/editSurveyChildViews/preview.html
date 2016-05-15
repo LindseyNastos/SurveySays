@@ -35,8 +35,8 @@
                         <td>
                             {{question.quest}}
                             <br />
-                            <div ng-repeat="answer in question.answerOptions">
-                                <input type="radio" name="{{question.id}}" value="{{answer.id}}" /> {{answer.opt}}<br />
+                            <div id="{{question.id}}">
+                                
                             </div>
                         </td>
                         <td>
