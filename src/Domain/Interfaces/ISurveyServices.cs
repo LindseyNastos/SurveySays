@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Domain.Interfaces
         void EditSurvey(Survey survey);
         Survey GetSurvey(int id);
         IList<Survey> ListAllSurveys();
+        FullSurveyVM GetFullSurvey(int id);
     }
 }

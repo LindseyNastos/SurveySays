@@ -16,9 +16,26 @@ namespace Services.DomainServices
             _repo = repo;
         }
 
-        public IList<Question> ListAllQuestion()
+        public IList<Question> ListAllQuestions()
         {
             return _repo.Query<Question>().ToList();
+        }
+
+        public IList<Question> ListQuestionsByCategory(int categoryId) {
+            var category = _repo.Query<QuestionCategory>()
+                .Where(c => c.Id == categoryId)
+                .Include(c => c.Questions)
+                .FirstOrDefault();
+            var questions = category.Questions.ToList();
+            return questions;
+        }
+
+        public IList<Question> ListQuestionsBySurvey(int surveyId) {
+            var questions = _repo.Query<QuestionSurvey>()
+                .Where(s => s.SurveyId == surveyId)
+                .Select(s => s.Question)
+                .ToList();
+            return questions;
         }
 
         public Question GetQuestion(int id)

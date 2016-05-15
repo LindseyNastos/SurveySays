@@ -12,6 +12,8 @@ namespace Domain.Interfaces
         void DeleteQuestion(int id);
         void EditQuestion(Question question);
         Question GetQuestion(int id);
-        IList<Question> ListAllQuestion();
+        IList<Question> ListAllQuestions();
+        IList<Question> ListQuestionsByCategory(int categoryId);
+        IList<Question> ListQuestionsBySurvey(int surveyId);
     }
 }

@@ -26,10 +26,17 @@ namespace SurveySays.API
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("GetBasicSurvey/{id}")]
+        public IActionResult GetBasicSurvey(int id)
         {
-            return Ok(_service.GetSurvey(id));
+            var survey = _service.GetSurvey(id);
+            return Ok(survey);
+        }
+
+        [HttpGet("GetFullSurvey/{id}")]
+        public IActionResult GetFullSurvey(int id) {
+            var surveyVM = _service.GetFullSurvey(id);
+            return Ok(surveyVM);
         }
 
         // POST api/values

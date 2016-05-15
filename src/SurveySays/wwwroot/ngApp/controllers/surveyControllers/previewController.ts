@@ -1,7 +1,14 @@
 ﻿namespace SurveySays.Controllers {
 
     export class PreviewController {
-        constructor() { }
+        public survey: SurveySays.Models.ISurvey;
+        public questions: SurveySays.Models.IQuestion[];
+        constructor(private surveyService: SurveySays.Services.SurveyService, $stateParams: ng.ui.IStateParamsService) {
+            surveyService.getFullSurvey($stateParams['id']).then((data) => {
+                this.survey = data.survey;
+                this.questions = data.questions;
+            });
+        }
     }
 
 }

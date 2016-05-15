@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Domain.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,18 +12,25 @@ namespace SurveySays.API
     [Route("api/[controller]")]
     public class QuestionsController : Controller
     {
+        private IQuestionServices _service;
+        public QuestionsController(IQuestionServices service)
+        {
+            _service = service;
+        }
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var allQuestions = _service.ListAllQuestions();
+            return Ok(allQuestions);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var question = _service.GetQuestion(id);
+            return Ok(question);
         }
 
         // POST api/values

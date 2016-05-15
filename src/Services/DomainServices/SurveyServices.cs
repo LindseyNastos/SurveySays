@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Data.Entity;
+using Domain.ViewModels;
 
 namespace Services.DomainServices
 {
@@ -22,6 +24,21 @@ namespace Services.DomainServices
 
         public Survey GetSurvey(int id) {
             return _repo.Query<Survey>().Where(s => s.Id == id).FirstOrDefault();
+        }
+
+        public FullSurveyVM GetFullSurvey(int id) {
+            var survey = GetSurvey(id);
+            var questions = _repo.Query<QuestionSurvey>()
+                .Where(s => s.SurveyId == id)
+                .Select(s => s.Question)
+                .ToList();
+
+            var vm = new FullSurveyVM
+            {
+                Survey = survey,
+                Questions = questions
+            };
+            return vm;
         }
 
         public void AddNewSurvey(Survey survey) {
