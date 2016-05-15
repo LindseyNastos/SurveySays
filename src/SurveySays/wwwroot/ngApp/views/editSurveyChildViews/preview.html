@@ -35,9 +35,9 @@
                         <td>
                             {{question.quest}}
                             <br />
-                            <input type="radio" name="example2" value="1" /> Plus<br />
-                            <input type="radio" name="example2" value="2" /> Answers<br />
-                            <!--{{question.answersssss}}-->
+                            <div ng-repeat="answer in question.answerOptions">
+                                <input type="radio" name="{{question.id}}" value="{{answer.id}}" /> {{answer.opt}}<br />
+                            </div>
                         </td>
                         <td>
                             <button class="table-btns"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

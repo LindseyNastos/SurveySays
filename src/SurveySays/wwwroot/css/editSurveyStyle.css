@@ -107,3 +107,9 @@
         display:list-item;
     }
 }
+
+/*-------design survey--------*/
+
+.category-accordion-headers {
+    padding:0;
+}

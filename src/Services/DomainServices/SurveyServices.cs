@@ -23,7 +23,7 @@ namespace Services.DomainServices
         }
 
         public Survey GetSurvey(int id) {
-            return _repo.Query<Survey>().Where(s => s.Id == id).FirstOrDefault();
+            return _repo.Query<Survey>().Where(s => s.Id == id).Include(s => s.Course).FirstOrDefault();
         }
 
         public FullSurveyVM GetFullSurvey(int id) {
@@ -33,10 +33,22 @@ namespace Services.DomainServices
                 .Select(s => s.Question)
                 .ToList();
 
+            var questionDetails = new List<Question>();
+
+            foreach (var question in questions) {
+                var quest = _repo.Query<Question>()
+                    .Where(q => q.Id == question.Id)
+                    .Include(q => q.AnswerOptions)
+                    .Include(q => q.MatrixQuestions)
+                    .Include(q => q.QuestionType)
+                    .FirstOrDefault();
+                questionDetails.Add(quest);
+            }
+
             var vm = new FullSurveyVM
             {
                 Survey = survey,
-                Questions = questions
+                Questions = questionDetails
             };
             return vm;
         }

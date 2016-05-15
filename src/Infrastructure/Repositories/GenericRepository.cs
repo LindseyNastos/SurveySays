@@ -86,13 +86,13 @@ namespace Infrastructure.Repositories
     /// can be used at a higher layer. You might not want to reference in the Entity Framework
     /// in your presentation layer.
     /// </summary>
-    public static class GenericRepositoryExtensions
-    {
-        public static IQueryable<T> Include<T, TProperty>(this IQueryable<T> queryable, Expression<Func<T, TProperty>> relatedEntity) where T : class
-        {
-            return Microsoft.Data.Entity.EntityFrameworkQueryableExtensions.Include<T, TProperty>(queryable, relatedEntity);
-        }
-    }
+    //public static class GenericRepositoryExtensions
+    //{
+    //    public static IQueryable<T> Include<T, TProperty>(this IQueryable<T> queryable, Expression<Func<T, TProperty>> relatedEntity) where T : class
+    //    {
+    //        return Microsoft.Data.Entity.EntityFrameworkQueryableExtensions.Include<T, TProperty>(queryable, relatedEntity);
+    //    }
+    //}
 
     public interface IGenericRepository
     {

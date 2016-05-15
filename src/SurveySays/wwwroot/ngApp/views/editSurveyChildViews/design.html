@@ -17,7 +17,7 @@
                 </uib-accordion-heading>
                 <uib-accordion close-others="true">
                     <uib-accordion-group is-open="vm.accordionArray[$index]" ng-repeat="c in vm.categories track by $index">
-                        <uib-accordion-heading>
+                        <uib-accordion-heading class="category-accordion-headers">
                             <i aria-hidden="true" ng-class="vm.accordionArray[$index] ? 'fa fa-caret-down':'fa fa-caret-right'"></i>
                             {{c.name}}
                         </uib-accordion-heading>
