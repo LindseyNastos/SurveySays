@@ -32,9 +32,7 @@
                 answerTemplate = '/ngApp/views/questionTemplates/textbox.html';
             }
             else if (question.questionType.type == "Multiple Choice") {
-                for (let a of question.answerOptions) {
-                    answerTemplate = '/ngApp/views/questionTemplates/multipleChoice.html';
-                }
+                answerTemplate = '/ngApp/views/questionTemplates/multipleChoice.html';
             }
             else if (question.questionType.type == "Ranking") {
                 answerTemplate = '/ngApp/views/questionTemplates/ranking.html';

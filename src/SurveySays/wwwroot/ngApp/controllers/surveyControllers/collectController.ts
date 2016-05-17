@@ -1,6 +1,9 @@
 ﻿namespace SurveySays.Controllers {
 
     export class CollectController {
-        constructor() { }
+        public courses: SurveySays.Models.ICourse[];
+        constructor(private courseService: SurveySays.Services.CourseService) {
+            this.courses = courseService.listCourses();
+        }
     }
 }
