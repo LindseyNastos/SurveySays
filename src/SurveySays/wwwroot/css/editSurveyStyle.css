@@ -113,3 +113,10 @@
 .category-accordion-headers {
     padding:0;
 }
+
+/*-------preview survey-------*/
+
+.question-above-answers {
+    padding-bottom:7px;
+    font-size:1.25em;
+}

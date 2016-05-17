@@ -2,7 +2,6 @@
 
     class QuestionTypeDirective implements ng.IDirective {
         public restrict: 'E';
-        //public link: (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => void;
         public scope = { question: '=surveyQuestion' };
         public link = (scope: any, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             let answerTemplate = this.checkType(scope.question);
@@ -39,7 +38,6 @@
             }
             else if (question.questionType.type == "Ranking") {
                 answerTemplate = '/ngApp/views/questionTemplates/ranking.html';
-
             }
             else if (question.questionType.type == "Dropdown List") {
                 answerTemplate = '/ngApp/views/questionTemplates/dropdownList.html';
@@ -55,6 +53,11 @@
     }
     angular.module("SurveySays").directive('questionTypeDirective', QuestionTypeDirective.Factory());
 }
+
+
+
+
+//--------------JavaScript Version-------------------
 
     //angular.module("SurveySays").directive('questionTypeDirective', function ($compile, $templateRequest) {
     //    function checkType(question: SurveySays.Models.IQuestion) {

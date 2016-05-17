@@ -16,28 +16,13 @@
             </div>
             <div class="panel-body">
                 <table class="table">
-                    <tr>
-                        <td>
-                            Here is an example question?
-                            <br />
-                            <input type="radio" name="example" value="1" /> Definitely<br />
-                            <input type="radio" name="example" value="2" /> Maybe<br />
-                            <input type="radio" name="example" value="3" /> No way<br />
-                            <input type="radio" name="example" value="4" /> Not sure
-                        <td>
-                            <button class="table-btns"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                        </td>
-                        <td>
-                            <button class="table-btns"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                        </td>
-                    </tr>
                     <tr ng-repeat="question in vm.questions">
                         <td>
-                            {{question.quest}}
-                            <br />
+                            <div class="question-above-answers">
+                                {{question.quest}}
+                            </div>
                             <question-type-directive survey-question="question">
                             </question-type-directive>
-                            
                         </td>
                         <td>
                             <button class="table-btns"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

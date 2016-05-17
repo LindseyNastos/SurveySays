@@ -8,10 +8,6 @@
             surveyService.getFullSurvey($stateParams['id']).then((data) => {
                 this.survey = data.survey;
                 this.questions = data.questions;
-
-                setTimeout(() => {
-                                    
-                }, 15000);
             });
 
         }

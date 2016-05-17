@@ -7,7 +7,8 @@
         anonymous: boolean;
         dateTaken: string;
         troopNum: number;
-        course: SurveySays.Models.ICourse;
+        course: ICourse;
         survey: ISurvey;
+        answers: IAnswer[];
     }
 }

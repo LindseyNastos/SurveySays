@@ -5,6 +5,6 @@
         surveyName: string;
         dateCreated: string;
         numResponses: number;
-        course: SurveySays.Models.ICourse;
+        course: ICourse;
     }
 }

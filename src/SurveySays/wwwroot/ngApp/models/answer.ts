@@ -4,5 +4,6 @@
         id: number;
         ans: string;
         value: number;
+        questionId: number;
     }
 }

@@ -1,6 +1,12 @@
 ﻿<div ng-repeat="answer in question.answerOptions">
-    <!--<input type="number" name="{{question.id}}" />{{answer.opt}}<br />-->
-    <select class="form-control">
-        <option value="{{answer.id}}" ng-repeat="answer in question.answerOptions">{{answer.opt}}</option>
-    </select>
+    <div class="row">
+        <div class="col-sm-2">
+            <select class="form-control">
+                <option ng-repeat="answer in question.answerOptions track by $index" ng-value="{{$index + 1}}">{{$index + 1}}</option>
+            </select>
+        </div>
+        <div class="col-sm-10">
+            {{answer.opt}}
+        </div>
+    </div>
 </div>

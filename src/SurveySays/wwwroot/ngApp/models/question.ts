@@ -4,7 +4,7 @@
         id: number;
         quest: string;
         questionType: SurveySays.Models.IQuestionType;
-        answerOptions: IAnswer[];
+        answerOptions: IOption[];
         matrixQuestions: IOption[];
     }
 }

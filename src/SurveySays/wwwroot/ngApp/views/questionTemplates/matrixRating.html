@@ -1,1 +1,14 @@
-﻿
+﻿<div >
+    <table class="table table-bordered table-responsive table-striped">
+        <tr>
+            <td></td>
+            <td ng-repeat="answer in question.answerOptions" >{{answer.opt}}</td>
+        </tr>
+        <tr ng-repeat="q in question.matrixQuestions">
+            <td>{{q.opt}}</td>
+            <td ng-repeat="answer in question.answerOptions track by $index">
+                <input ng-value="{{$index + 1}}" type="radio" name="{{q.id}}"/>
+            </td>
+        </tr>
+    </table>
+</div>

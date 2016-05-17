@@ -244,10 +244,10 @@ namespace Infrastructure.Db
                         },
                         AnswerOptions = {
                             new Option {
-                                Opt = "Absolutely True"
+                                Opt = "Absolutely true"
                             },
                             new Option {
-                                Opt = "Somewhat True"
+                                Opt = "Somewhat true"
                             },
                             new Option {
                                 Opt = "Maybe"
@@ -256,10 +256,10 @@ namespace Infrastructure.Db
                                 Opt = "Don't know"
                             },
                             new Option {
-                                Opt = "Somewhat False"
+                                Opt = "Somewhat false"
                             },
                             new Option {
-                                Opt = "Absolutely False"
+                                Opt = "Absolutely false"
                             }
                         }
                     }
