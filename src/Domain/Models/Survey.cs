@@ -17,6 +17,8 @@ namespace Domain.Models
         public Course Course { get; set; }
         public DateTime DateCreated { get; set; }
         public int NumResponses { get; set; }
+        public int NumQuestions { get; set; }
+        public bool Released { get; set; }
 
         public ICollection<QuestionSurvey> QuestionSurveys { get; set; }
     }

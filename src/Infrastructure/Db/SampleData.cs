@@ -106,14 +106,16 @@ namespace Infrastructure.Db
                         UserId = lindsey.Id,
                         SurveyName = "Seattle .Net Troop 8",
                         Course = context.Courses.FirstOrDefault(c => c.Name == "ASP.NET"),
-                        DateCreated = DateTime.Now
+                        DateCreated = DateTime.UtcNow,
+                        Released = false
                     },
                     new Survey
                     {
                         UserId = lindsey.Id,
                         SurveyName = "Online CFS #22",
                         Course = context.Courses.FirstOrDefault(c => c.Name == "Coding From Scratch"),
-                        DateCreated = DateTime.Now
+                        DateCreated = DateTime.UtcNow,
+                        Released = false
                     }
                 );
                 context.SaveChanges();

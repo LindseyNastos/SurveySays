@@ -11,6 +11,7 @@
     "angular-bootstrap": "1.2.4",
     "angular-animate": "1.5.1",
     "angular-touch": "1.5.1",
-    "angular-ui-router": "0.2.18"
+    "angular-ui-router": "0.2.18",
+    "moment": "^2.13.0"
   }
 }

@@ -3,8 +3,10 @@
     export interface ISurvey {
         id: number;
         surveyName: string;
-        dateCreated: string;
+        dateCreated: any;
         numResponses: number;
+        numQuestions: number;
+        released: boolean;
         course: ICourse;
     }
 }

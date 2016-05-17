@@ -19,11 +19,22 @@ namespace Services.DomainServices
         }
 
         public IList<Survey> ListAllSurveys() {
-            return _repo.Query<Survey>().ToList();
+            var surveys = _repo.Query<Survey>().ToList();
+            foreach (var s in surveys) {
+                s.DateCreated = s.DateCreated.ToLocalTime();
+            }
+            return surveys;
         }
 
         public Survey GetSurvey(int id) {
-            return _repo.Query<Survey>().Where(s => s.Id == id).Include(s => s.Course).FirstOrDefault();
+            var survey = _repo.Query<Survey>().Where(s => s.Id == id).Include(s => s.Course).FirstOrDefault();
+            survey.DateCreated = survey.DateCreated.ToLocalTime();
+            survey.NumQuestions = (_repo.Query<QuestionSurvey>()
+                .Where(s => s.SurveyId == id)
+                .Select(s => s.Question))
+                .Count();
+            return survey;
+
         }
 
         public FullSurveyVM GetFullSurvey(int id) {
@@ -32,6 +43,9 @@ namespace Services.DomainServices
                 .Where(s => s.SurveyId == id)
                 .Select(s => s.Question)
                 .ToList();
+
+            survey.NumQuestions = questions.Count();
+            survey.DateCreated = survey.DateCreated.ToLocalTime();
 
             var questionDetails = new List<Question>();
 
@@ -54,6 +68,8 @@ namespace Services.DomainServices
         }
 
         public void AddNewSurvey(Survey survey) {
+            survey.Released = false;
+            survey.DateCreated = DateTime.UtcNow;
             _repo.Add<Survey>(survey);
             _repo.SaveChanges();
         }
