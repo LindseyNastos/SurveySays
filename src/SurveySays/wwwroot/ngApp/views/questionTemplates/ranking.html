@@ -1,0 +1,6 @@
+﻿<div ng-repeat="answer in question.answerOptions">
+    <!--<input type="number" name="{{question.id}}" />{{answer.opt}}<br />-->
+    <select class="form-control">
+        <option value="{{answer.id}}" ng-repeat="answer in question.answerOptions">{{answer.opt}}</option>
+    </select>
+</div>

@@ -35,9 +35,9 @@
                         <td>
                             {{question.quest}}
                             <br />
-                            <div id="{{question.id}}">
-                                
-                            </div>
+                            <question-type-directive survey-question="question">
+                            </question-type-directive>
+                            
                         </td>
                         <td>
                             <button class="table-btns"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
