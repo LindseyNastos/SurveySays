@@ -1,9 +1,9 @@
 ﻿<div class="wrapper container">
-    <h2>Survey Name</h2>
+    <h2>{{vm.survey.surveyName}}</h2>
     <uib-tabset>
         <uib-tab class="tab-headings" >
             <uib-tab-heading>
-                Analyze Results  <span class="badge">4</span>
+                Analyze Results  <span ng-show="{{vm.survey.numResponses}}" class="badge">{{vm.survey.numResponses}}</span>
             </uib-tab-heading>
             <div ui-view="analyze" class="editTabDiv"></div>
         </uib-tab>

@@ -7,7 +7,6 @@
             this.surveyService.getBasicSurvey($stateParams['id']).then((data) => {
                 this.survey = data;
                 this.checkStatus(this.survey.released);
-                console.log(this.survey);
             });
         }
         public checkStatus(status: boolean) {
