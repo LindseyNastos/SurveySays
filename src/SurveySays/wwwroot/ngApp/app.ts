@@ -23,63 +23,39 @@ namespace SurveySays {
             })
             .state('editSurvey', {
                 url: '/editSurvey/:id',
-                views: {
-                    '': {
-                        templateUrl: '/ngApp/views/editSurvey.html',
-                        controller: SurveySays.Controllers.EditSurveyController,
-                        controllerAs: 'vm'
-                    }
-                    //'summary@editSurvey': {
-                    //    url: '/summary',
-                    //    templateUrl: '/ngApp/views/editSurveyChildViews/summary.html',
-                    //    controller: SurveySays.Controllers.SummaryController,
-                    //    controllerAs: 'vm'
-                    //},
-                    //'design@editSurvey': {
-                    //    url: '/design',
-                    //    templateUrl: '/ngApp/views/editSurveyChildViews/design.html',
-                    //    controller: SurveySays.Controllers.DesignController,
-                    //    controllerAs: 'vm'
-                    //},
-                    //'preview@editSurvey': {
-                    //    url: '/preview',
-                    //    templateUrl: '/ngApp/views/editSurveyChildViews/preview.html',
-                    //    controller: SurveySays.Controllers.PreviewController,
-                    //    controllerAs: 'vm'
-                    //},
-                    //'collect@editSurvey': {
-                    //    url: '/collect',
-                    //    templateUrl: '/ngApp/views/editSurveyChildViews/collect.html',
-                    //    controller: SurveySays.Controllers.CollectController,
-                    //    controllerAs: 'vm'
-                    //},
-                    //'analyze@editSurvey': {
-                    //    url: '/analyze',
-                    //    templateUrl: '/ngApp/views/editSurveyChildViews/analyze.html',
-                    //    controller: SurveySays.Controllers.AnalyzeController,
-                    //    controllerAs: 'vm'
-                    //}
-                }
+                templateUrl: '/ngApp/views/editSurvey.html',
+                controller: SurveySays.Controllers.EditSurveyController,
+                controllerAs: 'vm'
             })
-            .state('summary', {
-                parent: 'editSurvey',
-                abstract: true,
+            .state('editSurvey.summary', {
                 url: '/summary',
-                views: {
-                    'summaryContent': {
-                        templateUrl: "<div ui-view='summaryTemplate'></div>"
-                    }
-                }
+                templateUrl: '/ngApp/views/editSurveyChildViews/summary.html',
+                controller: SurveySays.Controllers.SummaryController,
+                controllerAs: 'vm'
             })
-            .state('summary.content', {
-                url: '/content',
-                views: {
-                    'summaryTemplate': {
-                        templateUrl: '/ngApp/views/editSurveyChildViews/summary.html',
-                        controller: SurveySays.Controllers.SummaryController,
-                        controllerAs: 'vm'
-                    }
-                }
+            .state('editSurvey.design', {
+                url: '/design',
+                templateUrl: '/ngApp/views/editSurveyChildViews/design.html',
+                controller: SurveySays.Controllers.DesignController,
+                controllerAs: 'vm'
+            })
+            .state('editSurvey.preview', {
+                url: '/preview',
+                templateUrl: '/ngApp/views/editSurveyChildViews/preview.html',
+                controller: SurveySays.Controllers.PreviewController,
+                controllerAs: 'vm'
+            })
+            .state('editSurvey.collect', {
+                url: '/collect',
+                templateUrl: '/ngApp/views/editSurveyChildViews/collect.html',
+                controller: SurveySays.Controllers.CollectController,
+                controllerAs: 'vm'
+            })
+            .state('editSurvey.analyze', {
+                url: '/analyze',
+                templateUrl: '/ngApp/views/editSurveyChildViews/analyze.html',
+                controller: SurveySays.Controllers.AnalyzeController,
+                controllerAs: 'vm'
             })
             .state('takeSurvey', {
                 url: '/takeSurvey',

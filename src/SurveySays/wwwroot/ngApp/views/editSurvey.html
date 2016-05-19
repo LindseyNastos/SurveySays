@@ -1,23 +1,31 @@
 ﻿<div class="wrapper container">
     <h2>{{vm.survey.surveyName}}</h2>
     <uib-tabset>
-        <uib-tab class="tab-headings" >
+        <uib-tab id="analyze-tab" class="tab-headings">
             <uib-tab-heading>
-                Analyze Results  <span ng-show="{{vm.survey.numResponses}}" class="badge">{{vm.survey.numResponses}}</span>
+                <a class="no-deco" ui-sref="editSurvey.analyze">Analyze Results  <span ng-show="{{vm.survey.numResponses}}" class="badge">{{vm.survey.numResponses}}</span></a>
             </uib-tab-heading>
-            <div ui-view="analyze" class="editTabDiv"></div>
         </uib-tab>
-        <uib-tab class="tab-headings" heading="Collect Responses">
-            <div ui-view="collect" class="editTabDiv"></div>
+        <uib-tab id="collect-tab" class="tab-headings">
+            <uib-tab-heading>
+                <a class="no-deco" ui-sref="editSurvey.collect">Collect Responses</a>
+            </uib-tab-heading>
         </uib-tab>
-        <uib-tab class="tab-headings" heading="Preview">
-            <div ui-view="preview" class="editTabDiv"></div>
+        <uib-tab id="preview-tab" class="tab-headings">
+            <uib-tab-heading>
+                <a class="no-deco" ui-sref="editSurvey.preview">Preview</a>
+            </uib-tab-heading>
         </uib-tab>
-        <uib-tab class="tab-headings" heading="Design">
-            <div ui-view="design" class="editTabDiv"></div>
+        <uib-tab id="design-tab" class="tab-headings">
+            <uib-tab-heading>
+                <a class="no-deco" ui-sref="editSurvey.design">Design</a>
+            </uib-tab-heading>
         </uib-tab>
-        <uib-tab class="tab-headings" heading="Summary">
-            <div ui-view="summaryContent" class="editTabDiv"></div>
+        <uib-tab id="summary-tab" class="tab-headings">
+            <uib-tab-heading>
+                <a class="no-deco" ui-sref="editSurvey.summary">Summary</a>
+            </uib-tab-heading>
         </uib-tab>
     </uib-tabset>
+    <div class="editTabDiv" ui-view></div>
 </div>
