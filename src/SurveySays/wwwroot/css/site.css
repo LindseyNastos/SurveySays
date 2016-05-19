@@ -30,6 +30,7 @@ textarea {
     padding: 0;
 }
 
+/*-------profile-------*/
 
 #profile-name {
     margin-top: 0;
@@ -42,13 +43,21 @@ textarea {
 
 .table-btns {
     border: 1px solid #666;
-    padding: 4px;
-    height: 30px;
-    width: 30px;
+    /*padding: 7px;*/
+    width:35px;
+    /*height: 30px;
+    width: 30px;*/
+    background-color: buttonface;
+
 }
 
-
-.wrapper {
-    padding-left: 0;
-    padding-top: 70px;
+.no-deco {
+    color:#333;
+    text-decoration:none;
 }
+
+.no-deco:hover {
+    text-decoration:none;
+    color:#333
+}
+
