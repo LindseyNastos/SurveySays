@@ -89,11 +89,11 @@ namespace Infrastructure.Db
             if (!context.QuestionTypes.Any())
             {
                 context.QuestionTypes.AddRange(
-                    new QuestionType { Type = "Multiple Choice" },
-                    new QuestionType { Type = "Dropdown List" },
-                    new QuestionType { Type = "Matrix Rating" },
-                    new QuestionType { Type = "Ranking" },
-                    new QuestionType { Type = "TextBox" }
+                    new QuestionType { Type = "Multiple Choice", Icon = "<i class='fa fa-stop-circle-o' aria-hidden='true'></i>" },
+                    new QuestionType { Type = "Dropdown List", Icon = "<i class='fa fa-caret-down' aria-hidden='true'></i>" },
+                    new QuestionType { Type = "Matrix Rating", Icon = "<i class='fa fa-table' aria-hidden='true'></i>" },
+                    new QuestionType { Type = "Ranking", Icon = "<i class='fa fa-sort-numeric-asc' aria-hidden='true'></i>" },
+                    new QuestionType { Type = "TextBox", Icon = "<i class='fa fa-font' aria-hidden='true'></i>" }
                 );
             }
             context.SaveChanges();

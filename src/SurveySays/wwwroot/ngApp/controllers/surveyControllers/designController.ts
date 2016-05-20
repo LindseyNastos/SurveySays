@@ -3,7 +3,6 @@
     export class DesignController {
         public categories: SurveySays.Models.IQuestionCategory[];
         public questionTypes: SurveySays.Models.IQuestionType[];
-
         public accordionArray = [];
         public status = {
             isFirstOpen: true,

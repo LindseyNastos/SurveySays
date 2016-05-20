@@ -144,10 +144,22 @@
     z-index: 10;
     margin: auto;
     position: absolute;
+    width:450px;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    text-align:center;
 }
+
+@media (max-width: 483px) {
+    #plus-sign-div {
+        width:200px;
+    }
+    #drag-in-question {
+        font-size:20px;
+    }
+}
+
 
 #inner-drag-in-div {
     margin: auto;
@@ -155,6 +167,21 @@
 
 #drag-in-question {
     font-size: 35px;
+}
+
+.accordion-list {
+    list-style:none;
+    padding-left:0;
+}
+
+.accordion-types {
+    background-color: #f5f5f5;
+    border-radius: 3px;
+    border: 1px #ddd solid;
+    width:100%;
+    margin:2px;
+    padding:4px;
+    font-size:15px;
 }
 
 /*-------preview survey-------*/

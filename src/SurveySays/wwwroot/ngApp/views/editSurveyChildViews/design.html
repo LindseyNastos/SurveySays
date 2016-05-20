@@ -6,8 +6,12 @@
                     <i aria-hidden="true" ng-class="{'fa fa-caret-down': vm.status.isFirstOpen, 'fa fa-caret-right': !vm.status.isFirstOpen}"></i>
                     Question Builder
                 </uib-accordion-heading>
-                <ul>
-                    <li ng-repeat="q in vm.questionTypes">{{q.type}}</li>
+                <ul class="accordion-list">
+                    <li ng-repeat="q in vm.questionTypes">
+                        <div class="accordion-types">
+                            {{q.type}}
+                        </div>
+                    </li>
                 </ul>
             </uib-accordion-group>
             <uib-accordion-group is-open="status.open" heading="Question Bank">
@@ -21,7 +25,7 @@
                             <i aria-hidden="true" ng-class="vm.accordionArray[$index] ? 'fa fa-caret-down':'fa fa-caret-right'"></i>
                             {{c.name}}
                         </uib-accordion-heading>
-                        <ul>
+                        <ul class="accordion-list">
                             <li ng-repeat="q in c.questions">{{q.quest}}</li>
                         </ul>
                     </uib-accordion-group>
@@ -39,7 +43,5 @@
                 <p> or choose a question from the Question Bank.</p>
             </div>
         </div>
-        <!--<button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Add a Question</button>
-        or choose a question from the Question Bank.-->
     </div>
 </div>
