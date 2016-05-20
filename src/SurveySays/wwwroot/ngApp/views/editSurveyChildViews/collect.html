@@ -15,10 +15,17 @@
             <br />
             <div class="row">
                 <div class="col-sm-4">
-                    <input type="radio" name="sendTime" value="now" /> Now
+                    <input ng-click="vm.toggleDatePopup()" type="radio" ng-model="vm.sendTime" name="sendTime" value="now" /> Now
                 </div>
                 <div class="col-sm-8">
-                    <input type="radio" name="sendTime" value="later" /> Later <!--add a ui-datepicker popup here-->
+                    <input ng-click="vm.toggleDatePopup()" ng-model="vm.sendTime" type="radio" name="sendTime" value="later" /> Later (choose a date)
+                     <!--ui-datepicker popup-->
+                    <p style="display:none" id="datePopup" class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.dt" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button" class="form-control btn btn-default" ng-click="vm.open()"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>

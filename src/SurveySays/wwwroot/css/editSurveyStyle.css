@@ -22,21 +22,21 @@
 }
 
 #sum-name-div {
-    padding-left:30px;
-    width:200px;
-    margin-right:0;
-    display:inline;
+    padding-left: 30px;
+    width: 200px;
+    margin-right: 0;
+    display: inline;
 }
 
 #sum-btn-div {
-    padding-top:15px;
-    margin:0 auto;
-    width:195px;
+    padding-top: 15px;
+    margin: 0 auto;
+    width: 195px;
 }
 
-#sum-btn-div button {
-    font-size:13px;
-}
+    #sum-btn-div button {
+        font-size: 13px;
+    }
 
 @media (min-width: 768px) {
 
@@ -59,94 +59,107 @@
 @media (max-width: 768px) {
 
     .summaryRightDiv, .summaryLeftDiv {
-        
-        margin:15px;
+        margin: 15px;
         border-bottom: solid 1px #ddd;
-        padding-bottom:15px;
+        padding-bottom: 15px;
     }
 
     #sum2 {
-        margin-bottom:0px;
+        margin-bottom: 0px;
     }
 
     #sum4 {
-        border-bottom:none;
-        margin-bottom:0px;
+        border-bottom: none;
+        margin-bottom: 0px;
     }
-
 }
 
 /*-------collect survey responses-------*/
 
 .collect-row {
-    margin-top:50px;
+    margin-top: 50px;
 }
 
 .email-input {
-    margin-bottom:5px;
-    width:100%;
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
     #add-emails {
-        float:right;
+        float: right;
     }
 }
 
 @media (max-width: 768px) {
     #add-emails {
-        float:left;
+        float: left;
     }
 }
+
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+}
+
 
 /*-------analyze survey responses-------*/
 
 #filter-analyze-btns {
-    margin:0 auto;
+    margin: 0 auto;
     width: 206px;
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
     #filter-analyze-btns button {
-        margin-top:3px;
-        display:list-item;
+        margin-top: 3px;
+        display: list-item;
     }
 }
 
 /*-------design survey--------*/
 
 .category-accordion-headers {
-    padding:0;
+    padding: 0;
 }
 
 #empty-design {
     background-color: #f5f5f5;
-    z-index:1;
-    width:100%;
-    height:300px;
-    border-radius:3px;
-    border:1px #ddd solid;
-    position:relative;
+    z-index: 1;
+    width: 100%;
+    height: 300px;
+    border-radius: 3px;
+    border: 1px #ddd solid;
+    position: relative;
 }
 
 #plus-sign-div {
     z-index: 10;
-    margin:auto;
-    position:absolute;
-    top: 50%; left: 50%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%,-50%);
 }
+
 #inner-drag-in-div {
-    margin:auto;
+    margin: auto;
 }
 
 #drag-in-question {
-    font-size:35px;
+    font-size: 35px;
 }
 
 /*-------preview survey-------*/
 
 .question-above-answers {
-    padding-bottom:7px;
-    font-size:1.25em;
+    padding-bottom: 7px;
+    font-size: 1.25em;
 }
