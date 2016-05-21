@@ -107,7 +107,9 @@ namespace Infrastructure.Db
                         SurveyName = "Seattle .Net Troop 8",
                         Course = context.Courses.FirstOrDefault(c => c.Name == "ASP.NET"),
                         DateCreated = DateTime.UtcNow,
-                        Released = false
+                        Released = false,
+                        CurrentTroop = 8,
+                        IsActive = true
                     },
                     new Survey
                     {
@@ -115,7 +117,9 @@ namespace Infrastructure.Db
                         SurveyName = "Online CFS #22",
                         Course = context.Courses.FirstOrDefault(c => c.Name == "Coding From Scratch"),
                         DateCreated = DateTime.UtcNow,
-                        Released = false
+                        Released = false,
+                        CurrentTroop = 46,
+                        IsActive = true
                     }
                 );
                 context.SaveChanges();

@@ -14,7 +14,7 @@
                     <div class="col-sm-1"></div>
 
                     <div class="col-sm-8">
-                        <strong>{{vm.survey.surveyName}}</strong>
+                        <span id="sum-survey-name"><strong>{{vm.survey.surveyName}}</strong></span>
                         <br />
                         <em>Created on {{vm.survey.dateCreated | date: 'short'}}</em>
                     </div>
@@ -23,16 +23,20 @@
                 <table class="table">
 
                     <tr>
-                        <td>Course: {{vm.survey.course.name}}</td>
+                        <td><strong>Course:</strong> {{vm.survey.course.name}}</td>
                     </tr>
                     <tr>
-                        <td>Questions: {{vm.survey.numQuestions}}</td>
+                        <td><strong>Questions:</strong> {{vm.survey.numQuestions}}</td>
                     </tr>
                     <tr>
                         <td id="sum-btn-td">
-                            <div id="sum-btn-div">
-                                <a href="editSurvey/{{vm.survey.id}}/design">Edit Design</a>
-                                <a href="editSurvey/{{vm.survey.id}}/preview">Preview Survey</a>
+                            <div id="sum-btn-div" class="row">
+                                <div class="col-sm-6">
+                                    <a class="btn btn-default pull-right" href="editSurvey/{{vm.survey.id}}/design">Edit Design</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a class="btn btn-default pull-left" href="editSurvey/{{vm.survey.id}}/preview">Preview Survey</a>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -52,11 +56,11 @@
             </div>
             <div id="response-summary-panel" class="panel-body">
                 <div class="row">
-                    <div class="summaryLeftDiv summaryTopDiv col-sm-6">Responses: {{vm.survey.numResponses}}</div>
-                    <div id="sum2" class="summaryRightDiv summaryTopDiv col-sm-6">Status: {{vm.status}}</div>
+                    <div class="summaryLeftDiv summaryTopDiv col-sm-6"><strong>Responses:</strong> {{vm.survey.numResponses}}</div>
+                    <div id="sum2" class="summaryRightDiv summaryTopDiv col-sm-6"><strong>Status:</strong> {{vm.status}}</div>
                 </div>
                 <div class="row">
-                    <div class="summaryLeftDiv col-sm-6">Current troop: fill this later</div>
+                    <div class="summaryLeftDiv col-sm-6"><strong>Current troop:</strong> #{{vm.survey.currentTroop}}</div>
                     <div id="sum4" class="summaryRightDiv col-sm-6">some chart thingy</div>
                 </div>
             </div>

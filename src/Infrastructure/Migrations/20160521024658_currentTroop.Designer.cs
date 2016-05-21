@@ -8,9 +8,10 @@ using Infrastructure.Db;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160521024658_currentTroop")]
+    partial class currentTroop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -183,8 +184,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CurrentTroop");
 
                     b.Property<DateTime>("DateCreated");
-
-                    b.Property<bool>("IsActive");
 
                     b.Property<DateTime>("LastModified");
 

@@ -3,10 +3,14 @@
     export interface ISurvey {
         id: number;
         surveyName: string;
-        dateCreated: any;
+        userId: string;
+        dateCreated: any; //datetime
+        lastModified: any; //datetime
         numResponses: number;
+        numUnseenResponses: number;
         numQuestions: number;
         released: boolean;
+        currentTroop: number;
         course: ICourse;
     }
 }

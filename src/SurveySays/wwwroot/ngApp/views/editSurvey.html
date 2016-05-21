@@ -1,27 +1,27 @@
 ﻿<div class="wrapper container">
     <h2>{{vm.survey.surveyName}}</h2>
     <uib-tabset>
-        <uib-tab id="analyze-tab"  active="vm.isActive" ng-init="vm.isActive=false" class="tab-headings no-deco" ui-sref="editSurvey.analyze" ui-sref-active="active">
+        <uib-tab id="analyze-tab" class="tab-headings no-deco" ui-sref="editSurvey.analyze" ui-sref-active="active">
             <uib-tab-heading>
-                Analyze Results  <span ng-show="{{vm.survey.numResponses}}" class="badge">{{vm.survey.numResponses}}</span>
+                Analyze Results  <span ng-show="{{vm.survey.numNewResponses}}" class="badge">{{vm.survey.numNewResponses}}</span>
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab id="collect-tab" class="tab-headings no-deco" ui-sref="editSurvey.collect" ui-sref-active="active">
+        <uib-tab class="tab-headings no-deco" ui-sref="editSurvey.collect" ui-sref-active="active">
             <uib-tab-heading>
                 Collect Responses
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab id="preview-tab" class="tab-headings no-deco" ui-sref="editSurvey.preview" ui-sref-active="active">
+        <uib-tab class="tab-headings no-deco" ui-sref="editSurvey.preview" ui-sref-active="active">
             <uib-tab-heading>
                 Preview
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab id="design-tab" class="tab-headings no-deco" ui-sref="editSurvey.design" ui-sref-active="active">
+        <uib-tab class="tab-headings no-deco" ui-sref="editSurvey.design" ui-sref-active="active">
             <uib-tab-heading>
                 Design
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab id="summary-tab" class="tab-headings no-deco" ui-sref="editSurvey.summary" ui-sref-active="active">
+        <uib-tab class="tab-headings no-deco" ui-sref="editSurvey.summary" ui-sref-active="active">
             <uib-tab-heading>
                 Summary
             </uib-tab-heading>

@@ -26,7 +26,11 @@
                             {{c.name}}
                         </uib-accordion-heading>
                         <ul class="accordion-list">
-                            <li ng-repeat="q in c.questions">{{q.quest}}</li>
+                            <li ng-repeat="q in c.questions">
+                                <div class="accordion-types">
+                                    {{q.quest}}
+                                </div>
+                            </li>
                         </ul>
                     </uib-accordion-group>
                 </uib-accordion>

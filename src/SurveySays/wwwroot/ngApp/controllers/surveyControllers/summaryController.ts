@@ -5,8 +5,7 @@
         public survey: SurveySays.Models.ISurvey;
         constructor(private surveyService: SurveySays.Services.SurveyService,
             $stateParams: ng.ui.IStateParamsService,
-            public $state: ng.ui.IStateService,
-            private activeTabProvider: SurveySays.Providers.ActiveTabProvider)
+            public $state: ng.ui.IStateService)
         {
             this.surveyService.getBasicSurvey($stateParams['id']).then((data) => {
                 this.survey = data;

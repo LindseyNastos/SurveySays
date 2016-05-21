@@ -13,6 +13,10 @@
 
 /*-------survey summary-------*/
 
+#sum-survey-name {
+    font-size:18px;
+}
+
 #response-summary-panel {
     padding: 0px;
 }
@@ -30,8 +34,7 @@
 
 #sum-btn-div {
     padding-top: 15px;
-    margin: 0 auto;
-    width: 195px;
+
 }
 
     #sum-btn-div button {
@@ -179,7 +182,7 @@
     border-radius: 3px;
     border: 1px #ddd solid;
     width:100%;
-    margin:2px;
+    margin:4px;
     padding:4px;
     font-size:15px;
 }
