@@ -1,29 +1,29 @@
 ﻿<div class="wrapper container">
     <h2>{{vm.survey.surveyName}}</h2>
     <uib-tabset>
-        <uib-tab id="analyze-tab" class="tab-headings">
+        <uib-tab id="analyze-tab"  active="vm.isActive" ng-init="vm.isActive=false" class="tab-headings no-deco" ui-sref="editSurvey.analyze" ui-sref-active="active">
             <uib-tab-heading>
-                <a class="no-deco" ui-sref="editSurvey.analyze">Analyze Results  <span ng-show="{{vm.survey.numResponses}}" class="badge">{{vm.survey.numResponses}}</span></a>
+                Analyze Results  <span ng-show="{{vm.survey.numResponses}}" class="badge">{{vm.survey.numResponses}}</span>
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab id="collect-tab" class="tab-headings">
+        <uib-tab id="collect-tab" class="tab-headings no-deco" ui-sref="editSurvey.collect" ui-sref-active="active">
             <uib-tab-heading>
-                <a class="no-deco" ui-sref="editSurvey.collect">Collect Responses</a>
+                Collect Responses
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab id="preview-tab" class="tab-headings">
+        <uib-tab id="preview-tab" class="tab-headings no-deco" ui-sref="editSurvey.preview" ui-sref-active="active">
             <uib-tab-heading>
-                <a class="no-deco" ui-sref="editSurvey.preview">Preview</a>
+                Preview
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab id="design-tab" class="tab-headings">
+        <uib-tab id="design-tab" class="tab-headings no-deco" ui-sref="editSurvey.design" ui-sref-active="active">
             <uib-tab-heading>
-                <a class="no-deco" ui-sref="editSurvey.design">Design</a>
+                Design
             </uib-tab-heading>
         </uib-tab>
-        <uib-tab id="summary-tab" class="tab-headings">
+        <uib-tab id="summary-tab" class="tab-headings no-deco" ui-sref="editSurvey.summary" ui-sref-active="active">
             <uib-tab-heading>
-                <a class="no-deco" ui-sref="editSurvey.summary">Summary</a>
+                Summary
             </uib-tab-heading>
         </uib-tab>
     </uib-tabset>
