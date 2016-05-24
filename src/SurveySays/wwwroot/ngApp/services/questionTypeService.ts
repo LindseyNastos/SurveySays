@@ -5,7 +5,7 @@
             this.TypeResource = $resource("/api/questionTypes/:id");
         }
         public listTypes() {
-            return this.TypeResource.query();
+            return this.TypeResource.query().$promise;
         }
     }
     angular.module("SurveySays").service("questionTypeService", QuestionTypeService);
