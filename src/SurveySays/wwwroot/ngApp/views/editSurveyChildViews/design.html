@@ -8,7 +8,7 @@
                 </uib-accordion-heading>
                 <ul class="accordion-list">
                     <li ng-repeat="q in vm.questionTypes">
-                        <div class="accordion-types">
+                        <div class="accordion-list-items">
                             <span id="{{q.id}}"></span> {{q.type}}
                         </div>
                     </li>
@@ -27,7 +27,7 @@
                         </uib-accordion-heading>
                         <ul class="accordion-list">
                             <li ng-repeat="q in c.questions">
-                                <div class="accordion-types">
+                                <div class="accordion-list-items">
                                     {{q.quest}}
                                 </div>
                             </li>

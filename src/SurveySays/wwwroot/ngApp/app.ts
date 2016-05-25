@@ -1,6 +1,6 @@
 namespace SurveySays {
 
-    angular.module('SurveySays', ['ui.router', 'ngResource', 'ui.bootstrap']).config((
+    angular.module('SurveySays', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngDraggable']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
         $locationProvider: ng.ILocationProvider

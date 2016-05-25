@@ -1,7 +1,7 @@
 ﻿namespace SurveySays.Controllers {
 
     export class CollectController {
-        public courses: SurveySays.Models.ICourse[];
+        public campuses: SurveySays.Models.ICampus[];
         public sendTime;
         public formats: string[] = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         public format: string = this.formats[0];
@@ -76,8 +76,8 @@
         }
 
         //CTOR
-        constructor(private courseService: SurveySays.Services.CourseService) {
-            this.courses = courseService.listCourses();
+        constructor(private campusService: SurveySays.Services.CampusService) {
+            this.campuses = campusService.listCampuses();
             this.today();
             this.toggleMin();
         }
