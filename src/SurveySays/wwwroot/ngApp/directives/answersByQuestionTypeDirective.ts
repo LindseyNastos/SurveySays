@@ -2,9 +2,9 @@
 
     class QuestionTypeDirective implements ng.IDirective {
         public restrict: 'E';
-        public scope = { question: '=surveyQuestion' };
+        public scope = { question: '=surveyQuestion', pageView: '@' };
         public link = (scope: any, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
-            let answerTemplate = this.checkType(scope.question);
+            let answerTemplate = this.checkType(scope.question, scope.pageView);
             this.$templateRequest(answerTemplate).then((html) => {
                 // Convert template to actual html
                 let template = angular.element(html);
@@ -26,26 +26,52 @@
             return directive;
         }
 
-        public checkType(question: SurveySays.Models.IQuestion): string {
+        public checkType(question, view: string): string {
             let answerTemplate: string;
-            if (question.questionType.type == "TextBox") {
-                answerTemplate = '/ngApp/views/questionTemplates/textbox.html';
+            if (view === 'design'){
+                if (question.questionType.type == "TextBox") {
+                    answerTemplate = '/ngApp/views/createTemplates/textbox.html';
+                }
+                else if (question.questionType.type == "Multiple Choice") {
+                    answerTemplate = '/ngApp/views/createTemplates/multipleChoice.html';
+                }
+                else if (question.questionType.type == "Ranking") {
+                    answerTemplate = '/ngApp/views/createTemplates/ranking.html';
+                }
+                else if (question.questionType.type == "Dropdown List") {
+                    answerTemplate = '/ngApp/views/createTemplates/dropdownList.html';
+                }
+                else if (question.questionType.type == "Matrix Rating") {
+                    answerTemplate = '/ngApp/views/createTemplates/matrixRating.html';
+                }
+                else {
+                    console.log("Error: HTML design answer types have failed (question-type-directive).");
+                }
             }
-            else if (question.questionType.type == "Multiple Choice") {
-                answerTemplate = '/ngApp/views/questionTemplates/multipleChoice.html';
-            }
-            else if (question.questionType.type == "Ranking") {
-                answerTemplate = '/ngApp/views/questionTemplates/ranking.html';
-            }
-            else if (question.questionType.type == "Dropdown List") {
-                answerTemplate = '/ngApp/views/questionTemplates/dropdownList.html';
-            }
-            else if (question.questionType.type == "Matrix Rating") {
-                answerTemplate = '/ngApp/views/questionTemplates/matrixRating.html';
+            else if (view === 'preview'){
+                if (question.questionType.type == "TextBox") {
+                    answerTemplate = '/ngApp/views/questionTemplates/textbox.html';
+                }
+                else if (question.questionType.type == "Multiple Choice") {
+                    answerTemplate = '/ngApp/views/questionTemplates/multipleChoice.html';
+                }
+                else if (question.questionType.type == "Ranking") {
+                    answerTemplate = '/ngApp/views/questionTemplates/ranking.html';
+                }
+                else if (question.questionType.type == "Dropdown List") {
+                    answerTemplate = '/ngApp/views/questionTemplates/dropdownList.html';
+                }
+                else if (question.questionType.type == "Matrix Rating") {
+                    answerTemplate = '/ngApp/views/questionTemplates/matrixRating.html';
+                }
+                else {
+                    console.log("Error: HTML preview answer types have failed (question-type-directive).");
+                }
             }
             else {
-                console.log("Error: HTML answer type generator has failed.");
+                console.log("Error: Question type directive has failed.");
             }
+
             return answerTemplate;
         }
     }
