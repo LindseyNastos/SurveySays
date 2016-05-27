@@ -26,7 +26,7 @@
             return directive;
         }
 
-        public checkType(question, view: string): string {
+        public checkType(question:SurveySays.Models.IQuestion, view: string): string {
             let answerTemplate: string;
             if (view === 'design'){
                 if (question.questionType.type == "TextBox") {

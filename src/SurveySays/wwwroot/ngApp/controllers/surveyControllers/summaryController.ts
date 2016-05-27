@@ -7,7 +7,7 @@
             $stateParams: ng.ui.IStateParamsService,
             public $state: ng.ui.IStateService)
         {
-            this.surveyService.getBasicSurvey($stateParams['id']).then((data) => {
+            this.surveyService.getBasicSurvey($stateParams['surveyId']).then((data) => {
                 this.survey = data;
                 this.checkStatus(this.survey.released);
             });

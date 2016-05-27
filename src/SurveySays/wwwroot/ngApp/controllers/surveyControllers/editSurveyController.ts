@@ -4,7 +4,7 @@
         public survey: SurveySays.Models.ISurvey;
         public isActive: boolean;
         constructor(private surveyService: SurveySays.Services.SurveyService, $stateParams: ng.ui.IStateParamsService) {
-            this.surveyService.getBasicSurvey($stateParams['id']).then((data) => {
+            this.surveyService.getBasicSurvey($stateParams['surveyId']).then((data) => {
                 this.survey = data;
             });
             this.removeActive();

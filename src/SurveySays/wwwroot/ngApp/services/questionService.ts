@@ -11,8 +11,8 @@
         public getQuestion(id: number) {
             return this.QuestionResource.get({ id: id }).$promise;
         }
-        public saveQuestion(question) {
-            return this.QuestionResource.save(question).$promise;
+        public saveQuestion(surveyId: number, question: SurveySays.Models.IQuestion) {
+            return this.QuestionResource.save({surveyId: surveyId}, question).$promise;
         }
         public deleteQuestion(id: number) {
             return this.QuestionResource.delete({ id: id }).$promise;

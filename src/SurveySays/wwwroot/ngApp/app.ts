@@ -22,7 +22,7 @@ namespace SurveySays {
                 controllerAs: 'vm'
             })
             .state('editSurvey', {
-                url: '/editSurvey/:id',
+                url: '/editSurvey/:surveyId',
                 templateUrl: '/ngApp/views/editSurvey.html',
                 controller: SurveySays.Controllers.EditSurveyController,
                 controllerAs: 'vm'
@@ -34,7 +34,7 @@ namespace SurveySays {
                 controllerAs: 'vm'
             })
             .state('editSurvey.design', {
-                url: '/design',
+                url: '/design/:id?',
                 templateUrl: '/ngApp/views/editSurveyChildViews/design.html',
                 controller: SurveySays.Controllers.DesignController,
                 controllerAs: 'vm'

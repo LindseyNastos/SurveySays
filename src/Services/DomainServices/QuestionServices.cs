@@ -41,7 +41,12 @@ namespace Services.DomainServices
 
         public Question GetQuestion(int id)
         {
-            return _repo.Query<Question>().Where(s => s.Id == id).FirstOrDefault();
+            return _repo.Query<Question>()
+                .Where(q => q.Id == id)
+                .Include(q => q.QuestionType)
+                .Include(q => q.MatrixQuestions)
+                .Include(q => q.AnswerOptions)
+                .FirstOrDefault();
         }
 
         public void AddNewQuestion(Question question, int surveyId)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Domain.Interfaces;
+using Domain.Models;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,9 +35,22 @@ namespace SurveySays.API
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpPost("{surveyId}")]
+        public IActionResult Post(int surveyId, [FromBody]Question question)
         {
+            if (ModelState.IsValid)
+            {
+                if (question.Id == 0)
+                {
+                    _service.AddNewQuestion(question, surveyId);
+                    return Created("/surveys/" + question.Id, question);
+                }
+                else
+                {
+                    _service.EditQuestion(question);
+                }
+            }
+            return HttpBadRequest(ModelState);
         }
 
         // PUT api/values/5
@@ -49,6 +63,7 @@ namespace SurveySays.API
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _service.DeleteQuestion(id);
         }
     }
 }

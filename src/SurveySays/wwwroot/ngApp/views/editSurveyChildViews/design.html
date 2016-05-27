@@ -53,7 +53,9 @@
     <!--------------WHEN NO QUESTION SELECTED---------------->
 
         <div ng-show="vm.question" id="add-or-edit">
-            <question-type-directive page-view="design" survey-question="vm.question">
+            ****TEMPLATE****
+            <!--{{vm.question}}-->
+            <question-type-directive ng-if="vm.question" page-view="design" survey-question="vm.question">
             </question-type-directive>
         </div>
     
