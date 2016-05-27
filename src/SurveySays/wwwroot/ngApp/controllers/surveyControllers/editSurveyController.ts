@@ -3,12 +3,17 @@
     export class EditSurveyController {
         public survey: SurveySays.Models.ISurvey;
         public isActive: boolean;
-        constructor(private surveyService: SurveySays.Services.SurveyService, $stateParams: ng.ui.IStateParamsService) {
-            this.surveyService.getBasicSurvey($stateParams['surveyId']).then((data) => {
-                this.survey = data;
-            });
+        constructor(private surveyService: SurveySays.Services.SurveyService, private $stateParams: ng.ui.IStateParamsService) {
+            this.getSurvey();
             this.removeActive();
         }
+
+        public getSurvey() {
+            this.surveyService.getBasicSurvey(this.$stateParams['surveyId']).then((data) => {
+                this.survey = data;
+            });
+        }
+
         public saveChanges(survey) {
             this.surveyService.saveSurvey(survey);
         }
