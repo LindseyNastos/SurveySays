@@ -7,4 +7,11 @@
         questions: IQuestion[];
     }
 
+    export class QuestionCategory implements IQuestionCategory {
+        id: number;
+        name: string;
+        qualifier: string;
+        questions: IQuestion[];
+    }
+
 }

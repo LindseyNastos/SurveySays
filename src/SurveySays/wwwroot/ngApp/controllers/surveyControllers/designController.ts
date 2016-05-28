@@ -7,21 +7,19 @@
         public survey: SurveySays.Models.ISurvey;
         public question;
         public accordionArray = [];
-        public status = {
-            isFirstOpen: true,
-            isFirstDisabled: false
-        };
+        public status = { isFirstOpen: true, isFirstDisabled: false };
+        public answerChoiceArray: string[] = [];
 
-        constructor(private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: ng.ui.IStateParamsService) {
-            this.categories = questionCategoryService.listCategories();
-            //this.question = { questionType: { type: "TextBox" } };
-
+        constructor(public $scope: ng.IScope, private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: ng.ui.IStateParamsService) {
             if ($stateParams['id']){
                 this.getQuestion($stateParams['id']);
             }
-
+            this.getCategories();
             this.getTypes();
-            
+        }
+
+        public getCategories() {
+            this.categories = this.questionCategoryService.listCategories();
         }
 
         public getTypes() {
@@ -49,6 +47,35 @@
                 elem.innerHTML = q.icon;
                 }
             }, 1);
+        }
+
+        //public value = '';
+        //public hasBeenEditedBefore = false;
+        //public unWatch = this.$scope.$watch("value", function () {
+        //    if (this.value.length > 0) {
+        //        this.hasBeenEditedBefore = true;
+        //        this.$scope.unWatch();
+        //    }
+        //});
+
+        public value = '';
+        public hasBeenForTheFirstTime = false;
+        public boolArray = [];
+        public numChoices = [];
+
+        public valueChanged() {
+            this.hasBeenForTheFirstTime = true;
+            console.log("isFired");
+        };
+
+        public isLast(checkLast:boolean, index:number) {
+            
+        }
+
+        public fillAnswers() {
+            let a = new SurveySays.Models.Answer();
+            //first three to display but with no values
+            //be able to detect when last index has value to add new
         }
 
     }

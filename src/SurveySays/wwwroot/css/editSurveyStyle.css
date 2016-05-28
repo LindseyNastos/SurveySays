@@ -206,20 +206,45 @@
 
 /************************************CREATE TEMPLATES*********************************/
 
-
-/*-------textbox-------*/
-#create-textbox {
-    width:400px;
+.inline {
+    display:inline-block;
 }
 
-/*#test {
-    font-size:4em;
-}*/
+.create-row-top {
+    border-bottom:solid 2px white;
+    padding-bottom: 10px;
+}
+
+.create-row-bottom {
+    padding-top: 10px
+}
+
+/*-------textbox-------*/
+
 
 /*-------multiple choice-------*/
+.choice-input {
+    margin:3px 7px 3px 7px;
+}
+
+.fa-plus-circle {
+    color:#5cb85c;
+}
+
+.fa-times-circle {
+    color:#c9302c;
+}
+
+.btn-none {
+    background-color:#f5f5f5;
+    border:none;
+}
 
 /*-------dropdown list-------*/
 
+
 /*-------ranking-------*/
 
+
 /*-------matrix rating-------*/
+

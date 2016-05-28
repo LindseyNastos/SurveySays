@@ -1,1 +1,22 @@
 ﻿<h3>Question Type: <strong>Multiple Choice</strong></h3>
+<br />
+<div class="row create-row-top">
+    <div class="col-sm-12">
+        <label class="inline">Question:</label> 
+        <input class="inline form-control" type="text" />
+    </div>
+</div>
+
+<div class="row create-row-bottom create-row-top">
+    <div class="col-sm-12">
+        <label>Answer Choices:</label> 
+        <br />
+        <div ng-repeat="choice in vm.answerChoiceArray track by $index">
+            <i class="inline fa fa-circle-thin" aria-hidden="true"></i>
+            <input ng-model="vm.value" value="{{vm.value}}" ng-change="vm.isLast($last, $index)" class="choice-input inline form-control" type="text" />
+            <button class="btn-none"><i class="fa fa-lg fa-plus-circle" aria-hidden="true"></i></button>
+            <button class="btn-none"><i class="fa fa-lg fa-times-circle" aria-hidden="true"></i></button>
+            <br />
+        </div>
+    </div>
+</div>
