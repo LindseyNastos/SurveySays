@@ -8,15 +8,17 @@
         public question;
         public accordionArray = [];
         public status = { isFirstOpen: true, isFirstDisabled: false };
-        public answerChoiceArray: string[] = [];
+        public answerChoiceArray = ["one", "two"];
 
         constructor(public $scope: ng.IScope, private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: ng.ui.IStateParamsService) {
-            if ($stateParams['id']){
+            if ($stateParams['id']) {
                 this.getQuestion($stateParams['id']);
             }
             this.getCategories();
             this.getTypes();
         }
+
+        //------MAIN DESIGN PAGE--------
 
         public getCategories() {
             this.categories = this.questionCategoryService.listCategories();
@@ -28,7 +30,7 @@
                 this.addIcons();
             });
         }
-    
+
         public getQuestion(id: number) {
             this.questionService.getQuestion(id).then((data) => {
                 this.question = data;
@@ -41,42 +43,33 @@
 
         public addIcons() {
             setTimeout(() => {
-            for (var q of this.questionTypes) {
-                let id = (q.id).toString();
-                let elem = <HTMLSpanElement>document.getElementById(id);
-                elem.innerHTML = q.icon;
+                for (var q of this.questionTypes) {
+                    let id = (q.id).toString();
+                    let elem = <HTMLSpanElement>document.getElementById(id);
+                    elem.innerHTML = q.icon;
                 }
             }, 1);
         }
 
-        //public value = '';
-        //public hasBeenEditedBefore = false;
-        //public unWatch = this.$scope.$watch("value", function () {
-        //    if (this.value.length > 0) {
-        //        this.hasBeenEditedBefore = true;
-        //        this.$scope.unWatch();
-        //    }
-        //});
+        //--------MULTIPLE CHOICE-------------
 
-        public value = '';
-        public hasBeenForTheFirstTime = false;
-        public boolArray = [];
-        public numChoices = [];
-
-        public valueChanged() {
-            this.hasBeenForTheFirstTime = true;
-            console.log("isFired");
-        };
-
-        public isLast(checkLast:boolean, index:number) {
-            
+        public isLast(checkLast: boolean, index: number) {
+            if (checkLast) {
+            //if last, add one to the array
+                this.answerChoiceArray[index + 1] = "";
+            }
+            console.log("Reminder: Make sure to chop empty string off of array when saving to database");
         }
 
-        public fillAnswers() {
-            let a = new SurveySays.Models.Answer();
-            //first three to display but with no values
-            //be able to detect when last index has value to add new
+        public addChoice(index: number) {
+            this.answerChoiceArray.splice(index + 1, 0, "");
+        }
+
+        public deleteChoice(index: number) {
+            this.answerChoiceArray.splice(index, 1);
+            console.log(this.answerChoiceArray);
         }
 
     }
+    angular.module("SurveySays").controller("designController", DesignController);
 }

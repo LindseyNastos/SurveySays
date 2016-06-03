@@ -2,7 +2,7 @@
 
     class QuestionTypeDirective implements ng.IDirective {
         public restrict: 'E';
-        public scope = { question: '=surveyQuestion', pageView: '@' };
+        public scope = { ctrl: '=', question: '=surveyQuestion', pageView: '@' };
         public link = (scope: any, element: ng.IAugmentedJQuery, attrs: ng.IAttributes, ctrl: any) => {
             let answerTemplate = this.checkType(scope.question, scope.pageView);
             this.$templateRequest(answerTemplate).then((html) => {
