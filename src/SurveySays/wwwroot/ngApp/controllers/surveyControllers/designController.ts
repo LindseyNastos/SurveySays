@@ -3,12 +3,13 @@
     export class DesignController {
         public categories: SurveySays.Models.IQuestionCategory[];
         public questionTypes: SurveySays.Models.IQuestionType[];
-        //public question: SurveySays.Models.IQuestion;
+        public question: SurveySays.Models.IQuestion;
         public survey: SurveySays.Models.ISurvey;
-        public question;
+        //public question;
         public accordionArray = [];
         public status = { isFirstOpen: true, isFirstDisabled: false };
-        public answerChoiceArray = ["one", "two"];
+        public answerChoiceArray = ["", "", ""];
+        public matrixOptionsArray = ["", "", ""];
 
         constructor(public $scope: ng.IScope, private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: ng.ui.IStateParamsService) {
             if ($stateParams['id']) {
@@ -51,23 +52,39 @@
             }, 1);
         }
 
-        //--------MULTIPLE CHOICE-------------
-
-        public isLast(checkLast: boolean, index: number) {
-            if (checkLast) {
-            //if last, add one to the array
-                this.answerChoiceArray[index + 1] = "";
+        public isLast(checkLast: boolean, index: number, type: string) {
+            if (type == 'choice') {
+                if (checkLast) {
+                    //if last, add one to the array
+                    this.answerChoiceArray[index + 1] = "";
+                }
             }
-            console.log("Reminder: Make sure to chop empty string off of array when saving to database");
+            if (type == 'option') {
+                if (checkLast) {
+                    //if last, add one to the array
+                    this.matrixOptionsArray[index + 1] = "";
+                }
+            }
+            //Reminder: Make sure to chop empty string off of array when saving to database. Also limit answer choices in matrix template to 6.
         }
 
-        public addChoice(index: number) {
-            this.answerChoiceArray.splice(index + 1, 0, "");
+        public addChoice(index: number, type: string) {
+            console.log(type);
+            if (type == 'choice') {
+                this.answerChoiceArray.splice(index + 1, 0, "");
+            }
+            if (type == 'option') {
+                this.matrixOptionsArray.splice(index + 1, 0, "");
+            }
         }
 
-        public deleteChoice(index: number) {
-            this.answerChoiceArray.splice(index, 1);
-            console.log(this.answerChoiceArray);
+        public deleteChoice(index: number, type: string) {
+            if (type == 'choice') {
+                this.answerChoiceArray.splice(index, 1);
+            }
+            if (type == 'option') {
+                this.matrixOptionsArray.splice(index, 1);
+            }
         }
 
     }
