@@ -1,9 +1,13 @@
-﻿<h3>Question Type: <strong>Multiple Choice</strong></h3>
+﻿<div class="create-row-top">
+    <h3>Question Type: <strong>Multiple Choice</strong></h3>
+</div>
 <br />
-<div class="row create-row-top">
-    <div class="col-sm-12">
-        <label class="inline">Question:</label> 
-        <input class="inline form-control" type="text" />
+<div class="create-row-top">
+    <div class="row">
+        <div class="col-sm-12">
+            <label class="inline">Question:</label>
+            <input class="inline form-control" type="text" />
+        </div>
     </div>
 </div>
 
@@ -15,14 +19,14 @@
         <div ng-repeat="choice in ctrl.answerChoiceArray track by $index">
             <i class="inline fa fa-circle-thin" aria-hidden="true"></i>
             <input ng-model="ctrl.answerChoiceArray[$index]" 
-                   ng-change="ctrl.isLast($last, $index)" 
+                   ng-change="ctrl.isLast($last, $index, 'choice')" 
                    class="choice-input inline form-control" 
                    type="text" 
                    value="{{choice}}" />
-            <button ng-click="ctrl.addChoice($index)" class="btn-none">
+            <button ng-click="ctrl.addChoice($index, 'choice')" class="btn-none">
                 <i class="fa fa-lg fa-plus-circle" aria-hidden="true"></i>
             </button>
-            <button ng-click="ctrl.deleteChoice($index)" class="btn-none">
+            <button ng-click="ctrl.deleteChoice($index, 'choice')" class="btn-none">
                 <i class="fa fa-lg fa-times-circle" aria-hidden="true"></i>
             </button>
             <br />

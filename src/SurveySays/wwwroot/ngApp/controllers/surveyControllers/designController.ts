@@ -53,6 +53,7 @@
         }
 
         public isLast(checkLast: boolean, index: number, type: string) {
+            console.log('yo');
             if (type == 'choice') {
                 if (checkLast) {
                     //if last, add one to the array

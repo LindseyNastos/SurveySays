@@ -1,4 +1,6 @@
-﻿<h3>Question Type: <strong>Matrix Rating</strong></h3>
+﻿<div class="create-row-top">
+    <h3>Question Type: <strong>Matrix Rating</strong></h3>
+</div>
 <br />
 
 <div class="row create-row-bottom create-row-top">
@@ -6,7 +8,28 @@
         <label>Answer Choices:</label>
         <br />
         <row>
-            <div ng-repeat="choice in ctrl.answerChoiceArray track by $index">
+            <table class="table table-bordered table-responsive white-table">
+                <tr>
+                    <td></td>
+                    <td contenteditable
+                        ng-repeat="choice in ctrl.answerChoiceArray track by $index"
+                        ng-model="ctrl.answerChoiceArray[$index]"
+                        ng-change="ctrl.isLast($last, $index, 'choice')">
+                        {{choice}}
+                    </td>
+                </tr>
+                <tr ng-repeat="choice in ctrl.matrixOptionsArray track by $index">
+                    <td contenteditable
+                        ng-model="ctrl.matrixOptionsArray[$index]"
+                        ng-change="ctrl.isLast($last, $index, 'option')">
+                        {{choice}}
+                    </td>
+                    <td ng-repeat="answer in ctrl.answerChoiceArray track by $index">
+                        <input type="radio" />
+                    </td>
+                </tr>
+            </table>
+            <!--<div ng-repeat="choice in ctrl.answerChoiceArray track by $index">
                 <div class="col-sm-2">
                     <input ng-model="ctrl.answerChoiceArray[$index]"
                            ng-change="ctrl.isLast($last, $index, 'choice')"
@@ -22,11 +45,12 @@
                     </button>
                     <br />
                 </div>
-            </div>
+            </div>-->
         </row>
     </div>
 </div>
-<div class="row create-row-bottom create-row-top">
+
+<!--<div class="row create-row-bottom create-row-top">
     <div class="col-sm-12">
         <label>Questions:</label>
         <br />
@@ -45,4 +69,4 @@
             <br />
         </div>
     </div>
-</div>
+</div>-->
