@@ -49,50 +49,63 @@
                     let elem = <HTMLSpanElement>document.getElementById(id);
                     elem.innerHTML = q.icon;
                 }
-            }
-        , 1);
+            }, 1);
         }
 
         public isLast(checkLast: boolean, index: number, type: string) {
-
             if (type == 'choice') {
-                if (checkLast) {
-                    //if last, add one to the array
-                    this.answerChoiceArray[index + 1] = "";
-                    console.log('plus one');
-                    console.log(this.answerChoiceArray);
+                var arrayLength = this.answerChoiceArray.length;
+                if (arrayLength > 1 && arrayLength < 6) {
+                    if (checkLast) {
+                        //if last, add one to the array
+                        this.answerChoiceArray[index + 1] = "";
+                    }
                 }
             }
             if (type == 'option') {
-                if (checkLast) {
-                    //if last, add one to the array
-                    this.matrixOptionsArray[index + 1] = "";
-                    console.log('plus one');
-                    console.log(this.matrixOptionsArray);
+                var arrayLength = this.matrixOptionsArray.length;
+                if (arrayLength > 1 && arrayLength < 6) {
+                    if (checkLast) {
+                        //if last, add one to the array
+                        this.matrixOptionsArray[index + 1] = "";
+                    }
                 }
             }
-            //Reminder: Make sure to chop empty string off of array when saving to database. Also limit answer choices in matrix template to 6.
+            //Reminder: Make sure to chop empty string off of array when saving to database. 
+            // Also limit answer choices in matrix template to 6. Must have at least 1.
         }
 
         public addChoice(index: number, type: string) {
             if (type == 'choice') {
-                this.answerChoiceArray.splice(index + 1, 0, "");
+                var arrayLength = this.answerChoiceArray.length;
+                if (arrayLength < 7) {
+                    this.answerChoiceArray.splice(index + 1, 0, "");
+                }
             }
             if (type == 'option') {
-                this.matrixOptionsArray.splice(index + 1, 0, "");
+                var arrayLength = this.matrixOptionsArray.length;
+                if (arrayLength < 7) {
+                    this.matrixOptionsArray.splice(index + 1, 0, "");
+                }
             }
         }
+
 
         public deleteChoice(index: number, type: string) {
             if (type == 'choice') {
-                this.answerChoiceArray[index] = "";
-                this.answerChoiceArray.splice(index, 1);
+                var arrayLength = this.answerChoiceArray.length;
+                if (arrayLength > 1) {
+                    this.answerChoiceArray.splice(index, 1);
+                }
             }
             if (type == 'option') {
-                this.matrixOptionsArray.splice(index, 1);
+                var arrayLength = this.matrixOptionsArray.length;
+                if (arrayLength > 1) {
+                    this.matrixOptionsArray.splice(index, 1);
+                }
             }
         }
-
     }
+
     angular.module("SurveySays").controller("designController", DesignController);
 }
