@@ -3,23 +3,23 @@
 
     <fieldset>
         <ul>
-            <li ng-repeat="message in controller.validationMessages">
+            <li ng-repeat="message in vm.validationMessages">
                 {{message}}
             </li>
         </ul>
 
-        <form ng-submit="controller.register()">
+        <form ng-submit="vm.register()">
             <fieldset class="form-group">
                 <label>Email:</label>
-                <input class="form-control" ng-model="controller.registerUser.email" />
+                <input class="form-control" ng-model="vm.registerUser.email" />
             </fieldset>
             <fieldset class="form-group">
                 <label>Password:</label>
-                <input class="form-control" ng-model="controller.registerUser.password" />
+                <input class="form-control" ng-model="vm.registerUser.password" />
             </fieldset>
             <fieldset class="form-group">
                 <label>Confirm Password:</label>
-                <input class="form-control" ng-model="controller.registerUser.confirmPassword" />
+                <input class="form-control" ng-model="vm.registerUser.confirmPassword" />
             </fieldset>
             <input class="btn btn-primary form-control" type="submit" value="Register" />
         </form>

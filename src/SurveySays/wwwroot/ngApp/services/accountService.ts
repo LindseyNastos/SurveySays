@@ -25,7 +25,7 @@ namespace SurveySays.Services {
         public login(loginUser) {
             return this.$q((resolve, reject) => {
                 this.$http.post('/api/account/login', loginUser).then((result) => {
-                        this.storeUserInfo(result.data);
+                    this.storeUserInfo(result.data);
                         resolve();
                 }).catch((result) => {
                     var messages = this.flattenValidation(result.data);

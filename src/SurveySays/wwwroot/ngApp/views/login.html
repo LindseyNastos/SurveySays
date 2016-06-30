@@ -3,19 +3,19 @@
 
     <fieldset>
         <ul>
-            <li ng-repeat="error in controller.validationMessages">
+            <li ng-repeat="error in vm.validationMessages">
                 {{error}}
             </li>
         </ul>
 
-        <form ng-submit="controller.login()">
+        <form ng-submit="vm.login()">
             <fieldset class="form-group">
                 <label>Email:</label>
-                <input class="form-control" ng-model="controller.loginUser.email" />
+                <input class="form-control" ng-model="vm.loginUser.email" />
             </fieldset>
             <fieldset class="form-group">
                 <label>Password:</label>
-                <input class="form-control" ng-model="controller.loginUser.password" />
+                <input class="form-control" ng-model="vm.loginUser.password" />
             </fieldset>
             <input class="btn btn-primary form-control" type="submit" value="Login" />
         </form>

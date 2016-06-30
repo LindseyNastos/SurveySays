@@ -15,6 +15,7 @@ namespace Domain.Models
         }
         public int Id { get; set; }
         public string Quest { get; set; }
+        public bool AnswerRequired { get; set; }
         public QuestionType QuestionType { get; set; }
         public ICollection<Option> AnswerOptions { get; set; }
         public ICollection<Option> MatrixQuestions { get; set; }

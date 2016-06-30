@@ -53,7 +53,13 @@
     <!--------------WHEN NO QUESTION SELECTED---------------->
 
         <div ng-show="vm.question" id="add-or-edit">
-            <question-type-directive ng-if="vm.question" ctrl="vm" page-view="design" survey-question="vm.question">
+            <question-type-directive 
+                                     ng-if="vm.question" 
+                                     answerChoices="vm.answerChoiceArray"
+                                     matrixOptions="vm.matrixOptionsArray"
+                                     ctrl="vm" 
+                                     page-view="design" 
+                                     survey-question="vm.question">
             </question-type-directive>
             <div class="row create-row-bottom">
                 <div class="col-sm-12">

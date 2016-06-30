@@ -2,64 +2,46 @@
     <h3>Question Type: <strong>Matrix Rating</strong></h3>
 </div>
 <br />
+<div class="reqBox inline pull-right">
+    <label class="inline">Answer required:</label>
+    <input class="inline" type="checkbox" />
+</div>
 
 <div class="row create-row-bottom create-row-top">
     <div class="col-sm-12">
         <label>Answer Choices:</label>
         <br />
-        <row>
-            <table class="table table-bordered table-responsive white-table">
-                <tr>
-                    <td></td>
-                    <td contenteditable
-                        ng-repeat="choice in ctrl.answerChoiceArray track by $index"
-                        ng-model="ctrl.answerChoiceArray[$index]"
-                        ng-change="ctrl.isLast($last, $index, 'choice')">
-                        {{choice}}
-                    </td>
-                </tr>
-                <tr ng-repeat="choice in ctrl.matrixOptionsArray track by $index">
-                    <td contenteditable
-                        ng-model="ctrl.matrixOptionsArray[$index]"
-                        ng-change="ctrl.isLast($last, $index, 'option')">
-                        {{choice}}
-                    </td>
-                    <td ng-repeat="answer in ctrl.answerChoiceArray track by $index">
-                        <input type="radio" />
-                    </td>
-                </tr>
-            </table>
-            <!--<div ng-repeat="choice in ctrl.answerChoiceArray track by $index">
-                <div class="col-sm-2">
-                    <input ng-model="ctrl.answerChoiceArray[$index]"
-                           ng-change="ctrl.isLast($last, $index, 'choice')"
-                           class="choice-input inline form-control"
-                           type="text"
-                           value="{{choice}}" />
-                    <br />
-                    <button ng-click="ctrl.addChoice($index, 'choice')" class="btn-none">
-                        <i class="fa fa-lg fa-plus-circle" aria-hidden="true"></i>
-                    </button>
-                    <button ng-click="ctrl.deleteChoice($index, 'choice')" class="btn-none">
-                        <i class="fa fa-lg fa-times-circle" aria-hidden="true"></i>
-                    </button>
-                    <br />
-                </div>
-            </div>-->
-        </row>
+
+        <div ng-repeat="choice in ctrl.answerChoiceArray track by $index">
+            <i class="inline fa fa-circle-thin" aria-hidden="true"></i>
+            <input ng-model="ctrl.answerChoiceArray[$index]"
+                   ng-change="ctrl.isLast($last, $index, 'choice')"
+                   class="choice-input inline form-control"
+                   type="text"
+                   value="{{choice}}" />
+            <button ng-click="ctrl.addChoice($index, 'choice')" class="btn-none">
+                <i class="fa fa-lg fa-plus-circle" aria-hidden="true"></i>
+            </button>
+            <button ng-click="ctrl.deleteChoice($index, 'choice')" class="btn-none">
+                <i class="fa fa-lg fa-times-circle" aria-hidden="true"></i>
+            </button>
+            <br />
+        </div>
     </div>
 </div>
 
-<!--<div class="row create-row-bottom create-row-top">
+<div class="row create-row-bottom create-row-top">
     <div class="col-sm-12">
-        <label>Questions:</label>
+        <label>Question Options:</label>
         <br />
-        <div ng-repeat="choice in ctrl.matrixOptionsArray track by $index">
+
+        <div ng-repeat="opt in ctrl.matrixOptionsArray track by $index">
+            <i class="inline fa fa-circle-thin" aria-hidden="true"></i>
             <input ng-model="ctrl.matrixOptionsArray[$index]"
                    ng-change="ctrl.isLast($last, $index, 'option')"
                    class="choice-input inline form-control"
                    type="text"
-                   value="{{choice}}" />
+                   value="{{opt}}" />
             <button ng-click="ctrl.addChoice($index, 'option')" class="btn-none">
                 <i class="fa fa-lg fa-plus-circle" aria-hidden="true"></i>
             </button>
@@ -69,4 +51,37 @@
             <br />
         </div>
     </div>
-</div>-->
+</div>
+
+
+
+
+<div class="row create-row-bottom create-row-top">
+    <div class="col-sm-12">
+        <label>Answer Choices:</label>
+        <br />
+        <row>
+            <table class="table table-bordered table-responsive white-table">
+                <tr>
+                    <td></td>
+                    <td 
+                        ng-repeat="choice in ctrl.answerChoiceArray track by $index"
+                        id="{{'mrChoice' + $index}}"
+                        ng-model="ctrl.answerChoiceArray[$index]">
+                        {{choice}}
+                    </td>
+                </tr>
+                <tr ng-repeat="opt in ctrl.matrixOptionsArray track by $index">
+                    <td 
+                        ng-model="ctrl.matrixOptionsArray[$index]">
+                        {{opt}}
+                    </td>
+                    <td ng-repeat="answer in ctrl.answerChoiceArray track by $index">
+                        <input type="radio" />
+                    </td>
+                </tr>
+            </table>
+        </row>
+    </div>
+</div>
+

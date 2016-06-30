@@ -3,9 +3,9 @@
     export class EditSurveyController {
         public survey: SurveySays.Models.ISurvey;
         public isActive: boolean;
-        constructor(private surveyService: SurveySays.Services.SurveyService, private $stateParams: ng.ui.IStateParamsService) {
+        constructor(private $scope: ng.IScope, private surveyService: SurveySays.Services.SurveyService, private $stateParams: ng.ui.IStateParamsService) {
             this.getSurvey();
-            this.removeActive();
+            $scope.$applyAsync(this.removeActive);
         }
 
         public getSurvey() {
@@ -19,10 +19,8 @@
         }
 
         public removeActive() {
-            setTimeout(() => {
-                let defaultTab = <HTMLLIElement>document.getElementById('analyze-tab');
-                defaultTab.classList.remove("active");
-            }, 2);
+            let defaultTab = <HTMLLIElement>document.getElementById('analyze-tab');
+            defaultTab.classList.remove("active");
         }
     }
 }
