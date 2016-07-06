@@ -9,28 +9,41 @@
         public status = { isFirstOpen: true, isFirstDisabled: false };
         public answerChoiceArray = ["", "", ""];
         public matrixOptionsArray = ["", "", ""];
+        public questionType: string;
+        public surveyId;
 
-        constructor(private $scope: ng.IScope, private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: ng.ui.IStateParamsService) {
-            if ($stateParams['id']) {
-                this.getQuestion($stateParams['id']);
-            }
+        constructor(private $scope: ng.IScope, private surveyService: SurveySays.Services.SurveyService, private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: SurveySays.Models.IStateParams) {
+            this.checkStateParams($stateParams['id']);
             this.getCategories();
-            this.getTypes();
-            //$scope.$applyAsync(this.addIcons);
+            //this.survey = surveyService.getBasicSurvey($stateParams.surveyId);
+            this.surveyId = $stateParams.surveyId;
         }
 
         //------MAIN DESIGN PAGE--------
+
+        public checkStateParams(params) {
+            if (params) {
+                let stateParamNum = parseInt(params);
+                if (isNaN(stateParamNum)) {
+                    this.question = new SurveySays.Models.Question();
+                    this.question.questionType = new SurveySays.Models.QuestionType();
+                    this.question.questionType.type = params;
+                }
+                else {
+                    this.getQuestion(params);
+                }
+            }
+        }
 
         public getCategories() {
             this.categories = this.questionCategoryService.listCategories();
         }
 
-        public getTypes() {
-            this.questionTypeService.listTypes().then((data) => {
-                this.questionTypes = data;
-                this.addIcons();
-            });
-        }
+        //public getTypes() {
+        //    this.questionTypeService.listTypes().then((data) => {
+        //        this.questionTypes = data;
+        //    });
+        //}
 
         public getQuestion(id: number) {
             this.questionService.getQuestion(id).then((data) => {
@@ -40,16 +53,6 @@
 
         public saveQuestion() {
             this.questionService.saveQuestion(this.survey.id, this.question);
-        }
-
-        public addIcons() {
-            setTimeout(() => {
-                for (var q of this.questionTypes) {
-                    let id = (q.id).toString();
-                    let elem = <HTMLSpanElement>document.getElementById(id);
-                    elem.innerHTML = q.icon;
-                }
-            }, 1);
         }
 
         public isLast(checkLast: boolean, index: number, type: string) {

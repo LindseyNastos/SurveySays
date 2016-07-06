@@ -25,7 +25,13 @@ namespace SurveySays {
                 url: '/editSurvey/:surveyId',
                 templateUrl: '/ngApp/views/editSurvey.html',
                 controller: SurveySays.Controllers.EditSurveyController,
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    // Expose projectId parameter to child states
+                    surveyId: ['$stateParams', function ($stateParams) {
+                        return $stateParams.surveyId;
+                    }]
+                },
             })
             .state('editSurvey.summary', {
                 url: '/summary',

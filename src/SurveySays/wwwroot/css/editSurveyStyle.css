@@ -129,6 +129,11 @@
 
 /*-------design survey--------*/
 
+.questionTypeLink, .questionTypeLink:hover, .questionTypeLink:active, .questionTypeLink:link, .questionTypeLink:visited {
+    text-decoration:none;
+    color:#333;
+}
+
 .category-accordion-headers {
     padding: 0;
 }

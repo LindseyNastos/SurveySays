@@ -34,20 +34,20 @@
 
         public checkType(question:SurveySays.Models.IQuestion, view: string): string {
             let answerTemplate: string;
-            if (view === 'design'){
+            if (view === 'design') {
                 if (question.questionType.type == "TextBox") {
                     answerTemplate = '/ngApp/views/createTemplates/textbox.html';
                 }
-                else if (question.questionType.type == "Multiple Choice") {
+                else if (question.questionType.type == "MultipleChoice") {
                     answerTemplate = '/ngApp/views/createTemplates/multipleChoice.html';
                 }
                 else if (question.questionType.type == "Ranking") {
                     answerTemplate = '/ngApp/views/createTemplates/ranking.html';
                 }
-                else if (question.questionType.type == "Dropdown List") {
+                else if (question.questionType.type == "DropdownList") {
                     answerTemplate = '/ngApp/views/createTemplates/dropdownList.html';
                 }
-                else if (question.questionType.type == "Matrix Rating") {
+                else if (question.questionType.type == "MatrixRating") {
                     answerTemplate = '/ngApp/views/createTemplates/matrixRating.html';
                 }
                 else {
@@ -58,16 +58,16 @@
                 if (question.questionType.type == "TextBox") {
                     answerTemplate = '/ngApp/views/questionTemplates/textbox.html';
                 }
-                else if (question.questionType.type == "Multiple Choice") {
+                else if (question.questionType.type == "MultipleChoice") {
                     answerTemplate = '/ngApp/views/questionTemplates/multipleChoice.html';
                 }
                 else if (question.questionType.type == "Ranking") {
                     answerTemplate = '/ngApp/views/questionTemplates/ranking.html';
                 }
-                else if (question.questionType.type == "Dropdown List") {
+                else if (question.questionType.type == "DropdownList") {
                     answerTemplate = '/ngApp/views/questionTemplates/dropdownList.html';
                 }
-                else if (question.questionType.type == "Matrix Rating") {
+                else if (question.questionType.type == "MatrixRating") {
                     answerTemplate = '/ngApp/views/questionTemplates/matrixRating.html';
                 }
                 else {

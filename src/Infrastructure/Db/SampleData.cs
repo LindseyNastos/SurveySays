@@ -89,11 +89,11 @@ namespace Infrastructure.Db
             if (!context.QuestionTypes.Any())
             {
                 context.QuestionTypes.AddRange(
-                    new QuestionType { Type = "Multiple Choice", Icon = "<i class='fa fa-stop-circle-o' aria-hidden='true'></i>" },
-                    new QuestionType { Type = "Dropdown List", Icon = "<i class='fa fa-caret-down' aria-hidden='true'></i>" },
-                    new QuestionType { Type = "Matrix Rating", Icon = "<i class='fa fa-table' aria-hidden='true'></i>" },
-                    new QuestionType { Type = "Ranking", Icon = "<i class='fa fa-sort-numeric-asc' aria-hidden='true'></i>" },
-                    new QuestionType { Type = "TextBox", Icon = "<i class='fa fa-font' aria-hidden='true'></i>" }
+                    new QuestionType { Type = "MultipleChoice" },
+                    new QuestionType { Type = "DropdownList" },
+                    new QuestionType { Type = "MatrixRating" },
+                    new QuestionType { Type = "Ranking" },
+                    new QuestionType { Type = "TextBox" }
                 );
             }
             context.SaveChanges();
@@ -138,7 +138,7 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Multiple Choice"),
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MultipleChoice"),
                         Quest = "Which option best describes the course overall?",
                         AnswerOptions = {
                             new Option {
@@ -167,7 +167,7 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Multiple Choice"),
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MultipleChoice"),
                         Quest = "Which best describes the apartment/living quarters overall when you first arrived?",
                         AnswerOptions = {
                             new Option {
@@ -229,7 +229,7 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Matrix Rating"),
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MatrixRating"),
                         Quest = "Choose the option that best fits your experience for each of the following categories:",
                         MatrixQuestions = {
                             new Option {

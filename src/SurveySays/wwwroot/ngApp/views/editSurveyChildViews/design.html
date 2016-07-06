@@ -7,10 +7,39 @@
                     Question Builder
                 </uib-accordion-heading>
                 <ul class="accordion-list">
-                    <li ng-repeat="q in vm.questionTypes">
-                        <div class="accordion-list-items">
-                            <span id="{{q.id}}"></span> {{q.type}}
-                        </div>
+                    <li>
+                        <a class="questionTypeLink" href="/editSurvey/{{vm.surveyId}}/design/TextBox">
+                            <div class="accordion-list-items">
+                                <span><i class='fa fa-font' aria-hidden='true'></i></span> Textbox
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="questionTypeLink" href="/editSurvey/{{vm.surveyId}}/design/MultipleChoice">
+                            <div class="accordion-list-items">
+                                <span><i class='fa fa-stop-circle-o' aria-hidden='true'></i></span> Multiple Choice
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="questionTypeLink" href="/editSurvey/{{vm.surveyId}}/design/Ranking">
+                            <div class="accordion-list-items">
+                                <span><i class='fa fa-sort-numeric-asc' aria-hidden='true'></i></span> Ranking
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="questionTypeLink" href="/editSurvey/{{vm.surveyId}}/design/DropdownList">
+                            <div class="accordion-list-items">
+                                <span><i class='fa fa-caret-down' aria-hidden='true'></i></span> Dropdown List
+                            </div>
+                    </li>
+                    <li>
+                        <a class="questionTypeLink" href="/editSurvey/{{vm.surveyId}}/design/MatrixRating">
+                            <div class="accordion-list-items">
+                                <span><i class='fa fa-table' aria-hidden='true'></i></span> Matrix Rating
+                            </div>
+                        </a>
                     </li>
                 </ul>
             </uib-accordion-group>
@@ -50,15 +79,14 @@
             </div>
         </div>
 
-    <!--------------WHEN NO QUESTION SELECTED---------------->
+        <!--------------WHEN QUESTION ID PRESENT---------------->
 
         <div ng-show="vm.question" id="add-or-edit">
-            <question-type-directive 
-                                     ng-if="vm.question" 
+            <question-type-directive ng-if="vm.question"
                                      answerChoices="vm.answerChoiceArray"
                                      matrixOptions="vm.matrixOptionsArray"
-                                     ctrl="vm" 
-                                     page-view="design" 
+                                     ctrl="vm"
+                                     page-view="design"
                                      survey-question="vm.question">
             </question-type-directive>
             <div class="row create-row-bottom">
@@ -70,11 +98,11 @@
                 </div>
             </div>
         </div>
-    
-    
-    
-    
-   
+
+
+
+
+
 
 
 
