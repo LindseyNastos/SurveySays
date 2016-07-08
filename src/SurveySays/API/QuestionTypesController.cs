@@ -26,10 +26,11 @@ namespace SurveySays.API
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{qType}")]
+        public IActionResult Get(string qType)
         {
-            return "value";
+            var questionType = _service.GetQuestionType(qType);
+            return Ok(questionType);
         }
 
         // POST api/values

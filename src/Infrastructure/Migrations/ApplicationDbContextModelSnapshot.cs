@@ -133,7 +133,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Quest");
 
-                    b.Property<int?>("QuestionCategoryId");
+                    b.Property<int>("QuestionCategoryId");
 
                     b.Property<int?>("QuestionTypeId");
 

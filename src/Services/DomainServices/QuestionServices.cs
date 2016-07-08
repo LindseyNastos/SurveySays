@@ -49,14 +49,19 @@ namespace Services.DomainServices
                 .FirstOrDefault();
         }
 
-        public void AddNewQuestion(Question question, int surveyId)
+        public void AddNewQuestion(Question question, int surveyId, int categoryId)
         {
+            question.QuestionCategoryId = categoryId;
+            _repo.Add<Question>(question);
+            _repo.SaveChanges();
+            var cat = _repo.Query<QuestionCategory>().FirstOrDefault(c => c.Id == categoryId);
             var join = new QuestionSurvey {
                 QuestionId = question.Id,
                 SurveyId = surveyId
             };
             _repo.Add<QuestionSurvey>(join);
-            _repo.Add<Question>(question);
+            _repo.SaveChanges();
+            cat.Questions.Add(question);
             _repo.SaveChanges();
         }
 

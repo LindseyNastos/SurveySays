@@ -7,6 +7,10 @@ namespace Domain.Models
 {
     public class QuestionCategory
     {
+        public QuestionCategory()
+        {
+            Questions = new List<Question>();
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Qualifier { get; set; }

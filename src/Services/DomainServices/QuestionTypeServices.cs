@@ -21,5 +21,10 @@ namespace Services.DomainServices
             return types;
         }
 
+        public QuestionType GetQuestionType(string qType) {
+            var questionType = _repo.Query<QuestionType>().Where(q => q.Type == qType).FirstOrDefault();
+            return questionType;
+        }
+
     }
 }

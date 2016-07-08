@@ -8,8 +8,8 @@ using Infrastructure.Db;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160514044041_questionCategories")]
-    partial class questionCategories
+    [Migration("20160708002350_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,9 +130,11 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<bool>("AnswerRequired");
 
                     b.Property<string>("Quest");
+
+                    b.Property<int>("QuestionCategoryId");
 
                     b.Property<int?>("QuestionTypeId");
 
@@ -145,6 +147,8 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Qualifier");
 
                     b.HasKey("Id");
                 });
@@ -177,9 +181,21 @@ namespace Infrastructure.Migrations
 
                     b.Property<int?>("CourseId");
 
+                    b.Property<int>("CurrentTroop");
+
                     b.Property<DateTime>("DateCreated");
 
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime>("LastModified");
+
+                    b.Property<int>("NumQuestions");
+
                     b.Property<int>("NumResponses");
+
+                    b.Property<int>("NumUnseenResponses");
+
+                    b.Property<bool>("Released");
 
                     b.Property<string>("SurveyName");
 
@@ -327,7 +343,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Models.QuestionCategory")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("QuestionCategoryId");
 
                     b.HasOne("Domain.Models.QuestionType")
                         .WithMany()

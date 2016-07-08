@@ -9,5 +9,6 @@ namespace Domain.Interfaces
     public interface IQuestionTypeServices
     {
         IList<QuestionType> GetAllQuestionTypes();
+        QuestionType GetQuestionType(string qType);
     }
 }

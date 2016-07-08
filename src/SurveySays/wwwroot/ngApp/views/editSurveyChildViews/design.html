@@ -56,9 +56,12 @@
                         </uib-accordion-heading>
                         <ul class="accordion-list">
                             <li ng-repeat="q in c.questions">
-                                <div class="accordion-list-items">
-                                    {{q.quest}}
-                                </div>
+                                <!--a tag here?-->
+                                <a class="questionTypeLink" href="/editSurvey/{{vm.surveyId}}/design/{{q.id}}">
+                                    <div class="accordion-list-items">
+                                        {{q.quest}}
+                                    </div>
+                                </a>
                             </li>
                         </ul>
                     </uib-accordion-group>
@@ -79,12 +82,10 @@
             </div>
         </div>
 
-        <!--------------WHEN QUESTION ID PRESENT---------------->
+        <!--------------WHEN QUESTION PRESENT---------------->
 
         <div ng-show="vm.question" id="add-or-edit">
             <question-type-directive ng-if="vm.question"
-                                     answerChoices="vm.answerChoiceArray"
-                                     matrixOptions="vm.matrixOptionsArray"
                                      ctrl="vm"
                                      page-view="design"
                                      survey-question="vm.question">
@@ -92,7 +93,7 @@
             <div class="row create-row-bottom">
                 <div class="col-sm-12">
                     <div class="pull-right">
-                        <button class="btn btn-primary">Save</button>
+                        <button ng-click="vm.saveQuestion()" class="btn btn-primary">Save</button>
                         <button class="btn btn-default">Cancel</button>
                     </div>
                 </div>

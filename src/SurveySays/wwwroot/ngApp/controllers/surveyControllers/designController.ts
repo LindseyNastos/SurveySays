@@ -2,35 +2,40 @@
 
     export class DesignController {
         public categories: SurveySays.Models.IQuestionCategory[];
+        public categoryId: number;
         public questionTypes: SurveySays.Models.IQuestionType[];
         public question: SurveySays.Models.IQuestion;
         public survey: SurveySays.Models.ISurvey;
         public accordionArray = [];
         public status = { isFirstOpen: true, isFirstDisabled: false };
-        public answerChoiceArray = ["", "", ""];
-        public matrixOptionsArray = ["", "", ""];
+        public answerChoiceArray: SurveySays.Models.IOption[] =
+        [new SurveySays.Models.Option, new SurveySays.Models.Option, new SurveySays.Models.Option];
+        public matrixOptionsArray: SurveySays.Models.IOption[] =
+        [new SurveySays.Models.Option, new SurveySays.Models.Option, new SurveySays.Models.Option];
         public questionType: string;
         public surveyId;
 
         constructor(private $scope: ng.IScope, private surveyService: SurveySays.Services.SurveyService, private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: SurveySays.Models.IStateParams) {
             this.checkStateParams($stateParams['id']);
             this.getCategories();
-            //this.survey = surveyService.getBasicSurvey($stateParams.surveyId);
             this.surveyId = $stateParams.surveyId;
+            debugger;
         }
 
-        //------MAIN DESIGN PAGE--------
-
         public checkStateParams(params) {
+            let self = this;
             if (params) {
                 let stateParamNum = parseInt(params);
                 if (isNaN(stateParamNum)) {
-                    this.question = new SurveySays.Models.Question();
-                    this.question.questionType = new SurveySays.Models.QuestionType();
-                    this.question.questionType.type = params;
+                    self.question = new SurveySays.Models.Question();
+                    self.question.questionType = new SurveySays.Models.QuestionType();
+                    self.question.questionType.type = params;
+                    self.questionTypeService.getType(params).then((data) => {
+                        self.question.questionType = data;
+                    });
                 }
                 else {
-                    this.getQuestion(params);
+                    self.getQuestion(params);
                 }
             }
         }
@@ -39,56 +44,78 @@
             this.categories = this.questionCategoryService.listCategories();
         }
 
-        //public getTypes() {
-        //    this.questionTypeService.listTypes().then((data) => {
-        //        this.questionTypes = data;
-        //    });
-        //}
-
         public getQuestion(id: number) {
-            this.questionService.getQuestion(id).then((data) => {
+            this.questionService.getQuestion(id).then((data: SurveySays.Models.IQuestion) => {
                 this.question = data;
+                this.categoryId = data.questionCategoryId;
+                this.answerChoiceArray = data.answerOptions;
+                this.matrixOptionsArray = data.matrixQuestions;
             });
         }
 
         public saveQuestion() {
-            this.questionService.saveQuestion(this.survey.id, this.question);
+            this.question.answerOptions = this.cleanArray(this.answerChoiceArray);
+            this.question.matrixQuestions = this.cleanArray(this.matrixOptionsArray);
+            let vm: any = {};
+            vm.surveyId = this.surveyId;
+            vm.categoryId = this.categoryId;
+            vm.question = this.question;
+            console.log(this.question);
+            this.questionService.saveQuestion(vm);
+        }
+
+        public cleanArray(array: SurveySays.Models.IOption[]) {
+            for (let i = (array.length - 1); i >= 0; i--) {
+                if (!array[i].opt) {
+                    array.splice(i, 1);
+                }
+            }
+            for (let i = 0; i < array.length; i++) {
+                (array[i].opt).trim();
+            }
+            return array;
         }
 
         public isLast(checkLast: boolean, index: number, type: string) {
             if (type == 'choice') {
-                var arrayLength = this.answerChoiceArray.length;
+                let arrayLength = this.answerChoiceArray.length;
                 if (arrayLength > 1 && arrayLength < 6) {
                     if (checkLast) {
                         //if last, add one to the array
-                        this.answerChoiceArray[index + 1] = "";
+                        let newAnswerOption = new SurveySays.Models.Option;
+                        newAnswerOption.opt = "";
+                        this.answerChoiceArray[index + 1] = newAnswerOption;
                     }
                 }
             }
             if (type == 'option') {
-                var arrayLength = this.matrixOptionsArray.length;
+                let arrayLength = this.matrixOptionsArray.length;
                 if (arrayLength > 1 && arrayLength < 6) {
                     if (checkLast) {
                         //if last, add one to the array
-                        this.matrixOptionsArray[index + 1] = "";
+                        let newMatrixQuestion = new SurveySays.Models.Option;
+                        newMatrixQuestion.opt = "";
+                        this.matrixOptionsArray[index + 1] = newMatrixQuestion;
                     }
                 }
             }
-            //Reminder: Make sure to chop empty string off of array when saving to database. 
-            // Also limit answer choices in matrix template to 6. Must have at least 1.
         }
 
         public addChoice(index: number, type: string) {
             if (type == 'choice') {
-                var arrayLength = this.answerChoiceArray.length;
-                if (arrayLength < 7) {
-                    this.answerChoiceArray.splice(index + 1, 0, "");
+                let arrayLength = this.answerChoiceArray.length;
+                let newAnswerOption = new SurveySays.Models.Option;
+                newAnswerOption.opt = "";
+                if (arrayLength < 6) {
+                    this.answerChoiceArray.splice(index + 1, 0, newAnswerOption);
                 }
             }
             if (type == 'option') {
-                var arrayLength = this.matrixOptionsArray.length;
-                if (arrayLength < 7) {
-                    this.matrixOptionsArray.splice(index + 1, 0, "");
+                let arrayLength = this.matrixOptionsArray.length;
+                let newMatrixQuestion = new SurveySays.Models.Option;
+                newMatrixQuestion.opt = "";
+                if (arrayLength < 6) {
+                    this.matrixOptionsArray.splice(index + 1, 0, newMatrixQuestion);
                 }
             }
         }
@@ -96,13 +123,13 @@
 
         public deleteChoice(index: number, type: string) {
             if (type == 'choice') {
-                var arrayLength = this.answerChoiceArray.length;
+                let arrayLength = this.answerChoiceArray.length;
                 if (arrayLength > 1) {
                     this.answerChoiceArray.splice(index, 1);
                 }
             }
             if (type == 'option') {
-                var arrayLength = this.matrixOptionsArray.length;
+                let arrayLength = this.matrixOptionsArray.length;
                 if (arrayLength > 1) {
                     this.matrixOptionsArray.splice(index, 1);
                 }

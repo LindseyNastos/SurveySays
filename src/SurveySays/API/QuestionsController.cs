@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Domain.Interfaces;
 using Domain.Models;
+using Domain.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,19 +36,19 @@ namespace SurveySays.API
         }
 
         // POST api/values
-        [HttpPost("{surveyId}")]
-        public IActionResult Post(int surveyId, [FromBody]Question question)
+        [HttpPost]
+        public IActionResult Post([FromBody]SaveQuestionVM vm)
         {
             if (ModelState.IsValid)
             {
-                if (question.Id == 0)
+                if (vm.Question.Id == 0)
                 {
-                    _service.AddNewQuestion(question, surveyId);
-                    return Created("/surveys/" + question.Id, question);
+                    _service.AddNewQuestion(vm.Question, vm.SurveyId, vm.CategoryId);
+                    return Created("/surveys/" + vm.Question.Id, vm.Question);
                 }
                 else
                 {
-                    _service.EditQuestion(question);
+                    _service.EditQuestion(vm.Question);
                 }
             }
             return HttpBadRequest(ModelState);

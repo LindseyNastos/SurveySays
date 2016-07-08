@@ -1,15 +1,17 @@
 ﻿<div class="create-row-top">
-    <h3>Question Type: <strong>TextBox</strong></h3>
+    <h3><strong>TextBox</strong></h3>
 </div>
 <br />
 
 <div class="row create-row-top create-row-bottom">
     <div class="col-sm-12">
-        <label class="inline">Question:</label> 
-        <input class="inline form-control" id="create-textbox" type="text" />
-        <div class="reqBox inline pull-right">
-            <label class="inline">Answer required:</label>
-            <input class="inline" type="checkbox" />
-        </div>
+        <label class="inline">Category:</label>
+        <select class="inline form-control" ng-options="c.id as c.name for c in ctrl.categories" ng-model="ctrl.categoryId"></select>
+        <br /><br />
+        <label class="inline">Question:</label>
+        <input ng-model="ctrl.question.quest" class="inline form-control" id="create-textbox" type="text" />
+        <br /><br />
+        <label class="inline">Answer required:</label>
+        <input ng-model="ctrl.question.answerRequired" class="inline" type="checkbox" />
     </div>
 </div>

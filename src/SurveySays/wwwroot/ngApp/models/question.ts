@@ -4,6 +4,7 @@
         id: number;
         quest: string;
         answerRequired: boolean;
+        questionCategoryId: number;
         questionType: SurveySays.Models.IQuestionType;
         answerOptions: IOption[];
         matrixQuestions: IOption[];
@@ -13,6 +14,7 @@
         id: number;
         quest: string;
         answerRequired: boolean;
+        questionCategoryId: number;
         questionType: SurveySays.Models.IQuestionType;
         answerOptions: IOption[];
         matrixQuestions: IOption[];

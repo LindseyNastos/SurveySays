@@ -62,7 +62,8 @@ namespace Infrastructure.Db
             }
             context.SaveChanges();
 
-            if (!context.Campuses.Any()) {
+            if (!context.Campuses.Any())
+            {
                 context.Campuses.AddRange(
                     new Campus { Location = "Houston" },
                     new Campus { Location = "Seattle" },
@@ -125,7 +126,57 @@ namespace Infrastructure.Db
                 context.SaveChanges();
                 lindsey.Surveys.Add(context.Surveys.First(s => s.SurveyName == "Seattle .Net Troop 8"));
             }
+            context.SaveChanges();
 
+            if (!context.QuestionCategories.Any())
+            {
+                context.QuestionCategories.AddRange(
+                    new QuestionCategory
+                    {
+                        Name = "Housing",
+                        Qualifier = "If your housing was not arranged by CoderCamps, please skip this section.",
+                        //Questions = new List<Question> {
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "What did you appreciate about the accommodations?"),
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "What could be improved about the accommodations?"),
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "Which best describes the apartment/living quarters overall when you first arrived?")
+                        //}
+                    },
+                    new QuestionCategory
+                    {
+                        Name = "Course Material",
+                        //Questions = new List<Question> {
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):")
+                        //}
+                    },
+                    new QuestionCategory
+                    {
+                        Name = "Instruction",
+                        Qualifier = "Please fill out this section as regards your primary instructor only unless otherwise specified.",
+                        //Questions = new List<Question> {
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "How could the instructors improve?"),
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "What did the instructors excel at?")
+                        //}
+                    },
+                    new QuestionCategory
+                    {
+                        Name = "Group Project"
+                    },
+                    new QuestionCategory
+                    {
+                        Name = "General",
+                        //Questions = new List<Question> {
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?"),
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?"),
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?"),
+                        //    context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:")
+                        //}
+                    },
+                    new QuestionCategory
+                    {
+                        Name = "Other"
+                    }
+                );
+            }
             context.SaveChanges();
 
             if (!context.Questions.Any())
@@ -133,11 +184,13 @@ namespace Infrastructure.Db
                 context.Questions.AddRange(
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "General").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
-                        Quest = "What was the most difficult part of the camp?"
+                        Quest = "What was the most difficult part of the camp?",
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "General").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MultipleChoice"),
                         Quest = "Which option best describes the course overall?",
                         AnswerOptions = {
@@ -157,16 +210,19 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "General").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?"
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Instruction").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "How could the instructors improve?"
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Housing").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MultipleChoice"),
                         Quest = "Which best describes the apartment/living quarters overall when you first arrived?",
                         AnswerOptions = {
@@ -189,21 +245,25 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Housing").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "What did you appreciate about the accommodations?"
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Housing").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "What could be improved about the accommodations?"
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Instruction").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "What did the instructors excel at?"
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Course Material").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Ranking"),
                         Quest = "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):",
                         AnswerOptions = {
@@ -229,6 +289,7 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "General").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MatrixRating"),
                         Quest = "Choose the option that best fits your experience for each of the following categories:",
                         MatrixQuestions = {
@@ -335,53 +396,41 @@ namespace Infrastructure.Db
             }
             context.SaveChanges();
 
-            if (!context.QuestionCategories.Any())
-            {
-                context.QuestionCategories.AddRange(
-                    new QuestionCategory
-                    {
-                        Name = "Housing",
-                        Qualifier = "If your housing was not arranged by CoderCamps, please skip this section.",
-                        Questions = new List<Question> {
-                            context.Questions.FirstOrDefault(q => q.Quest == "What did you appreciate about the accommodations?"),
-                            context.Questions.FirstOrDefault(q => q.Quest == "What could be improved about the accommodations?"),
-                            context.Questions.FirstOrDefault(q => q.Quest == "Which best describes the apartment/living quarters overall when you first arrived?")
-                        }
-                    },
-                    new QuestionCategory
-                    {
-                        Name = "Course Material",
-                        Questions = new List<Question> {
-                            context.Questions.FirstOrDefault(q => q.Quest == "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):")
-                        }
-                    },
-                    new QuestionCategory
-                    {
-                        Name = "Instruction",
-                        Qualifier = "Please fill out this section as regards your primary instructor only unless otherwise specified.",
-                        Questions = new List<Question> {
-                            context.Questions.FirstOrDefault(q => q.Quest == "How could the instructors improve?"),
-                            context.Questions.FirstOrDefault(q => q.Quest == "What did the instructors excel at?")
-                        }
-                    },
-                    new QuestionCategory {
-                        Name = "Group Project"
-                    },
-                    new QuestionCategory {
-                        Name = "General",
-                        Questions = new List<Question> {
-                            context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?"),
-                            context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?"),
-                            context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?"),
-                            context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:")
-                        }
-                    },
-                    new QuestionCategory {
-                        Name = "Other"
-                    }
-                );
-            }
-            context.SaveChanges();
+            //var housingCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Housing");
+            //var housingQuestion1 = context.Questions.FirstOrDefault(q => q.Quest == "What did you appreciate about the accommodations?");
+            //var housingQuestion2 = context.Questions.FirstOrDefault(q => q.Quest == "What could be improved about the accommodations?");
+            //var housingQuestion3 = context.Questions.FirstOrDefault(q => q.Quest == "Which best describes the apartment/living quarters overall when you first arrived?");
+            //housingCat.Questions.Add(housingQuestion1);
+            //housingCat.Questions.Add(housingQuestion2);
+            //housingCat.Questions.Add(housingQuestion3);
+
+            //var courseMaterialCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Course Material");
+            //var courseMaterialQuestion = context.Questions.FirstOrDefault(q => q.Quest == "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):");
+            //courseMaterialCat.Questions.Add(courseMaterialQuestion);
+
+            //var instructionCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Instruction");
+            //var instructionQuestion1 = context.Questions.FirstOrDefault(q => q.Quest == "How could the instructors improve?");
+            //var instructionQuestion2 = context.Questions.FirstOrDefault(q => q.Quest == "What did the instructors excel at?");
+            //instructionCat.Questions.Add(instructionQuestion1);
+            //instructionCat.Questions.Add(instructionQuestion2);
+
+
+            ////var groupProjCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Group Project");
+
+            //var generalCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "General");
+            //var generalQuestion1 = context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?");
+            //var generalQuestion2 = context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?");
+            //var generalQuestion3 = context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?");
+            //var generalQuestion4 = context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:");
+            //generalCat.Questions.Add(generalQuestion1);
+            //generalCat.Questions.Add(generalQuestion2);
+            //generalCat.Questions.Add(generalQuestion3);
+            //generalCat.Questions.Add(generalQuestion4);
+
+            ////var otherCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Other");
+
+            //context.SaveChanges();
+
         }
 
     }

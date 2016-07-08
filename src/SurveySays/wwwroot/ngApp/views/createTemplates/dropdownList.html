@@ -1,16 +1,18 @@
 ﻿<div class="create-row-top">
-    <h3>Question Type: <strong>Dropdown List</strong></h3>
+    <h3><strong>Dropdown List</strong></h3>
 </div>
 <br />
 <div class="create-row-top">
     <div class="row">
         <div class="col-sm-12">
+            <label class="inline">Category:</label>
+            <select class="inline form-control" ng-options="c.id as c.name for c in ctrl.categories" ng-model="ctrl.categoryId"></select>
+            <br /><br />
             <label class="inline">Question:</label>
-            <input class="inline form-control" type="text" />
-            <div class="reqBox inline pull-right">
-                <label class="inline">Answer required:</label>
-                <input class="inline" type="checkbox" />
-            </div>
+            <input ng-model="ctrl.question.quest" class="inline form-control" type="text" />
+            <br /><br />
+            <label class="inline">Answer required:</label>
+            <input ng-model="ctrl.question.answerRequired" class="inline" type="checkbox" />
         </div>
     </div>
 </div>
@@ -22,7 +24,7 @@
 
         <div ng-repeat="choice in ctrl.answerChoiceArray track by $index">
             <i class="inline fa fa-circle-thin" aria-hidden="true"></i>
-            <input ng-model="ctrl.answerChoiceArray[$index]"
+            <input ng-model="ctrl.answerChoiceArray[$index].opt"
                    ng-change="ctrl.isLast($last, $index, 'choice')"
                    class="choice-input inline form-control"
                    type="text"

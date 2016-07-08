@@ -27,8 +27,8 @@ namespace SurveySays {
                 controller: SurveySays.Controllers.EditSurveyController,
                 controllerAs: 'vm',
                 resolve: {
-                    // Expose projectId parameter to child states
-                    surveyId: ['$stateParams', function ($stateParams) {
+                    // Expose surveyId parameter to child states
+                    surveyId: ['$stateParams', ($stateParams) => {
                         return $stateParams.surveyId;
                     }]
                 },
