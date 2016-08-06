@@ -56,7 +56,6 @@
                         </uib-accordion-heading>
                         <ul class="accordion-list">
                             <li ng-repeat="q in c.questions">
-                                <!--a tag here?-->
                                 <a class="questionTypeLink" href="/editSurvey/{{vm.surveyId}}/design/{{q.id}}">
                                     <div class="accordion-list-items">
                                         {{q.quest}}
@@ -94,7 +93,8 @@
                 <div class="col-sm-12">
                     <div class="pull-right">
                         <button ng-click="vm.saveQuestion()" class="btn btn-primary">Save</button>
-                        <button class="btn btn-default">Cancel</button>
+                        <button ng-click="vm.reset()" class="btn btn-default">Cancel</button>
+                        <button ng-show="vm.question.id" ng-click="vm.deleteQuestion(vm.question)" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ using Domain.Models;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Extensions.Configuration;
 
+
 namespace Infrastructure.Db
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -20,7 +21,6 @@ namespace Infrastructure.Db
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<SurveyToTake> SurveysToTake { get; set; }
-        public DbSet<QuestionSurvey> QuestionSurveys { get; set; }
         public DbSet<QuestionCategory> QuestionCategories { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -31,7 +31,10 @@ namespace Infrastructure.Db
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<QuestionSurvey>().HasKey(x => new { x.QuestionId, x.SurveyId });
+            //builder.Entity<Option>()
+            //    .HasOne(c => c.Question)
+            //    .WithMany(t => t.)
+            //    .HasFo(m => m.MapKey("QuestionId"));
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

@@ -32,10 +32,11 @@ namespace Services.DomainServices
         }
 
         public IList<Question> ListQuestionsBySurvey(int surveyId) {
-            var questions = _repo.Query<QuestionSurvey>()
-                .Where(s => s.SurveyId == surveyId)
-                .Select(s => s.Question)
-                .ToList();
+            var survey = _repo.Query<Survey>()
+                .Where(s => s.Id == surveyId)
+                .Include(s => s.Questions)
+                .FirstOrDefault();
+            var questions = survey.Questions.ToList();
             return questions;
         }
 
@@ -55,11 +56,8 @@ namespace Services.DomainServices
             _repo.Add<Question>(question);
             _repo.SaveChanges();
             var cat = _repo.Query<QuestionCategory>().FirstOrDefault(c => c.Id == categoryId);
-            var join = new QuestionSurvey {
-                QuestionId = question.Id,
-                SurveyId = surveyId
-            };
-            _repo.Add<QuestionSurvey>(join);
+            var survey = _repo.Query<Survey>().FirstOrDefault(s => s.Id == surveyId);
+            survey.Questions.Add(question);
             _repo.SaveChanges();
             cat.Questions.Add(question);
             _repo.SaveChanges();
@@ -67,7 +65,7 @@ namespace Services.DomainServices
 
         public void EditQuestion(Question question)
         {
-            var original = _repo.Query<Question>().Where(s => s.Id == question.Id).FirstOrDefault();
+            var original = _repo.Query<Question>().Where(q => q.Id == question.Id).FirstOrDefault();
             original.Quest = question.Quest;
             original.QuestionType = question.QuestionType;
             original.AnswerOptions = question.AnswerOptions;
@@ -77,7 +75,11 @@ namespace Services.DomainServices
 
         public void DeleteQuestion(int id)
         {
-            var question = _repo.Query<Question>().Where(s => s.Id == id).FirstOrDefault();
+            var question = _repo.Query<Question>()
+                .Where(q => q.Id == id)
+                .Include(q => q.AnswerOptions)
+                .Include(q => q.MatrixQuestions)
+                .FirstOrDefault();
             _repo.Delete<Question>(question);
         }
     }

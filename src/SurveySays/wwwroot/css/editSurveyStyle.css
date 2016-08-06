@@ -11,6 +11,13 @@
     padding-top: 70px;
 }
 
+.modal-body {
+    position: relative;
+    overflow-y: auto;
+    padding: 15px;
+    width: auto;
+}
+
 /*-------survey summary-------*/
 
 #sum-survey-name {
@@ -260,4 +267,5 @@
 
 
 /*-------matrix rating-------*/
+
 

@@ -99,63 +99,19 @@ namespace Infrastructure.Db
             }
             context.SaveChanges();
 
-            if (!context.Surveys.Any())
-            {
-                context.Surveys.AddRange(
-                    new Survey
-                    {
-                        UserId = lindsey.Id,
-                        SurveyName = "Seattle .Net Troop 8",
-                        Course = context.Courses.FirstOrDefault(c => c.Name == "ASP.NET"),
-                        DateCreated = DateTime.UtcNow,
-                        Released = false,
-                        CurrentTroop = 8,
-                        IsActive = true
-                    },
-                    new Survey
-                    {
-                        UserId = lindsey.Id,
-                        SurveyName = "Online CFS #22",
-                        Course = context.Courses.FirstOrDefault(c => c.Name == "Coding From Scratch"),
-                        DateCreated = DateTime.UtcNow,
-                        Released = false,
-                        CurrentTroop = 46,
-                        IsActive = true
-                    }
-                );
-                context.SaveChanges();
-                lindsey.Surveys.Add(context.Surveys.First(s => s.SurveyName == "Seattle .Net Troop 8"));
-            }
-            context.SaveChanges();
+
 
             if (!context.QuestionCategories.Any())
             {
                 context.QuestionCategories.AddRange(
                     new QuestionCategory
                     {
-                        Name = "Housing",
-                        Qualifier = "If your housing was not arranged by CoderCamps, please skip this section.",
-                        //Questions = new List<Question> {
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "What did you appreciate about the accommodations?"),
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "What could be improved about the accommodations?"),
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "Which best describes the apartment/living quarters overall when you first arrived?")
-                        //}
-                    },
-                    new QuestionCategory
-                    {
-                        Name = "Course Material",
-                        //Questions = new List<Question> {
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):")
-                        //}
+                        Name = "Course Material"
                     },
                     new QuestionCategory
                     {
                         Name = "Instruction",
-                        Qualifier = "Please fill out this section as regards your primary instructor only unless otherwise specified.",
-                        //Questions = new List<Question> {
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "How could the instructors improve?"),
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "What did the instructors excel at?")
-                        //}
+                        Qualifier = "Please fill out this section as regards your primary instructor only unless otherwise specified."
                     },
                     new QuestionCategory
                     {
@@ -163,13 +119,7 @@ namespace Infrastructure.Db
                     },
                     new QuestionCategory
                     {
-                        Name = "General",
-                        //Questions = new List<Question> {
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?"),
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?"),
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?"),
-                        //    context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:")
-                        //}
+                        Name = "General"
                     },
                     new QuestionCategory
                     {
@@ -193,20 +143,12 @@ namespace Infrastructure.Db
                         QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "General").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MultipleChoice"),
                         Quest = "Which option best describes the course overall?",
-                        AnswerOptions = {
-                            new Option {
-                                Opt = "Way too difficult"
-                            },
-                            new Option {
-                                Opt = "Very challenging but doable"
-                            },
-                            new Option {
-                                Opt = "Just right"
-                            },
-                            new Option {
-                                Opt = "Too easy, I wanted more of a challenge"
-                            }
-                        }
+                    },
+                    new Question
+                    {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "General").Id,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MultipleChoice"),
+                        Quest = "Which option best describes the online course overall?",
                     },
                     new Question
                     {
@@ -222,41 +164,6 @@ namespace Infrastructure.Db
                     },
                     new Question
                     {
-                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Housing").Id,
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MultipleChoice"),
-                        Quest = "Which best describes the apartment/living quarters overall when you first arrived?",
-                        AnswerOptions = {
-                            new Option {
-                                Opt = "Spotless"
-                            },
-                            new Option {
-                                Opt = "Fairly clean"
-                            },
-                            new Option {
-                                Opt = "Fine"
-                            },
-                            new Option {
-                                Opt = "A little gross"
-                            },
-                            new Option {
-                                Opt = "Filthy"
-                            }
-                        }
-                    },
-                    new Question
-                    {
-                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Housing").Id,
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
-                        Quest = "What did you appreciate about the accommodations?"
-                    },
-                    new Question
-                    {
-                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Housing").Id,
-                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
-                        Quest = "What could be improved about the accommodations?"
-                    },
-                    new Question
-                    {
                         QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Instruction").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "TextBox"),
                         Quest = "What did the instructors excel at?"
@@ -265,173 +172,211 @@ namespace Infrastructure.Db
                     {
                         QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Course Material").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Ranking"),
-                        Quest = "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):",
-                        AnswerOptions = {
-                            new Option {
-                                Opt = "Week one: JavaScript"
-                            },
-                            new Option {
-                                Opt = "Week two: Angular"
-                            },
-                            new Option {
-                                Opt = "Week three: C#"
-                            },
-                            new Option {
-                                Opt = "Week four: ASP.NET/Web API"
-                            },
-                            new Option {
-                                Opt = "Week five: Security/Azure/Mobile"
-                            },
-                            new Option {
-                                Opt = "Week six: Agile"
-                            }
-                        }
+                        Quest = "Rank the following weeks in order of difficulty (1 being most difficult, 6 being easiest):",
+                    },
+                    new Question
+                    {
+                        QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "Course Material").Id,
+                        QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "Ranking"),
+                        Quest = "Rank the following modules in order of difficulty (1 being most difficult, 6 being easiest):",
                     },
                     new Question
                     {
                         QuestionCategoryId = context.QuestionCategories.FirstOrDefault(q => q.Name == "General").Id,
                         QuestionType = context.QuestionTypes.FirstOrDefault(q => q.Type == "MatrixRating"),
                         Quest = "Choose the option that best fits your experience for each of the following categories:",
-                        MatrixQuestions = {
-                            new Option {
-                                Opt = "The instructors were invested in the students."
-                            },
-                            new Option {
-                                Opt = "The material was taught in an understandable way."
-                            },
-                            new Option {
-                                Opt = "The group project went very smoothly."
-                            },
-                            new Option {
-                                Opt = "The class should have covered more material."
-                            },
-                            new Option {
-                                Opt = "I feel confident in my skills as a developer due to this course."
-                            },
-                        },
-                        AnswerOptions = {
-                            new Option {
-                                Opt = "Absolutely true"
-                            },
-                            new Option {
-                                Opt = "Somewhat true"
-                            },
-                            new Option {
-                                Opt = "Maybe"
-                            },
-                            new Option {
-                                Opt = "Don't know"
-                            },
-                            new Option {
-                                Opt = "Somewhat false"
-                            },
-                            new Option {
-                                Opt = "Absolutely false"
-                            }
-                        }
                     }
                 );
             }
             context.SaveChanges();
 
-            if (!context.QuestionSurveys.Any())
+            if (!context.Options.Any())
             {
-                context.QuestionSurveys.AddRange(
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "Which best describes the apartment/living quarters overall when you first arrived?").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "What did you appreciate about the accommodations?").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "What could be improved about the accommodations?").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Seattle .Net Troop 8").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Online CFS #22").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Online CFS #22").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?").Id
-                },
-                new QuestionSurvey
-                {
-                    SurveyId = context.Surveys.FirstOrDefault(s => s.SurveyName == "Online CFS #22").Id,
-                    QuestionId = context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?").Id
-                }
-            );
+                var questOne = context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?");
+                questOne.AnswerOptions = new List<Option> {
+                    new Option
+                    {
+                        Opt = "Way too difficult"
+                    },
+                    new Option
+                    {
+                        Opt = "Very challenging but doable"
+                    },
+                    new Option
+                    {
+                        Opt = "Just right"
+                    },
+                    new Option
+                    {
+                        Opt = "Too easy, I wanted more of a challenge"
+                    }
+                };
+
+                var questTwo = context.Questions.FirstOrDefault(q => q.Quest == "Rank the following weeks in order of difficulty (1 being most difficult, 6 being easiest):");
+                questTwo.AnswerOptions = new List<Option> {
+                    new Option
+                    {
+                        Opt = "Week one: JavaScript"
+                    },
+                    new Option
+                    {
+                        Opt = "Week two: Angular"
+                    },
+                    new Option
+                    {
+                        Opt = "Week three: C#"
+                    },
+                    new Option
+                    {
+                        Opt = "Week four: ASP.NET/Web API"
+                    },
+                    new Option
+                    {
+                        Opt = "Week five: Security/Azure/Mobile"
+                    },
+                    new Option
+                    {
+                        Opt = "Week six: Agile"
+                    }
+                };
+
+                var questThree = context.Questions.FirstOrDefault(q => q.Quest == "Rank the following modules in order of difficulty (1 being most difficult, 6 being easiest):");
+                questThree.AnswerOptions = new List<Option> {
+                    new Option
+                    {
+                        Opt = "Module one: HTML"
+                    },
+                    new Option
+                    {
+                        Opt = "Module two: CSS"
+                    },
+                    new Option
+                    {
+                        Opt = "Module three: JavaScript"
+                    },
+                    new Option
+                    {
+                        Opt = "Module four: DOM"
+                    },
+                    new Option
+                    {
+                        Opt = "Module five: jQuery/Bootstrap"
+                    },
+                    new Option
+                    {
+                        Opt = "Module six: Building Apps"
+                    }
+                };
+
+                var questFour = context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the online course overall?");
+                questFour.AnswerOptions = new List<Option> {
+                    new Option
+                    {
+                        Opt = "Way too difficult"
+                    },
+                    new Option
+                    {
+                        Opt = "Very challenging but doable"
+                    },
+                    new Option
+                    {
+                        Opt = "Just right"
+                    },
+                    new Option
+                    {
+                        Opt = "Too easy, I wanted more of a challenge"
+                    }
+                };
+
+                var questFive = context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:");
+                questFive.AnswerOptions = new List<Option> {
+                    new Option {
+                        Opt = "Absolutely true"
+                    },
+                    new Option {
+                        Opt = "Somewhat true"
+                    },
+                    new Option {
+                        Opt = "Maybe"
+                    },
+                    new Option {
+                        Opt = "Don't know"
+                    },
+                    new Option {
+                        Opt = "Somewhat false"
+                    },
+                    new Option {
+                        Opt = "Absolutely false"
+                    }
+                };
+
+
+                questFive.MatrixQuestions = new List<MatrixQuestion> {
+                    new MatrixQuestion
+                    {
+                        Opt = "The instructors were invested in the students."
+                    },
+                    new MatrixQuestion
+                    {
+                        Opt = "The material was taught in an understandable way."
+                    },
+                    new MatrixQuestion
+                    {
+                        Opt = "The group project went very smoothly."
+                    },
+                    new MatrixQuestion
+                    {
+                        Opt = "The class should have covered more material."
+                    },
+                    new MatrixQuestion
+                    {
+                        Opt = "I feel confident in my skills as a developer due to this course."
+                    },
+                };
             }
             context.SaveChanges();
 
-            //var housingCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Housing");
-            //var housingQuestion1 = context.Questions.FirstOrDefault(q => q.Quest == "What did you appreciate about the accommodations?");
-            //var housingQuestion2 = context.Questions.FirstOrDefault(q => q.Quest == "What could be improved about the accommodations?");
-            //var housingQuestion3 = context.Questions.FirstOrDefault(q => q.Quest == "Which best describes the apartment/living quarters overall when you first arrived?");
-            //housingCat.Questions.Add(housingQuestion1);
-            //housingCat.Questions.Add(housingQuestion2);
-            //housingCat.Questions.Add(housingQuestion3);
-
-            //var courseMaterialCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Course Material");
-            //var courseMaterialQuestion = context.Questions.FirstOrDefault(q => q.Quest == "Rank the following in order of difficulty (1 being most difficult, 6 being easiest):");
-            //courseMaterialCat.Questions.Add(courseMaterialQuestion);
-
-            //var instructionCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Instruction");
-            //var instructionQuestion1 = context.Questions.FirstOrDefault(q => q.Quest == "How could the instructors improve?");
-            //var instructionQuestion2 = context.Questions.FirstOrDefault(q => q.Quest == "What did the instructors excel at?");
-            //instructionCat.Questions.Add(instructionQuestion1);
-            //instructionCat.Questions.Add(instructionQuestion2);
-
-
-            ////var groupProjCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Group Project");
-
-            //var generalCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "General");
-            //var generalQuestion1 = context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?");
-            //var generalQuestion2 = context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?");
-            //var generalQuestion3 = context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?");
-            //var generalQuestion4 = context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:");
-            //generalCat.Questions.Add(generalQuestion1);
-            //generalCat.Questions.Add(generalQuestion2);
-            //generalCat.Questions.Add(generalQuestion3);
-            //generalCat.Questions.Add(generalQuestion4);
-
-            ////var otherCat = context.QuestionCategories.FirstOrDefault(c => c.Name == "Other");
-
-            //context.SaveChanges();
-
+            if (!context.Surveys.Any())
+            {
+                context.Surveys.AddRange(
+                    new Survey
+                    {
+                        UserId = lindsey.Id,
+                        SurveyName = "Seattle .Net Troop 8",
+                        Course = context.Courses.FirstOrDefault(c => c.Name == "ASP.NET"),
+                        DateCreated = DateTime.UtcNow,
+                        Released = false,
+                        CurrentTroop = 8,
+                        IsActive = true,
+                        Questions = {
+                            context.Questions.FirstOrDefault(q => q.Quest == "What was the most difficult part of the camp?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the course overall?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "How did the camp compare to your expectations before you started the course? Did you get what you expected out of it?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "How could the instructors improve?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "What did the instructors excel at?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "Rank the following weeks in order of difficulty (1 being most difficult, 6 being easiest):"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "Choose the option that best fits your experience for each of the following categories:")
+                        }
+                    },
+                    new Survey
+                    {
+                        UserId = lindsey.Id,
+                        SurveyName = "Online CFS #22",
+                        Course = context.Courses.FirstOrDefault(c => c.Name == "Coding From Scratch"),
+                        DateCreated = DateTime.UtcNow,
+                        Released = false,
+                        CurrentTroop = 46,
+                        IsActive = true,
+                        Questions = {
+                            context.Questions.FirstOrDefault(q => q.Quest == "Which option best describes the online course overall?"),
+                            context.Questions.FirstOrDefault(q => q.Quest == "Rank the following modules in order of difficulty (1 being most difficult, 6 being easiest):"),
+                        }
+                    }
+                );
+                context.SaveChanges();
+                lindsey.Surveys.Add(context.Surveys.First(s => s.SurveyName == "Seattle .Net Troop 8"));
+            }
+            context.SaveChanges();
         }
-
     }
 }

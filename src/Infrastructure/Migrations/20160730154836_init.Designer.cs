@@ -8,7 +8,7 @@ using Infrastructure.Db;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160708002350_init")]
+    [Migration("20160730154836_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,6 +138,8 @@ namespace Infrastructure.Migrations
 
                     b.Property<int?>("QuestionTypeId");
 
+                    b.Property<int?>("SurveyId");
+
                     b.HasKey("Id");
                 });
 
@@ -151,15 +153,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Qualifier");
 
                     b.HasKey("Id");
-                });
-
-            modelBuilder.Entity("Domain.Models.QuestionSurvey", b =>
-                {
-                    b.Property<int>("QuestionId");
-
-                    b.Property<int>("SurveyId");
-
-                    b.HasKey("QuestionId", "SurveyId");
                 });
 
             modelBuilder.Entity("Domain.Models.QuestionType", b =>
@@ -348,13 +341,6 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Models.QuestionType")
                         .WithMany()
                         .HasForeignKey("QuestionTypeId");
-                });
-
-            modelBuilder.Entity("Domain.Models.QuestionSurvey", b =>
-                {
-                    b.HasOne("Domain.Models.Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId");
 
                     b.HasOne("Domain.Models.Survey")
                         .WithMany()

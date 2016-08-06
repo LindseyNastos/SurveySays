@@ -15,11 +15,10 @@
         public questionType: string;
         public surveyId;
 
-        constructor(private $scope: ng.IScope, private surveyService: SurveySays.Services.SurveyService, private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: SurveySays.Models.IStateParams) {
+        constructor(private $scope: ng.IScope, private surveyService: SurveySays.Services.SurveyService, private questionService: SurveySays.Services.QuestionService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private questionTypeService: SurveySays.Services.QuestionTypeService, $stateParams: SurveySays.Models.IStateParams, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {
             this.checkStateParams($stateParams['id']);
             this.getCategories();
             this.surveyId = $stateParams.surveyId;
-            debugger;
         }
 
         public checkStateParams(params) {
@@ -60,8 +59,11 @@
             vm.surveyId = this.surveyId;
             vm.categoryId = this.categoryId;
             vm.question = this.question;
-            console.log(this.question);
-            this.questionService.saveQuestion(vm);
+            this.questionService.saveQuestion(vm).then(() => {
+                this.questionSaved();
+            }).catch((errors) => {
+                this.errorOnSave(errors);
+            });
         }
 
         public cleanArray(array: SurveySays.Models.IOption[]) {
@@ -135,7 +137,66 @@
                 }
             }
         }
+
+        public reset() {
+            this.$state.go("editSurvey.design", { id: null });
+        }
+
+        public questionSaved() {
+            this.$uibModal.open({
+                templateUrl: '/ngApp/views/modals/questionSaved.html',
+                controller: SurveySays.Controllers.QuestionSavedDialogController,
+                controllerAs: 'modal'
+            });
+        }
+
+        public errorOnSave(errors) {
+            this.$uibModal.open({
+                templateUrl: '/ngApp/views/modals/errorOnSave.html',
+                controller: SurveySays.Controllers.ErrorOnSaveDialogController,
+                controllerAs: 'modal',
+                resolve: {
+                    errors: () => errors
+                },
+                size: 'sm'
+            });
+        }
+
+        public deleteQuestion(question: SurveySays.Models.IQuestion) {
+            this.$uibModal.open({
+                templateUrl: '/ngApp/views/modals/deleteQuestionDialog.html',
+                controller: SurveySays.Controllers.DeleteQuestionDialogController,
+                controllerAs: 'modal',
+                resolve: {
+                    question: () => question
+                }
+            });
+        }
+
     }
 
     angular.module("SurveySays").controller("designController", DesignController);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//HappyCoding123

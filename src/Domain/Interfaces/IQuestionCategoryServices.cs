@@ -9,5 +9,6 @@ namespace Domain.Interfaces
     public interface IQuestionCategoryServices
     {
         IList<QuestionCategory> ListCategories();
+        IList<Question> GetQuestionsByCategory(int categoryId, int surveyId);
     }
 }

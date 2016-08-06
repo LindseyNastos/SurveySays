@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,9 +10,8 @@ namespace Domain.Models
     {
         public Question()
         {
-            MatrixQuestions = new List<Option>();
+            MatrixQuestions = new List<MatrixQuestion>();
             AnswerOptions = new List<Option>();
-            QuestionSurveys = new List<QuestionSurvey>();
         }
         public int Id { get; set; }
         public string Quest { get; set; }
@@ -19,7 +19,6 @@ namespace Domain.Models
         public int QuestionCategoryId { get; set; }
         public QuestionType QuestionType { get; set; }
         public ICollection<Option> AnswerOptions { get; set; }
-        public ICollection<Option> MatrixQuestions { get; set; }
-        public ICollection<QuestionSurvey> QuestionSurveys { get; set; }
+        public ICollection<MatrixQuestion> MatrixQuestions { get; set; }
     }
 }

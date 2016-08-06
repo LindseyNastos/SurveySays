@@ -46,7 +46,7 @@ namespace SurveySays {
                 controllerAs: 'vm'
             })
             .state('editSurvey.preview', {
-                url: '/preview',
+                url: '/preview/:id?',
                 templateUrl: '/ngApp/views/editSurveyChildViews/preview.html',
                 controller: SurveySays.Controllers.PreviewController,
                 controllerAs: 'vm'

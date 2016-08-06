@@ -9,7 +9,7 @@ namespace Domain.Models
     {
         public Survey()
         {
-            QuestionSurveys = new List<QuestionSurvey>();
+            Questions = new List<Question>();
         }
         public int Id { get; set; }
         public string SurveyName { get; set; }
@@ -24,6 +24,6 @@ namespace Domain.Models
         public int CurrentTroop { get; set; }
         public bool IsActive { get; set; }
 
-        public ICollection<QuestionSurvey> QuestionSurveys { get; set; }
+        public ICollection<Question> Questions { get; set; }
     }
 }

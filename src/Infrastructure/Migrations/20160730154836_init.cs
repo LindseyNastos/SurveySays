@@ -113,33 +113,6 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
             migrationBuilder.CreateTable(
-                name: "Question",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AnswerRequired = table.Column<bool>(nullable: false),
-                    Quest = table.Column<string>(nullable: true),
-                    QuestionCategoryId = table.Column<int>(nullable: false),
-                    QuestionTypeId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Question", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Question_QuestionCategory_QuestionCategoryId",
-                        column: x => x.QuestionCategoryId,
-                        principalTable: "QuestionCategory",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Question_QuestionType_QuestionTypeId",
-                        column: x => x.QuestionTypeId,
-                        principalTable: "QuestionType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -257,53 +230,38 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
-                name: "Option",
+                name: "Question",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Opt = table.Column<string>(nullable: true),
-                    QuestionId = table.Column<int>(nullable: true),
-                    QuestionId1 = table.Column<int>(nullable: true)
+                    AnswerRequired = table.Column<bool>(nullable: false),
+                    Quest = table.Column<string>(nullable: true),
+                    QuestionCategoryId = table.Column<int>(nullable: false),
+                    QuestionTypeId = table.Column<int>(nullable: true),
+                    SurveyId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Option", x => x.Id);
+                    table.PrimaryKey("PK_Question", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Option_Question_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "Question",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Option_Question_QuestionId1",
-                        column: x => x.QuestionId1,
-                        principalTable: "Question",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-            migrationBuilder.CreateTable(
-                name: "QuestionSurvey",
-                columns: table => new
-                {
-                    QuestionId = table.Column<int>(nullable: false),
-                    SurveyId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_QuestionSurvey", x => new { x.QuestionId, x.SurveyId });
-                    table.ForeignKey(
-                        name: "FK_QuestionSurvey_Question_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "Question",
+                        name: "FK_Question_QuestionCategory_QuestionCategoryId",
+                        column: x => x.QuestionCategoryId,
+                        principalTable: "QuestionCategory",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_QuestionSurvey_Survey_SurveyId",
+                        name: "FK_Question_QuestionType_QuestionTypeId",
+                        column: x => x.QuestionTypeId,
+                        principalTable: "QuestionType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Question_Survey_SurveyId",
                         column: x => x.SurveyId,
                         principalTable: "Survey",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
             migrationBuilder.CreateTable(
                 name: "SurveyToTake",
@@ -327,6 +285,32 @@ namespace Infrastructure.Migrations
                         name: "FK_SurveyToTake_Survey_SurveyId",
                         column: x => x.SurveyId,
                         principalTable: "Survey",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+            migrationBuilder.CreateTable(
+                name: "Option",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Opt = table.Column<string>(nullable: true),
+                    QuestionId = table.Column<int>(nullable: true),
+                    QuestionId1 = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Option", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Option_Question_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Question",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Option_Question_QuestionId1",
+                        column: x => x.QuestionId1,
+                        principalTable: "Question",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -369,7 +353,6 @@ namespace Infrastructure.Migrations
         {
             migrationBuilder.DropTable("Answer");
             migrationBuilder.DropTable("Option");
-            migrationBuilder.DropTable("QuestionSurvey");
             migrationBuilder.DropTable("AspNetRoleClaims");
             migrationBuilder.DropTable("AspNetUserClaims");
             migrationBuilder.DropTable("AspNetUserLogins");
@@ -377,9 +360,9 @@ namespace Infrastructure.Migrations
             migrationBuilder.DropTable("SurveyToTake");
             migrationBuilder.DropTable("Question");
             migrationBuilder.DropTable("AspNetRoles");
-            migrationBuilder.DropTable("Survey");
             migrationBuilder.DropTable("QuestionCategory");
             migrationBuilder.DropTable("QuestionType");
+            migrationBuilder.DropTable("Survey");
             migrationBuilder.DropTable("AspNetUsers");
             migrationBuilder.DropTable("Course");
             migrationBuilder.DropTable("Campus");

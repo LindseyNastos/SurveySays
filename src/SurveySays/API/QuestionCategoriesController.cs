@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Domain.Interfaces;
+using Domain.ViewModels;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,10 +27,11 @@ namespace SurveySays.API
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetQuestions/{vm}")]
+        public IActionResult GetQuestions(QuestionsByCategoryVM vm)
         {
-            return "value";
+            var questions = _service.GetQuestionsByCategory(vm.CategoryId, vm.SurveyId);
+            return Ok(questions);
         }
 
         // POST api/values

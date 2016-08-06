@@ -29,31 +29,21 @@ namespace Services.DomainServices
         public Survey GetSurvey(int id) {
             var survey = _repo.Query<Survey>()
                 .Where(s => s.Id == id)
-                //.Where(s => s.IsActive == true)
+                .Include(s => s.Questions)
+                .ThenInclude(q => q.QuestionType)
                 .Include(s => s.Course)
                 .FirstOrDefault();
             survey.DateCreated = survey.DateCreated.ToLocalTime();
-            survey.NumQuestions = (_repo.Query<QuestionSurvey>()
-                .Where(s => s.SurveyId == id)
-                .Select(s => s.Question))
-                .Count();
+            survey.NumQuestions = survey.Questions.Count();
             return survey;
-
         }
 
         public FullSurveyVM GetFullSurvey(int id) {
             var survey = GetSurvey(id);
-            var questions = _repo.Query<QuestionSurvey>()
-                .Where(s => s.SurveyId == id)
-                .Select(s => s.Question)
-                .ToList();
-
-            survey.NumQuestions = questions.Count();
-            survey.DateCreated = survey.DateCreated.ToLocalTime();
 
             var questionDetails = new List<Question>();
 
-            foreach (var question in questions) {
+            foreach (var question in survey.Questions) {
                 var quest = _repo.Query<Question>()
                     .Where(q => q.Id == question.Id)
                     .Include(q => q.AnswerOptions)
