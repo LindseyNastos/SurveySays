@@ -1,56 +1,61 @@
 ﻿<div class="row">
-    <div class="form-style-10">
-        <form>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="section"><span>1</span>Course &amp; Troop</div>
-                    <div class="inner-wrap">
-                        <label>
-                            Course Location
-                            <select class="form-control">
-                                <option ng-repeat="c in vm.campuses">{{c.location}}</option>
-                            </select>
-                        </label>
-                        <label>Troop Number <input type="number" name="field2" /></label>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Send out surveys</h3>
+        </div>
+        <div class="form-style-10">
+            <form>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="section"><span>1</span>Course &amp; Troop</div>
+                        <div class="inner-wrap">
+                            <label>
+                                Course Location
+                                <select class="form-control">
+                                    <option ng-repeat="c in vm.campuses">{{c.location}}</option>
+                                </select>
+                            </label>
+                            <label>Troop Number <input type="number" name="field2" /></label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="section"><span>2</span>Send Date</div>
-                    <div class="inner-wrap">
-                        <label>
-                            When would you like this survey sent?
-                        </label>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <input ng-click="vm.toggleDatePopup()" type="radio" ng-model="vm.sendTime" name="sendTime" value="now" /> Now
-                            </div>
-                            <div class="col-sm-8">
-                                <input ng-click="vm.toggleDatePopup()" ng-model="vm.sendTime" type="radio" name="sendTime" value="later" /> Later (choose a date)
-                                <!--ui-datepicker popup-->
-                                <p style="display:none" id="datePopup" class="input-group">
-                                    <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.dt" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                                    <span class="input-group-btn">
-                                        <button type="button" class="form-control btn btn-default" ng-click="vm.open()"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-                                    </span>
-                                </p>
+                    <div class="col-md-4">
+                        <div class="section"><span>2</span>Send Date</div>
+                        <div class="inner-wrap">
+                            <label>
+                                When would you like this survey sent?
+                            </label>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input ng-click="vm.toggleDatePopup()" type="radio" ng-model="vm.sendTime" name="sendTime" value="now" /> Now
+                                </div>
+                                <div class="col-sm-8">
+                                    <input ng-click="vm.toggleDatePopup()" ng-model="vm.sendTime" type="radio" name="sendTime" value="later" /> Later (choose a date)
+                                    <!--ui-datepicker popup-->
+                                    <p style="display:none" id="datePopup" class="input-group">
+                                        <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.dt" is-open="vm.popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="form-control btn btn-default" ng-click="vm.open()"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="section"><span>3</span>Recipients</div>
-                    <div class="inner-wrap">
-                        <label>First Name <input type="text" name="field5" /></label>
-                        <label>Last Name <input type="text" name="field6" /></label>
-                        <label>Email <input type="password" name="field7" /></label>
+                    <div class="col-md-4">
+                        <div class="section"><span>3</span>Recipients</div>
+                        <div class="inner-wrap">
+                            <label>First Name <input type="text" name="field5" /></label>
+                            <label>Last Name <input type="text" name="field6" /></label>
+                            <label>Email <input type="password" name="field7" /></label>
+                        </div>
+                        <div class="button-section">
+                            <input type="submit" value="Send Surveys" />
+                            <p id="p-send-date">*Even if you have chosen to send at a later date, please hit send. It will be sent on your chosen date.</p>
+                        </div>
                     </div>
-                    <div class="button-section">
-                        <input type="submit" value="Send Surveys" />
-                        <p id="p-send-date">*Even if you have chosen to send at a later date, please hit send. It will be sent on your chosen date.</p>
-                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 
