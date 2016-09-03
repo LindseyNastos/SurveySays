@@ -23,7 +23,12 @@ namespace Services.DomainServices
         }
 
         public IList<Question> GetQuestionsByCategory(int categoryId, int surveyId) {
-            var surveyQuestions = (_repo.Query<Survey>().FirstOrDefault(q => q.Id == surveyId)).Questions.ToList();
+            var surveyQuestions = (_repo.Query<Survey>()
+                .Include(s => s.Questions).ThenInclude(q => q.QuestionType)
+                .Include(s => s.Questions).ThenInclude(q => q.AnswerOptions)
+                .Include(s => s.Questions).ThenInclude(q => q.MatrixQuestions)
+                .FirstOrDefault(s => s.Id == surveyId))
+                .Questions.ToList();
             var categoryQuestions = surveyQuestions.Where(q => q.QuestionCategoryId == categoryId).ToList();
             return categoryQuestions;
         }

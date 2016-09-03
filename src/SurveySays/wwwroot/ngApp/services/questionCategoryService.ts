@@ -5,7 +5,7 @@
             this.CategoryResource = $resource('/api/questionCategories/:id', null, {
                 getQuestions: {
                     method: 'GET',
-                    url: '/api/questionCategories/getQuestions/:vm',
+                    url: '/api/questionCategories/getQuestions/:categoryId/:surveyId',
                     isArray: true
                 }
             });

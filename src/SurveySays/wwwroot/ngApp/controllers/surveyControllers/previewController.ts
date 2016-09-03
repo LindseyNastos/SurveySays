@@ -2,12 +2,13 @@
 
     export class PreviewController {
         public survey: SurveySays.Models.ISurvey;
+        public surveyId: number;
         public questions: any = [];
         public categories: SurveySays.Models.IQuestionCategory[];
         public categoryId: number;
         public category: SurveySays.Models.IQuestionCategory;
-        constructor(private $uibModal: angular.ui.bootstrap.IModalService, private surveyService: SurveySays.Services.SurveyService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
-            //this.getSurveyInfo();
+        constructor(private $uibModal: angular.ui.bootstrap.IModalService, private surveyService: SurveySays.Services.SurveyService, private questionCategoryService: SurveySays.Services.QuestionCategoryService, private $stateParams: SurveySays.Models.IStateParams, private $state: ng.ui.IStateService) {
+            this.surveyId = $stateParams.surveyId;
             this.getCategories();
             this.checkParams(this.$stateParams['id']);
         }
@@ -31,14 +32,14 @@
         }
 
         public getSurveyInfo() {
-            this.surveyService.getFullSurvey(this.$stateParams['surveyId']).then((data) => {
+            this.surveyService.getFullSurvey(this.surveyId).then((data) => {
                 this.survey = data.survey;
                 this.questions = data.questions;
             });
         }
 
         public getQuestionsByCategory(categoryId: number) {
-            this.questionCategoryService.getQuestionsByCategory(categoryId, this.$stateParams['surveyId']).then((data) => {
+            this.questionCategoryService.getQuestionsByCategory(categoryId, this.surveyId).then((data) => {
                 this.questions = data;
             });
         }

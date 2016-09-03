@@ -23,18 +23,18 @@
             </div>
             <div class="panel-body">
                 <uib-tabset>
-                    <uib-tab class="tab-headings">
-                        <uib-tab-heading>
-                            Individual Responses  <span ng-show="{{vm.survey.numResponses}}" class="badge">{{vm.survey.numResponses}}</span>
-                        </uib-tab-heading>
-                        <div ui-view="#" class="editTabDiv">
-                        </div>
-                    </uib-tab>
                     <uib-tab class="tab-headings" heading="Data Trends">
                         <div ui-view="#" class="editTabDiv">
                         </div>
                     </uib-tab>
                     <uib-tab class="tab-headings" heading="Question Summaries">
+                        <div ui-view="#" class="editTabDiv">
+                        </div>
+                    </uib-tab>
+                    <uib-tab class="tab-headings">
+                        <uib-tab-heading>
+                            Individual Responses  <span ng-show="{{vm.survey.numResponses}}" class="badge">{{vm.survey.numResponses}}</span>
+                        </uib-tab-heading>
                         <div ui-view="#" class="editTabDiv">
                         </div>
                     </uib-tab>

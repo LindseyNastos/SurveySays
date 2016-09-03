@@ -27,10 +27,10 @@ namespace SurveySays.API
         }
 
         // GET api/values/5
-        [HttpGet("GetQuestions/{vm}")]
-        public IActionResult GetQuestions(QuestionsByCategoryVM vm)
+        [HttpGet("getQuestions/{categoryId}/{surveyId}")]
+        public IActionResult GetQuestions(int categoryId, int surveyId)
         {
-            var questions = _service.GetQuestionsByCategory(vm.CategoryId, vm.SurveyId);
+            var questions = _service.GetQuestionsByCategory(categoryId, surveyId);
             return Ok(questions);
         }
 
